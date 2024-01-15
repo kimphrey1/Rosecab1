@@ -65,17 +65,17 @@
             <img src="{% static 'images/adminlogo.png' %}" width="80" height="80"
                  class="mr-3 rounded-circle img-thumbnail shadow-sm">
             <div class="media-body">
-                <h4 class="mb-0">Admin</h4>
+                <h4 class="mb-0">{{request.user.username}}</h4>
                 <p class="text-muted mb-0">{{request.user.email}}</p>
             </div>
         </div>
     </div>
 
- 
+
     <!--.flex-column to display the flex items vertically (on top of each other)-->
     <ul class="nav flex-column bg-white">
         <li class="nav-item">
-            <a href="" class="nav-link text-dark bg-light">
+            <a href="/admindashboard/" class="nav-link text-dark bg-light">
                 <i class="fas fa-tachometer-alt fa-fw mr-3 text-primary"></i>
                 Dashboard
             </a>
@@ -117,22 +117,7 @@
                 <a class="dropdown-item" href="{% url 'view_product_variants' %}">Inventory</a>
                 <a class="dropdown-item" href="{% url 'add_product' %}">Add Product</a>
                 <a class="dropdown-item" href="{% url 'view_product' %}">View Products</a>
-        </li>      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
+        </li>       
 
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-dark bg-light" href="#" id="navbardrop" data-toggle="dropdown">
@@ -163,7 +148,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="" class="nav-link text-dark bg-light">
+            <a href="/logout/" class="nav-link text-dark bg-light">
                 <i class="fas fa-sign-out-alt mr-3 text-primary fa-fw"></i>
                 Logout
             </a>
@@ -175,7 +160,7 @@
 <!--vertical navbar end-->
 <!--page content holder-->
 <div class="page-content p-4" id="content">
-    <a href="" title="logout" class="float-right text-white"><i class="fas fa-sign-out-alt fa-2x"></i></a>
+    <a href="/logout/" title="logout" class="float-right text-white"><i class="fas fa-sign-out-alt fa-2x"></i></a>
 
  
     <!--toggle btn-->

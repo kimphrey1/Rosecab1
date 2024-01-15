@@ -8,7 +8,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
 
     # Admin login
     path('admin-login/', adminLogin, name="admin_login"),
@@ -50,11 +50,6 @@ urlpatterns = [
     path('add-product-variant/', add_productvariant, name='add_productvariant'),
     path('edit-productvariant/<int:variant_id>/', edit_productvariant, name='edit_productvariant'),
     path('delete-productvariant/<uuid:pid>/', delete_productvariant, name='delete_productvariant'),
-
-
-
-
-
 
     # Orders
     path('view_order/', view_orders, name='view_orders'),
