@@ -9,6 +9,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 from order.models import Order
+from users.models import Customer, User
 # from .forms import SizeForm
 
 def adminLogin(request):
@@ -35,8 +36,19 @@ def adminHome(request):
 # --------------------------------------------------------------------------------------------------------
 
 def admin_dashboard(request):
+    customercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+    ordercount = Order.objects.all().count()
+
     products = Product.objects.all()  # Or fetch the necessary products based on your logic
-    return render(request, 'admin_dashboard.html', {'products': products})
+
+    mydict = {
+        'customercount': customercount,
+        'productcount': productcount,
+        'ordercount': ordercount,
+        'products' : products,
+    }
+    return render(request, 'admin_dashboard.html', {'mydict': mydict})
 
 # --------------------------------------------------------------------------------------------------------
 
