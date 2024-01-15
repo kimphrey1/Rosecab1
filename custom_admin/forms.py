@@ -1,5 +1,6 @@
 from django import forms
 from store.models import ProductVariant, Product, Size
+from order.models import Order
 
 class ProductForm(forms.ModelForm):
     class Meta:
@@ -20,3 +21,10 @@ ProductVariantFormSet = forms.inlineformset_factory(
 )
 
 
+
+
+
+class OrderEditForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['status', 'paid']

@@ -26,7 +26,7 @@ class Order(models.Model):
         ('Out for Delivery','Out for Delivery'),
         ('Delivered','Delivered'),
     )
-    status=models.CharField(max_length=50,null=True,choices=STATUS)
+    status=models.CharField(max_length=50,null=True,choices=STATUS,default='Pending')
 # --------------------------------------------------------------------------------------------------
 
 

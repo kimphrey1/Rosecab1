@@ -4,7 +4,7 @@ from store.models import Product,Size, ProductVariant
 from django.contrib import messages
 from .forms import ProductVariantForm
 from django.urls import reverse
-from .forms import ProductForm, ProductVariantFormSet
+from .forms import ProductForm, ProductVariantFormSet, OrderEditForm
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
@@ -246,7 +246,7 @@ def delete_productvariant(request, variant_id):
 def view_orders(request):
     orders = Order.objects.all()
     context = {'orders': orders}
-    return render(request, 'view_orders.html', context)
+    return render(request, 'view_order.html', context)
 
 # --------------------------------------------------------------------------------------------------------
 
@@ -258,3 +258,83 @@ def view_orders(request):
 
 # --------------------------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+# def edit_order(request, transaction_id):
+#     order = get_object_or_404(Order, transaction_id=transaction_id)
+
+#     if request.method == 'POST':
+#         form = OrderEditForm(request.POST, instance=order)
+#         if form.is_valid():
+#             form.save()
+#             # Redirect to a success page or view
+#             return redirect('success_page')
+#     else:
+#         form = OrderEditForm(instance=order)
+
+#     context = {'order': order, 'form': form}
+#     return render(request, 'edit_order.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def edit_order(request, transaction_id):
+    order = get_object_or_404(Order, transaction_id=transaction_id)
+
+    if request.method == 'POST':
+        form = OrderEditForm(request.POST, instance=order)
+        if form.is_valid():
+            form.save()
+            # Add a success message
+            messages.success(request, 'Order successfully edited.')
+            # Redirect back to the view_orders page
+            return redirect('view_orders')
+    else:
+        form = OrderEditForm(instance=order)
+
+    context = {'order': order, 'form': form}
+    return render(request, 'edit_order.html', context)
+
+
+
+
+
+def delete_order(request):
+    if request.method == 'GET':
+        transaction_id = request.GET.get('transaction_id')
+        order = get_object_or_404(Order, transaction_id=transaction_id)
+        order.delete()
+        return redirect('view_orders')
+    else:
+        return redirect('view_orders')  # Handle non-GET requests as needed
+    
+
+
+
+
+def view_shipping_address(request, transaction_id):
+    order = get_object_or_404(Order, transaction_id=transaction_id)
+    shipping_address = order.shipping
+
+    return render(request, 'view_shipping_address.html', {'shipping_address': shipping_address})

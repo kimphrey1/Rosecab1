@@ -1,0 +1,24 @@
+{% extends 'admin_base.html' %}
+
+{% block main %}
+    <div class="card shadow">
+        <div class="card-body">
+            <h5 class="p-2" style="border-bottom: 2px solid orange;">View Shipping Address</h5>
+            <div class="container-fluid">
+                <h1>Shipping Address</h1>
+                <!-- Shipping address details -->
+                <p><strong>First Name:</strong> {{ shipping_address.first_name }}</p>
+                <p><strong>Last Name:</strong> {{ shipping_address.last_name }}</p>
+                <p><strong>Address Line 1:</strong> {{ shipping_address.address_1 }}</p>
+                <p><strong>Address Line 2:</strong> {{ shipping_address.address_2 }}</p>
+                <p><strong>City:</strong> {{ shipping_address.city }}</p>
+                <p><strong>State:</strong> {{ shipping_address.state }}</p>
+                <p><strong>Country:</strong> {{ shipping_address.country }}</p>
+                <p><strong>Postal Code:</strong> {{ shipping_address.postal_code }}</p>
+
+                <!-- Link to go back to the view_orders page -->
+                <a href="{% url 'view_orders' %}" class="btn btn-secondary">Go Back to Orders</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

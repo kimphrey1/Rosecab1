@@ -57,6 +57,20 @@ urlpatterns = [
 
 
     # Orders
-    path('view_orders/', view_orders, name='view_orders'),
+    path('view_order/', view_orders, name='view_orders'),
+
+
+    path('edit_order/<uuid:transaction_id>/', edit_order, name='edit_order'),
+
+    path('delete_order/', delete_order, name='delete_order'), 
+
+
+    path('view-shipping-address/<uuid:transaction_id>/', view_shipping_address, name='view_shipping_address'),
+
+
+
+
+
+    
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
