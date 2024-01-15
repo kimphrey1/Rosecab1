@@ -1,0 +1,45 @@
+{% extends 'admin_base.html' %}
+
+{% block main  %}
+
+<div class="card shadow">
+    <div class="card-body">
+        <h5 class="p-2" style="border-bottom: 2px solid orange;">View Orders</h5>
+        <div class="container-fluid">
+            <table class="table table-bordered table-sm" id="example">
+                <thead>
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Status</th>
+                        <th>Paid</th>
+                        <th>Delivery Method</th>
+                        <th>Date Ordered</th>
+                        <th>Items Ordered</th>
+                        <th>Total</th>
+                        <th>Shipping Address</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.customer }}</td>
+                            <td contenteditable="true">{{ order.status }}</td>
+                            <td>{{ order.paid }}</td>
+                            <td>{{ order.delivery_method }}</td>
+                            <td>{{ order.date_ordered }}</td>
+                            <td>{{ order.display_items }}</td>
+                            <td>${{ order.get_cart_total }}</td>
+                            <td><a href="{{ order.shipping_address }}" target="_blank">View Address</a></td>
+                            <td>
+                                <a href="/delete-order/{{ order.id }}/" class="text-danger" onclick="return confirm('Are You Sure?')">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
