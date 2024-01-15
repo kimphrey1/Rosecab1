@@ -51,11 +51,6 @@ urlpatterns = [
     path('edit-productvariant/<int:variant_id>/', edit_productvariant, name='edit_productvariant'),
     path('delete-productvariant/<uuid:pid>/', delete_productvariant, name='delete_productvariant'),
 
-
-
-
-
-
     # Orders
     path('view_orders/', view_orders, name='view_orders'),
 
