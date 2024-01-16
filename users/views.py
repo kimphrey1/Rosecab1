@@ -18,19 +18,19 @@ class SignUpView(CreateView):
 
 class MyLoginView(LoginView):
     template_name = "users/login.html"
-    success_url = reverse_lazy("store:products")
+    success_url = reverse_lazy("store:afterlogin")
     form_class = CustomLoginForm
 
     # redirect authenticated user to the products page
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return HttpResponseRedirect(reverse("store:products"))
+            return HttpResponseRedirect(reverse("store:afterlogin"))
         return super(LoginView, self).get(request, *args, **kwargs)
 
 
 def logout_view(request):
     logout(request)
-    return redirect("store:products")
+    return redirect("store:home")
 
 
 @login_required(login_url="users:login")
