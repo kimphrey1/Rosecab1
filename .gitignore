@@ -1,13 +1,14 @@
 # node_modules
 # test_coverage_report
-# Django #
+# # Django #
 # *.log
 # *.pot
-# *.pyc
-# __pycache__
-# __pycache__/
-# /*/__pycache__/
-# **/__pycache__
+*.pyc
+.pyc
+__pycache__
+__pycache__/
+/*/__pycache__/
+**/__pycache__
 # db.sqlite3
 # media
 
