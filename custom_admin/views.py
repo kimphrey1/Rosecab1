@@ -36,6 +36,7 @@ def adminHome(request):
 # --------------------------------------------------------------------------------------------------------
 
 def admin_dashboard(request):
+    categorycount = Category.objects.all().count()
     customercount = Customer.objects.all().count()
     productcount = Product.objects.all().count()
     ordercount = Order.objects.all().count()
@@ -43,6 +44,7 @@ def admin_dashboard(request):
     products = Product.objects.all()  # Or fetch the necessary products based on your logic
 
     mydict = {
+        'categorycount': categorycount,
         'customercount': customercount,
         'productcount': productcount,
         'ordercount': ordercount,
