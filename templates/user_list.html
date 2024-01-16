@@ -1,13 +1,12 @@
 {% extends 'admin_base.html' %}
 
-{% block main %}
-<div class="container mt-5" style="font-family: 'Roboto', sans-serif;">
-    <h1 class="text-center" style="font-family: 'Georgia', sans-serif; font-size: 3em; text-transform: uppercase;">User List</h1>
-    <hr class="rounded">
-
-    <div class="card">
-        <div class="card-body">
-            <table class="table table-bordered table-striped" style="border: 2px solid black;" id="userTable">
+{% block content %}
+<div class="card shadow">
+    <div class="card-body">
+        <h1 class="p-2 text-center" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">
+            User List</h1>
+        <div class="container-fluid">
+           <table class="table table-bordered table-striped" style="border: 2px solid black;" id="userTable">
                 <thead style="background-color: black; color: white;">
                     <tr>
                         <th>No</th>

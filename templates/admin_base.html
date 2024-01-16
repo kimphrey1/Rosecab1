@@ -14,10 +14,10 @@
     <script src="{% static 'js/myjs.js' %}"></script>
     <style>
         body {
-            background: linear-gradient(135.9deg, #999, #777);
+            {% comment %} background: linear-gradient(135.9deg, #999, #777); {% endcomment %}
+           
+            background-image: linear-gradient(135.9deg, rgba(251, 232, 126, 1) 16.4%, rgba(128, 0, 32, 1) 56.1%);
             min-height: 100vh;
-        {% comment %} background-image: linear-gradient(135.9deg, rgba(109, 25, 252, 1) 16.4%, rgba(125, 31, 160, 1) 56.1%); {% endcomment %}
-        
         }
 
         .vertical-nav {
@@ -56,111 +56,7 @@
     </style>
 </head>
 <body>
-<!--vertical navbar start-->
-<div class="vertical-nav bg-white" id="sidebar">
-    <div class="py-4 px-3 mb-1 bg-light">
-        <!--align media objects (like images or videos) together with content
-        To create a flexbox container and to transform direct children into flex items, use the d-flex class
-        -->
-        <p class="font-weight-bold text-uppercase px-3 small dashboard-text text-center">ROSECAB</p>
-        <div class="media d-flex align-items-center">
-            <img src="{% static 'images/adminlogo.png' %}" width="80" height="80"
-                 class="mr-3 rounded-circle img-thumbnail shadow-sm">
-            <div class="media-body">
-                <h4 class="mb-0">{{request.user.username}}</h4>
-                <p class="text-muted mb-0">{{request.user.email}}</p>
-            </div>
-        </div>
-    </div>
-
-
-    <!--.flex-column to display the flex items vertically (on top of each other)-->
-    <ul class="nav flex-column bg-white">
-        <li class="nav-item">
-            <a href="/admindashboard/" class="nav-link text-dark bg-light">
-                <i class="fas fa-tachometer-alt fa-fw mr-3 text-primary"></i>
-                Dashboard
-            </a>
-        </li>
-        <!--fa-fw class is used to set icons at a fixed width. This class is useful when different icon widths throw off alignment-->
-
- 
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-dark bg-light" href="#" id="navbardrop" data-toggle="dropdown">
-                <i class="fas fa-list-ul mr-3 text-primary fa-fw"></i> Categories
-            </a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'add_category' %}">Add Category</a>
-                <a class="dropdown-item" href="{% url 'view_category' %}">View Category</a>
-            </div>
-        </li>
-
-
-
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-dark bg-light" href="#" id="navbardrop" data-toggle="dropdown">
-                <i class="fas fa-chart-line mr-3 text-primary fa-fw"></i> Sizes
-            </a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'add_size' %}">Add Size</a>
-                <a class="dropdown-item" href="{% url 'view_size' %}">View Size</a>
-            </div>
-        </li>
-
-
-        
-
-
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-dark bg-light" href="#" id="navbardrop" data-toggle="dropdown">
-                <i class="fas fa-shopping-bag mr-3 text-primary fa-fw"></i> Products
-            </a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'view_product_variants' %}">Inventory</a>
-                <a class="dropdown-item" href="{% url 'add_product' %}">Add Product</a>
-                <a class="dropdown-item" href="{% url 'view_product' %}">View Products</a>
-        </li>       
-
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-dark bg-light" href="#" id="navbardrop" data-toggle="dropdown">
-                <i class="fas fa-users mr-3 text-primary fa-fw"></i> Manage Users
-            </a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="">View User</a>
-
- 
-            </div>
-        </li>
-        
-        <li class="nav-item">
-            <a href="{% url 'view_orders' %}" class="nav-link text-dark bg-light">
-                <i class="fas fa-shopping-basket mr-3 text-primary fa-fw"></i>
-                Manage Orders
-            </a>
-        {% comment %} </li>
-        <li class="nav-item">
-            <a href="" class="nav-link text-dark bg-light">
-                <i class="fas fa-cog mr-3 text-primary fa-fw"></i>
-                Manage Feedback
-            </a>
-        </li> {% endcomment %}
-        <li class="nav-item">
-            <a href="" class="nav-link text-dark bg-light">
-                <i class="fas fa-key mr-3 text-primary fa-fw"></i>
-                Change Password
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="/logout/" class="nav-link text-dark bg-light">
-                <i class="fas fa-sign-out-alt mr-3 text-primary fa-fw"></i>
-                Logout
-            </a>
-        </li>
-
- 
-    </ul>
-</div>
-<!--vertical navbar end-->
+{%include 'admin_navbar.html'%}
 <!--page content holder-->
 <div class="page-content p-4" id="content">
     <a href="/logout/" title="logout" class="float-right text-white"><i class="fas fa-sign-out-alt fa-2x"></i></a>
@@ -174,8 +70,8 @@
     <!--end toggle btn-->
 
  
-    {% block main %}
-    {% endblock %}
+    {% block content %}
+    {% endblock content %}
 </div>
 <!--end page content holder-->
 </body>
