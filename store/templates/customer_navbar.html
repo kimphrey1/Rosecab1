@@ -8,7 +8,7 @@
 					
 					<!-- Logo desktop -->		
 					<a href="#" class="logo">
-						<img src="{%static 'customer/images/icons/logo-01.png' %}" alt="IMG-LOGO">
+						<img src="{% static 'home/img/rosecab.png' %}" alt="IMG-LOGO" style="width:150px; height:auto;">
 					</a>
 
 					<!-- Menu desktop -->
@@ -24,23 +24,15 @@
 							</li>
 
 							<li class="active-menu">
-								<a href="">Shop</a>
+								<a href="/">Shop</a>
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="/cart/">My Orders</a>
+								<a href="{% url 'users:my_orders' %}">Orders</a>
 							</li>
 
 							<li>
-								<a href="{% url 'users:login' %}">Login</a>
-							</li>
-
-							<li>
-								<a href="{% url 'admin_login' %}">Admin</a>
-							</li>
-
-							<li>
-								<a href="{% url 'users:register' %}">Register</a>
+								<a href="{% url 'users:logout' %}">Logout</a>
 							</li>
 						</ul>
 					</div>	
@@ -48,12 +40,17 @@
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="{{cart_quantity}}">
-							<a href="{% url 'order:cart' %}"><i class="zmdi zmdi-shopping-cart"></i></a>
+							<a href="{% url 'order:cart' %}"><i class="zmdi zmdi-shopping-cart" style="color: #800020;"></i></a>
 						</div>
-
-						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
-							<i class="zmdi zmdi-favorite-outline"></i>
+						{%if request.user.is_authenticated%}
+						<a href="{% url 'users:logout' %}" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
+							<i class="zmdi zmdi-sign-in"  style="color: #800020;"></i>
 						</a>
+						{%else%}
+						<a href="{% url 'users:login' %}" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
+							<i class="zmdi zmdi-sign-in"  style="color: #800020;"></i>
+						</a>
+						{%endif%}
 					</div>
 				</nav>
 			</div>	
@@ -63,18 +60,24 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href=""><img src="{%static 'customer/images/icons/logo-01.png' %}" alt="IMG-LOGO"></a>
+				<a href=""><img src="{% static 'home/img/rosecab.png' %}" alt="IMG-LOGO" style="width:130px; height:200px;"></a>
 			</div>
 
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
 				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="{{cart_quantity}}">
-					<a href="{% url 'order:cart' %}"><i class="zmdi zmdi-shopping-cart"></i></a>
+					<a href="{% url 'order:cart' %}"><i class="zmdi zmdi-shopping-cart"  style="color: #800020;"></i></a>
 				</div>
 
-				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
-					<i class="zmdi zmdi-favorite-outline"></i>
+				{%if request.user.is_authenticated%}
+				<a href="{% url 'users:logout' %}" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
+					<i class="zmdi zmdi-sign-in" style="color: #800020;"></i>
 				</a>
+				{%else%}
+				<a href="{% url 'users:login' %}" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
+					<i class="zmdi zmdi-sign-in"  style="color: #800020; "></i>
+				</a>
+				{%endif%}
 			</div>
 
 			<!-- Button show menu -->
@@ -106,19 +109,11 @@
 				</li>
 
 				<li>
-					<a href="/cart/" class="label1 rs1" data-label1="hot">My Orders</a>
+					<a href="{% url 'users:my_orders' %}" class="label1 rs1" data-label1="hot">Orders</a>
 				</li>
 
 				<li>
-					<a href="{% url 'users:login' %}">Login</a>
-				</li>
-
-				<li>
-					<a href="{% url 'admin_login' %}">Admin</a>
-				</li>
-
-				<li>
-					<a href="{% url 'users:register' %}">Register</a>
+					<a href="{% url 'users:logout' %}">Logout</a>
 				</li>
 			</ul>
 		</div>

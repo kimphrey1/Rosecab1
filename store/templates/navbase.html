@@ -1,0 +1,327 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Product</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'customer/images/icons/favicon.png' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'customer/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'customer/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'customer/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'customer/fonts/linearicons-v1.0.0/icon-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'customer/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'customer/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'customer/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'customer/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'customer/vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'customer/vendor/slick/slick.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'customer/vendor/MagnificPopup/magnific-popup.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'customer/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'customer/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'customer/css/main.css' %}">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="{% static 'store/src/styles.css' %}" />
+<link rel="stylesheet" href="{% static 'store/src/customStyles.css' %}" />
+
+<!-- Datepicker JQuery -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css" />
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<!-- Google Web Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+<script src="{% static 'store/js/helpers.js' %}"></script>
+<!--Favicon-->
+<link href="{% static 'home/img/roselogo.png' %}" rel="icon">
+</head>
+<body>
+<!-- Header -->
+<header class="header-v4">
+    <!-- Header desktop -->
+    <div class="container-menu-desktop">
+        <div class="wrap-menu-desktop how-shadow1">
+            <nav class="limiter-menu-desktop container">
+                
+                <!-- Logo desktop -->		
+                <a href="#" class="logo">
+                    <img src="{% static 'home/img/rosecab.png' %}" alt="IMG-LOGO" style="width: 150px; height: auto;">
+                </a>
+
+                <!-- Menu desktop -->
+                <div class="menu-desktop">
+                    <ul class="main-menu">
+                        <li>
+                            <a href="/">Home</a>
+                            <ul class="sub-menu">
+                                <li><a href="afterlogin/">Homepage 1</a></li>
+                                <li><a href="afterlogin/">Homepage 2</a></li>
+                                <li><a href="afterlogin/">Homepage 3</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="active-menu">
+                            <a href="/">Shop</a>
+                        </li>
+
+                        <li class="label1" data-label1="hot">
+                            <a href="{% url 'users:my_orders' %}">Orders</a>
+                        </li>
+
+                    </ul>
+                </div>	
+
+                <!-- Icon header -->
+                <div class="wrap-icon-header flex-w flex-r-m">
+                    {%if request.user.is_authenticated%}
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="{{cart_quantity}}">
+                            <a href="{% url 'order:cart' %}"><i class="zmdi zmdi-shopping-cart" style="color: #800020;"></i></a>
+                        </div>
+
+                        <a href="{% url 'users:logout' %}" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti">
+                            <i class="zmdi zmdi-sign-in"  style="color: #800020;"></i>
+                        </a>
+                        {%else%}
+                        <div class="d-inline-flex align-items-center">
+                            <a class="text-black px-3" href="https://www.facebook.com"  style="color: #800020;" target="_blank">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a class="text-black px-3" href="https://www.twitter.com"  style="color: #800020;" target="_blank">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a class="text-black px-3" href="https://www.instagram.com"  style="color: #800020;" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a class="text-black px-3" href="{% url 'users:login' %}"  style="color: #800020;">
+                                <i class="fas fa-user-circle"></i>
+                            </a>
+                        </div>
+                        {%endif%}
+                </div>
+            </nav>
+        </div>	
+    </div>
+
+    <!-- Header Mobile -->
+    <div class="wrap-header-mobile">
+        <!-- Logo moblie -->		
+        <div class="logo-mobile">
+            <a href=""><img src="{% static 'home/img/rosecab.png' %}" alt="IMG-LOGO"></a>
+        </div>
+
+        <!-- Icon header -->
+
+        <div class="wrap-icon-header flex-w flex-r-m m-r-15">
+            {%if request.user.is_authenticated%}
+            <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="{{cart_quantity}}">
+                <a href="{% url 'order:cart' %}"><i class="zmdi zmdi-shopping-cart"  style="color: #800020;"></i></a>
+            </div>
+
+            <a href="{% url 'users:logout' %}" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
+                <i class="zmdi zmdi-sign-in"  style="color: #800020;"></i>
+            </a>
+            {%else%}
+            <div class="d-inline-flex align-items-center">
+                <a class="text-black px-3" href="https://www.facebook.com"  style="color: #800020;"target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a class="text-black px-3" href="https://www.twitter.com"  style="color: #800020;" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a class="text-black px-3" href="https://www.instagram.com"  style="color: #800020;" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a class="text-black px-3" href="{% url 'users:login' %}" style="color: #800020;">
+                    <i class="fas fa-user-circle"></i>
+                </a>
+            </div>
+            {%endif%}
+        </div>
+
+        <!-- Button show menu -->
+        <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </div>
+    </div>
+
+
+    <!-- Menu Mobile -->
+    <div class="menu-mobile">
+        <ul class="main-menu-m">
+            <li>
+                <a href="/">Home</a>
+                <ul class="sub-menu-m">
+                    <li><a href="afterlogin/">Homepage 1</a></li>
+                    <li><a href="afterlogin/">Homepage 2</a></li>
+                    <li><a href="afterlogin/">Homepage 3</a></li>
+                </ul>
+                <span class="arrow-main-menu-m">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </span>
+            </li>
+
+            <li>
+                <a href="/">Shop</a>
+            </li>
+
+            <li>
+                <a href="{% url 'users:my_orders' %}" class="label1 rs1" data-label1="hot">Orders</a>
+            </li>
+        </ul>
+    </div>
+</header>
+     <!-- content start-->
+     {% block content %}
+
+     {% endblock content %}
+     <!-- content end-->
+
+<!--======================================JS Libraries=========================================================-->	
+<script src="{% static 'customer/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'customer/vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'customer/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'customer/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'customer/vendor/select2/select2.min.js' %}"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'customer/vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'customer/vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'customer/vendor/slick/slick.min.js' %}"></script>
+	<script src="{% static 'customer/js/slick-custom.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'customer/vendor/parallax100/parallax100.js' %}"></script>
+	<script>
+        $('.parallax100').parallax100();
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'customer/vendor/MagnificPopup/jquery.magnific-popup.min.js' %}"></script>
+	<script>
+		$('.gallery-lb').each(function() { // the containers for all your galleries
+			$(this).magnificPopup({
+		        delegate: 'a', // the selector for gallery item
+		        type: 'image',
+		        gallery: {
+		        	enabled:true
+		        },
+		        mainClass: 'mfp-fade'
+		    });
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'customer/vendor/isotope/isotope.pkgd.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'customer/vendor/sweetalert/sweetalert.min.js' %}"></script>
+	<script>
+		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
+			e.preventDefault();
+		});
+
+		$('.js-addwish-b2').each(function(){
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-b2');
+				$(this).off('click');
+			});
+		});
+
+		$('.js-addwish-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
+
+		/*---------------------------------------------*/
+
+		$('.js-addcart-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+	
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'customer/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'customer/js/main.js' %}"></script>
+	<script src="{% static 'store/js/productHelper.js' %}"></script>
+
+<!-- JQuery Datepicker -->
+<script defer src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<script>
+  // dropdown menu START
+  const menu = document.querySelector("#menu");
+  menu.addEventListener("mouseover", (event) => {
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+    dropdownMenu.style.display = "block";
+  });
+  menu.addEventListener("mouseout", (event) => {
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+    dropdownMenu.style.display = "none";
+  });
+  // dropdown menu END
+  var csrftoken = "{{ csrf_token }}";
+</script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

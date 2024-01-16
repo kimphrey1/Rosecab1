@@ -1,0 +1,282 @@
+{% extends 'homepage/homebase.html' %}
+{% load static %}
+{% block content %}
+
+{% comment %} {%if request.user.is_authenticated%}
+{% include "customer_navbar.html" %}
+{%else%} {% endcomment %}
+{% include "homepage/navbar.html" %}
+{% comment %} {%endif%} {% endcomment %}
+
+ <!-- Carousel Start -->
+ <div class="container-fluid p-0 mb-5 pb-5">
+  <div id="header-carousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+          <div class="carousel-item active">
+              <img class="w-100" src="{% static 'home/img/carousel-4.jpg' %}" alt="Image">
+              <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                  <div class="p-3" style="max-width: 900px;">
+                      <h4 class="text-white text-uppercase mb-md-3">Natural & Beautiful</h4>
+                      <h1 class="display-3 text-white mb-md-4">Freshly Picked From The Garden</h1>
+                      <a href="{% url 'users:login' %}" class="btn btn-primary py-md-3 px-md-5 mt-2">Shop now</a>
+                  </div>
+              </div>
+          </div>
+          <div class="carousel-item">
+              <img class="w-100" src="{% static 'home/img/carousel-2.jpg' %}" alt="Image">
+              <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                  <div class="p-3" style="max-width: 900px;">
+                      <h4 class="text-white text-uppercase mb-md-3">Natural & Beautiful</h4>
+                      <h1 class="display-3 text-white mb-md-4">Blossom with Beauty</h1>
+                      <a href="{% url 'users:login' %}" class="btn btn-primary py-md-3 px-md-5 mt-2">Shop now</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+          <div class="btn btn-secondary px-0" style="width: 45px; height: 45px;">
+              <span class="carousel-control-prev-icon mb-n1"></span>
+          </div>
+      </a>
+      <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+          <div class="btn btn-secondary px-0" style="width: 45px; height: 45px;">
+              <span class="carousel-control-next-icon mb-n1"></span>
+          </div>
+      </a>
+  </div>
+</div>
+<!-- Carousel End -->
+
+
+<!-- Brand Start -->
+<div class="container-fluid py-5">
+  <div class="container py-5">
+      <div class="row justify-content-center">
+          <div class="col-lg-7">
+              <h1 id="brand" class="section-title position-relative text-center mb-5">Our Brand</h1>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-4 py-5">
+              <h4 class="font-weight-bold mb-3">About Us</h4>
+              <h5 class="text-muted mb-3">We take pride in sourcing the freshest and most vibrant flowers to ensure 
+                every arrangement is a visual masterpiece.</h5>
+              <p>At Rosecab, we understand the importance of personalization, so we work closely with you to tailor 
+                 each order to your preferences.</p>
+              <a href="{% url 'users:login' %}" class="btn btn-secondary mt-2">Shop now</a>
+          </div>
+          <div class="col-lg-4" style="min-height: 400px;">
+              <div class="position-relative h-100 rounded overflow-hidden">
+                  <img class="position-absolute w-100 h-100" src="{% static 'home/img/about.jpg' %}" style="object-fit: cover;">
+              </div>
+          </div>
+          <div class="col-lg-4 py-5">
+              <h4 class="font-weight-bold mb-3">Our Features</h4>
+              <p>Whether it's a birthday celebration, gesture of love, or a token of sympathy, our blooms
+                 are crafted to convey your emotions in the most meaningful way.</p>
+              <h5 class="text-muted mb-3"><i class="fa fa-check text-secondary mr-3"></i>Birthdays</h5>
+              <h5 class="text-muted mb-3"><i class="fa fa-check text-secondary mr-3"></i>Surprises</h5>
+              <h5 class="text-muted mb-3"><i class="fa fa-check text-secondary mr-3"></i>Valentine's Day</h5>
+              <a href="{% url 'users:login' %}" class="btn btn-primary mt-2">Shop now</a>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Brand End -->
+
+<!-- Video Modal Start -->
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-body">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              <!-- 16:9 aspect ratio -->
+              <div class="embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always"
+                      allow="autoplay"></iframe>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Video Modal End -->
+
+<!-- Product Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+      <div class="row">
+        <div id="product" class="col-lg-6">
+          <h1 class="section-title position-relative mb-5">Our Products</h1>
+        </div>
+        <div class="col-lg-6 mb-5 mb-lg-0 pb-5 pb-lg-0"></div>
+      </div>
+  
+      {% if products %}
+        {% comment %} <h3 style="text-align:center; color:#3E454C;">{{ word }}</h3> {% endcomment %}
+  
+        <div class="row">
+          <div class="col-12">
+            <div class="owl-carousel team-carousel">
+              {% for product in products %}
+                <!-- card1 -->
+                <div class="team-item">
+                  <div class="team-img mx-auto">
+                    <img class="rounded-circle w-100 h-100" src="{{ product.image.url }}" style="object-fit: cover;" alt="{{ p.name }} photo">
+                  </div>
+                  <div id='card' class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
+                    <h3 class="font-weight-semi-bold mt-5 mb-3 pt-5">{{ product.name }}</h3>
+                    <h6 class="text-uppercase text-muted mb-4">UGX {{ product.price }}/=</h6>
+                    <div class="d-flex justify-content-center pt-1">
+                        {%if request.user.is_authenticated%}
+                        <a href="{% url 'order:add_to_cart' product.id %}" class="btn btn-primary mt-2">Shop now</a>
+                        {%else%}
+                        <a href="{% url 'users:login' %}" class="btn btn-primary mt-2">Shop now</a>
+                        {%endif%}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <h3 style="text-align:center; color:#3E454C;">No Products Available</h3>
+      {% endif %}
+    </div>
+  </div>
+  <!-- Products End -->
+  
+  
+
+<!-- Gallery Start -->
+<div class="container-fluid my-5 py-5 px-0">
+  <div class="row justify-content-center m-0">
+      <div id="gallery" class="col-lg-5">
+          <h1 class="section-title position-relative text-center mb-5">Gallery</h1>
+      </div>
+  </div>
+  <div class="row m-0 portfolio-container">
+      <div class="col-lg-4 col-md-6 p-0 portfolio-item">
+          <img class="img-fluid w-100" src="{% static 'home/img/portfolio-1.jpg' %}" alt="">
+      </div>
+      <div class="col-lg-4 col-md-6 p-0 portfolio-item">
+          <img class="img-fluid w-100" src="{% static 'home/img/portfolio-9.jpg' %}" alt="">
+      </div>
+      <div class="col-lg-4 col-md-6 p-0 portfolio-item">
+          <img class="img-fluid w-100" src="{% static 'home/img/portfolio-11.jpg' %}" alt="">
+      </div>
+      <div class="col-lg-4 col-md-6 p-0 portfolio-item">
+          <img class="img-fluid w-100" src="{% static 'home/img/portfolio-2.jpg' %}" alt="">
+      </div>
+      <div class="col-lg-4 col-md-6 p-0 portfolio-item">
+          <img class="img-fluid w-100" src="{% static 'home/img/portfolio-8.jpg' %}" alt="">
+      </div>
+      <div class="col-lg-4 col-md-6 p-0 portfolio-item">
+          <img class="img-fluid w-100" src="{% static 'home/img/portfolio-4.jpg' %}" alt="">
+      </div>
+      <div class="col-lg-4 col-md-6 p-0 portfolio-item">
+          <img class="img-fluid w-100" src="{% static 'home/img/portfolio-10.jpg' %}" alt="">
+      </div>
+      <div class="col-lg-4 col-md-6 p-0 portfolio-item">
+          <img class="img-fluid w-100" src="{% static 'home/img/portfolio-6.jpg' %}" alt="">
+      </div>
+      <div class="col-lg-4 col-md-6 p-0 portfolio-item">
+          <img class="img-fluid w-100" src="{% static 'home/img/portfolio-1.jpg' %}" alt="">
+      </div>
+  </div>
+</div>
+<!-- Gallery End -->
+
+
+<!-- Services Start -->
+<div class="container-fluid py-5">
+  <div class="container py-5">
+      <div class="row">
+          <div id="services" class="col-lg-6">
+              <h1 class="section-title position-relative mb-5">Our Services</h1>
+          </div>
+          <div class="col-lg-6 mb-5 mb-lg-0 pb-5 pb-lg-0"></div>
+      </div>
+      <div class="row">
+          <div class="col-12">
+              <div class="owl-carousel service-carousel">
+                  <div class="service-item">
+                      <div class="service-img mx-auto">
+                          <img class="rounded-circle w-100 h-100 bg-light p-3" src="{% static 'home/img/service-1.jpg' %}"
+                              style="object-fit: cover;">
+                      </div>
+                      <div id='service-card' class="position-relative text-center bg-light rounded p-4 pb-5"
+                          style="margin-top: -75px;">
+                          <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Quality Maintained</h5>
+                          <p id="serve">We pride ourselves in sourcing on trend flowers while maintaining their
+                              quality too</p>
+                          <a href="{% url 'users:login' %}"
+                              class="border-bottom border-secondary text-decoration-none text-secondary">Shop
+                              now</a>
+                      </div>
+                  </div>
+                  <div class="service-item">
+                      <div class="service-img mx-auto">
+                          <img class="rounded-circle w-100 h-100 bg-light p-3" src="{% static 'home/img/service-2.jpg' %}"
+                              style="object-fit: cover;">
+                      </div>
+                      <div id='service-card' class="position-relative text-center bg-light rounded p-4 pb-5"
+                          style="margin-top: -75px;">
+                          <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Fast Delivery</h5>
+                          <p id="serve">We do next-day delivery as well as same day delivery depending on your choice</p>
+                          <a href="{% url 'users:login' %}"
+                              class="border-bottom border-secondary text-decoration-none text-secondary">Shop
+                              now</a>
+                      </div>
+                  </div>
+                  <div class="service-item">
+                      <div class="service-img mx-auto">
+                          <img class="rounded-circle w-100 h-100 bg-light p-3" src="{% static 'home/img/service-3.jpg' %}"
+                              style="object-fit: cover;">
+                      </div>
+                      <div id='service-card' class="position-relative text-center bg-light rounded p-4 pb-5"
+                          style="margin-top: -75px;">
+                          <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Flower Bouquets</h5>
+                          <p id="serve">Choose from our available packages or make your custom order and we'll make
+                              it happen
+                          </p>
+                          <a href="{% url 'users:login' %}"
+                              class="border-bottom border-secondary text-decoration-none text-secondary">Shop
+                              now</a>
+                      </div>
+                  </div>
+                  <div class="service-item">
+                      <div class="service-img mx-auto">
+                          <img class="rounded-circle w-100 h-100 bg-light p-3" src="{% static 'home/img/service-4.jpg' %}"
+                              style="object-fit: cover;">
+                      </div>
+                      <div id='service-card' class="position-relative text-center bg-light rounded p-4 pb-5"
+                          style="margin-top: -75px;">
+                          <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">For your loved ones</h5>
+                          <p id="serve">We are more than happy to have a hand in making your loved ones happy. Just an
+                              order away
+                          </p>
+                          <a href="{% url 'users:login' %}"
+                              class="border-bottom border-secondary text-decoration-none text-secondary">Shop
+                              now</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Services End -->
+<script>
+    {%if messages %}
+    {%for message in messages%}
+    alert('{{message}}');
+    {%endfor%}
+    {%endif%}
+</script>
+
+{% endblock content %}
+

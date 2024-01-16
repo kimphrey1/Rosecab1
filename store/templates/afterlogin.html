@@ -1,8 +1,10 @@
-{% extends "customerbase.html" %} 
+{% extends "customer_base.html" %} 
+<!-- CUSTOMER DASHBOARD -->
+
 {% block content %}
  {% load static %}
 <body class="animsition">
-    {%include "navbar.html" %}
+    {% comment %} {%include "customer_navbar.html" %} {% endcomment %}
 	<!-- Product -->
 	<div class="bg0 m-t-23 p-b-140">
 		<div class="container">
@@ -93,7 +95,9 @@
 
 
 <!-- Start Products List -->
+
 <div class="flex flex-col items-center">
+  {% if products %}
     <div
       class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 mx-3"
     >
@@ -206,8 +210,12 @@
         </form>
       </div>
       {% endfor %}
+      {% else %}
+      <h3 style="text-align:center; color:#3E454C;">No Products Available</h3>
+    {% endif %}
     </div>
   </div>
+  
   <!-- End Products List -->
 
 <!-- Start Pagination -->

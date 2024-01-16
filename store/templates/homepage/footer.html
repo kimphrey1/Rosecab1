@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head> 
+    <style>
+        @media only screen and (max-width: 1200px) {
+          #blur {
+            background-color: rgba(243, 246, 255, 0.5);
+          }
+        }
+      </style>
+</head>
+<body>
+  <br>
+<!-- Footer Start -->
+<div id="footer" class="container-fluid footer py-5" style="margin-top: 90px;">
+    <div id="blur" class="container text-center py-5">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <a href="index.html" class="navbar-brand m-0">
+                    <h1 class="m-0 mt-n2 display-4 text-primary"><span class="text-secondary"><img
+                                src="{% static 'home/img/rosecab.png' %}" alt="logo" style="height: 100px;"></span></h1>
+                </a>
+            </div>
+            <div class="col-12 mb-4">
+                <a id="twitter" class="btn btn-social mr-2" href="https://www.twitter.com/"><i
+                        class="fab fa-twitter" target="_blank"></i></a>
+                <a id="facebook" class="btn btn-social mr-2" href="https://www.facebook.com/"><i
+                        class="fab fa-facebook-f" target="_blank"></i></a>
+                <a id="whatsapp" class="btn btn-social mr-2" href="https://web.whatsapp.com/"><i
+                        class="fab fa-whatsapp" target="_blank"></i></a>
+                <a id="instagram" class="btn btn-social mr-2" href="https://www.instagram.com/"><i
+                        class="fab fa-instagram" target="_blank"></i></a>
+            </div>
+            <div class="col-12 mt-2 mb-4">
+                <div class="row">
+                    <div class="col-sm-6 text-center text-sm-right border-right mb-3 mb-sm-0">
+                        <h5 class="font-weight-bold mb-2">Get In Touch</h5>
+                        <p class="mb-2">123 Street, Arua Park, Plaza</p>
+                        <p class="mb-0">+256 345 67890</p>
+                    </div>
+                    <div class="col-sm-6 text-center text-sm-left">
+                        <h5 class="font-weight-bold mb-2">Opening Hours</h5>
+                        <p class="mb-2">Mon – Sat, 8AM – 5PM</p>
+                        <p class="mb-0">Sunday: Closed</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <p class="m-0">&copy;2023 All Rights Reserved. Designed for <a href="#">Rosecab Flower
+                        Deliveries</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!-- Footer End -->
+
+
+</html>

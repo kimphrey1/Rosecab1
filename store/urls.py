@@ -3,9 +3,10 @@ from . import views
 
 app_name = "store"
 urlpatterns = [
-    path("", views.products, name="products"),
+    path("", views.home_view, name="home"), #homepage/ landing page
     path("pizza/", views.pizzas, name="pizzas"),
     path("drinks/", views.drinks, name="drinks"),
     path("sides/", views.sides, name="sides"),
-    path("afterlogin/", views.afterlogin, name="afterlogin"),
+    path("afterlogin/", views.afterlogin, name="afterlogin"), #customer dashboard
+    path("products/", views.products, name="products"),
 ]

@@ -47,8 +47,16 @@
 
 <script src="{% static 'store/js/helpers.js' %}"></script>
 
+<!--Favicon-->
+<link href="{% static 'home/img/roselogo.png' %}" rel="icon">
+
 </head>
 <body>
+{%if request.user.is_authenticated%}
+	{% include "customer_navbar.html" %}
+{%else%}
+	{% include "navbase.html" %}
+{%endif%}
      <!-- content start-->
   {% block content %}
 

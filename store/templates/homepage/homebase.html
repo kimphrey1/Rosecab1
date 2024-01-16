@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <title>Rosecab Flower Deliveries</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- Favicon -->
+    <link href="{% static 'home/img/roselogo.png' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'home/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'home/lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'home/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'home/css/main.css' %}" rel="stylesheet">
+</head>
+<body>
+            {% comment %} <div class="cart1 largenav col-sm-2"> <a class="cart-button" href="/cart"> <svg class="cart-svg " width="16 " height="16 " viewBox="0 0 16 16 ">
+                        <path d="M15.32 2.405H4.887C3 2.405 2.46.805 2.46.805L2.257.21C2.208.085 2.083 0 1.946 0H.336C.1 0-.064.24.024.46l.644 1.945L3.11 9.767c.047.137.175.23.32.23h8.418l-.493 1.958H3.768l.002.003c-.017 0-.033-.003-.05-.003-1.06 0-1.92.86-1.92 1.92s.86 1.92 1.92 1.92c.99 0 1.805-.75 1.91-1.712l5.55.076c.12.922.91 1.636 1.867 1.636 1.04 0 1.885-.844 1.885-1.885 0-.866-.584-1.593-1.38-1.814l2.423-8.832c.12-.433-.206-.86-.655-.86 " fill="#fff "></path>
+                    </svg> Cart <span class="item-number ">{{ product_count_in_cart }}</span> </a> </div> {% endcomment %}
+
+
+<!-- content start-->
+{% block content %}
+
+{% endblock content %}
+<!-- content end-->
+
+{% include "homepage/footer.html"%}
+
+ <!-- Back to Top Icon-->
+ <a href="#" id='back-to-top'class="btn btn-secondary px-2 back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'home/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'home/lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'home/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'home/lib/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'home/lib/lightbox/js/lightbox.min.js' %}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{% static 'home/mail/jqBootstrapValidation.min.js' %}"></script>
+    <script src="{% static 'home/mail/contact.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'home/js/main.js' %}"></script>
+    {% comment %} <script src="{% static 'js/nav.js' %}"></script> {% endcomment %}
+</body>
+</html>
