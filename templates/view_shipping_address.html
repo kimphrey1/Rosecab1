@@ -3,18 +3,46 @@
 {% block main %}
     <div class="card shadow">
         <div class="card-body">
-            <h5 class="p-2" style="border-bottom: 2px solid orange;">View Shipping Address</h5>
+            <h1 class="p-2 text-center mb-4" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">Shipping Address</h1>
             <div class="container-fluid">
-                <h1>Shipping Address</h1>
-                <!-- Shipping address details -->
-                <p><strong>First Name:</strong> {{ shipping_address.first_name }}</p>
-                <p><strong>Last Name:</strong> {{ shipping_address.last_name }}</p>
-                <p><strong>Address Line 1:</strong> {{ shipping_address.address_1 }}</p>
-                <p><strong>Address Line 2:</strong> {{ shipping_address.address_2 }}</p>
-                <p><strong>City:</strong> {{ shipping_address.city }}</p>
-                <p><strong>State:</strong> {{ shipping_address.state }}</p>
-                <p><strong>Country:</strong> {{ shipping_address.country }}</p>
-                <p><strong>Postal Code:</strong> {{ shipping_address.postal_code }}</p>
+                {% comment %} <h2 class="mb-3">Shipping Address</h2> {% endcomment %}
+                
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th scope="row">First Name</th>
+                            <td>{{ shipping_address.first_name }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Last Name</th>
+                            <td>{{ shipping_address.last_name }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Address Line 1</th>
+                            <td>{{ shipping_address.address_1 }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Address Line 2</th>
+                            <td>{{ shipping_address.address_2 }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">City</th>
+                            <td>{{ shipping_address.city }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">State</th>
+                            <td>{{ shipping_address.state }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Country</th>
+                            <td>{{ shipping_address.country }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Postal Code</th>
+                            <td>{{ shipping_address.postal_code }}</td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <!-- Link to go back to the view_orders page -->
                 <a href="{% url 'view_orders' %}" class="btn btn-secondary">Go Back to Orders</a>

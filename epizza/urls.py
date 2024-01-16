@@ -24,6 +24,7 @@ urlpatterns = [
     path("", include("users.urls")),
     path("", include("order.urls")),
     path("", include("custom_admin.urls")),
+    path('users/', include('users.urls')),
 ]
 
 # need to add to load images

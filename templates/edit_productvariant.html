@@ -3,12 +3,14 @@
 {% block main %}
 <div class="card shadow">
     <div class="card-body">
-        <h5 class="p-2" style="border-bottom: 2px solid orange;">Edit Product Variant</h5>
+        <h1 class="p-2 text-center" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">Edit Product Variant</h1>
         <div class="container-fluid">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
             </form>
         </div>
     </div>

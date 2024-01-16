@@ -1,16 +1,18 @@
 {% extends 'admin_base.html' %}
 {% block main %}
 
-<div class="card shadow">
-    <div class="card-body">
-        <h5 class="p-2" style="border-bottom: 2px solid orange;">Update Category</h5>
-        <div class="container-fluid">
+<div class="container mt-5" style="font-family: 'Roboto', sans-serif;">
+    <h1 class="text-center" style="font-family: 'Georgia', sans-serif; font-size: 3em; text-transform: uppercase; color: #333;">Update Category</h1>
+    <hr class="rounded">
+
+    <div class="card shadow">
+        <div class="card-body">
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label>Category Name</label>
+                            <label style="color: #333;">Category Name</label>
                             <input type="text" name="name" class="form-control" value="{{category.name}}" placeholder="Category Name">
                         </div>
                     </div>
@@ -19,11 +21,12 @@
             </form>
         </div>
     </div>
+
+    {% if msg %}
+    <script>
+        alert('{{msg}}')
+    </script>
+    {% endif %}
 </div>
 
-{% if msg %}
-<script>
-    alert('{{msg}}')
-</script>
-{% endif %}
 {% endblock %}

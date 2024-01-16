@@ -63,6 +63,14 @@ urlpatterns = [
     path('view-shipping-address/<uuid:transaction_id>/', view_shipping_address, name='view_shipping_address'),
 
 
+    path('user_list/', user_list, name='user_list'),
+    # path('view_user/<int:user_id>/', view_user, name='view_user'),
+
+
+    path('edit_user/<int:user_id>/', edit_user, name='edit_user'),
+    path('delete_user/<int:user_id>/', delete_user, name='delete_user'),
+
+
 
 
 
