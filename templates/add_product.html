@@ -1,56 +1,36 @@
-<!-- add_product.html -->
 {% extends 'admin_base.html' %}
 {% block main %}
 
-<div class="card shadow">
-    <div class="card-body">
-        <h5 class="p-2" style="border-bottom: 2px solid orange;">Add Product</h5>
-        <div class="container-fluid">
-            <form action="" method="post" enctype="multipart/form-data">
+<div class="container mt-5" style="font-family: 'Roboto', sans-serif;">
+    <h1 class="text-center" style="font-family: 'Georgia', sans-serif; font-size: 3em; text-transform: uppercase; color: #333;">Add Product</h1>
+    <hr class="rounded">
+
+    <div class="card shadow">
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ product_form.as_p }}
                 
-                <h5 class="mt-4">Product Variants</h5>
-                <table id="variant-table" class="table">
-                    {{ variant_formset.management_form }}
-                    {{ variant_formset.as_table }}
-                </table>
-                <button type="button" class="btn btn-success" id="add-variant">Add Variant</button>
+                <h5 class="p-2" style="border-bottom: 2px solid orange;">If the product has a single price, enter the price in the 'Price' field below and save.</h5>
+                
+                <div class="container-fluid">
+                    {{ product_form.price.label_tag }}
+                    {{ product_form.price }}
+                    
+                    {{ product_form.as_p }}
+                    
+                    <h5 class="mt-4">If the product has many prices, enter the common details in the upper section excluding the price.</h5>
+                    <h5 class="mt-4">You can then add each size with its price using the fields below (To delete, check the delete box).</h5>
+                    
+                    <table id="variant-table" class="table">
+                        {{ variant_formset.management_form }}
+                        {{ variant_formset.as_table }}
+                    </table>
+                </div>
 
                 <input type="submit" value="Submit" class="m-2 px-3 btn btn-primary">
             </form>
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        let formsetTable = document.getElementById("variant-table");
-        let addButton = document.getElementById("add-variant");
-    
-        addButton.addEventListener("click", function () {
-            // Clone the last row in the formset table
-            let lastRow = formsetTable.rows[formsetTable.rows.length - 1];
-            let newRow = lastRow.cloneNode(true);
-    
-            // Update the input names to include the correct formset index
-            let currentIndex = formsetTable.rows.length - 1;
-            let newFormsetIndex = currentIndex + 1;
-    
-            newRow.querySelectorAll("input, select").forEach(function (element) {
-                let oldName = element.getAttribute("name");
-                let newName = oldName.replace(/-\d+-/, "-" + newFormsetIndex + "-");
-                element.setAttribute("name", newName);
-                element.value = "";  // Clear input values for the new row
-            });
-    
-            // Remove the delete checkbox from the new row
-            newRow.querySelector(".delete-variant").remove();
-    
-            // Append the new row to the table
-            formsetTable.appendChild(newRow);
-        });
-    });
-    </script>
 
 {% endblock %}

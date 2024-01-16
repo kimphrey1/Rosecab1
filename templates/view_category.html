@@ -1,36 +1,44 @@
 {% extends 'admin_base.html' %}
-{% block main  %}
 
-<div class="card shadow">
-    <div class="card-body">
+{% block main %}
+<div class="container mt-5" style="font-family: 'Roboto', sans-serif;">
+    <h1 class="text-center" style="font-family: 'Georgia', sans-serif; font-size: 3em; text-transform: uppercase; color: #333;">All Category</h1>
+    <hr class="rounded">
 
-        <h5 class="p-2" style="border-bottom: 2px solid orange;">All Category</h5>
-        <div class="container-fluid">
-
-            <table class="table table-bordered table-sm" id="example">
-                <thead>
-                <tr>
-                    <th>S. No.</th>
-                    <th>Category Name</th>
-                    <th>Action</th>
-                </tr>
+    <div class="card shadow">
+        <div class="card-body">
+            <table class="table table-bordered table-striped" style="border: 2px solid black;" id="example">
+                <thead style="background-color: black; color: white;">
+                    <tr>
+                        <th style="color: white;">S. No.</th>
+                        <th style="color: white;">Category Name</th>
+                        <th style="color: white; text-align: center;">Action</th>
+                    </tr>
                 </thead>
                 <tbody>
-                {% for i in category %}
-                <tr>
-                    <td>{{forloop.counter}}</td>
-                    <td>{{i.name}}</td>
-                    <td>
-                        <a href="/edit-category/{{i.id}}/" class="text-success">Edit</a>
-                        <a href="/delete-category/{{i.id}}/" class="text-danger"
-                           onclick="return confirm('Are You Sure?')">Delete</a></td>
-                </tr>
-                {% endfor %}
+                    {% for i in category %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ i.name }}</td>
+                            <td class="text-center">
+                                <a href="/edit-category/{{ i.id }}/" class="text-success">Edit</a>
+                                <a href="#" class="text-danger" onclick="confirmDelete('{{ i.id }}')">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 
+<!-- JavaScript for delete confirmation -->
+<script>
+    function confirmDelete(categoryId) {
+        if (confirm('Are you sure you want to delete this category?')) {
+            window.location.href = '{% url 'delete_category' pid=0 %}'.replace('0', categoryId);
+        }
+    }
+</script>
 
 {% endblock %}

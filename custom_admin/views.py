@@ -2,7 +2,7 @@ from django.shortcuts import render
 from store.models import Category
 from store.models import Product,Size, ProductVariant
 from django.contrib import messages
-from .forms import ProductVariantForm
+from .forms import ProductVariantForm, UserEditForm
 from django.urls import reverse
 from .forms import ProductForm, ProductVariantFormSet, OrderEditForm
 from django.shortcuts import render, get_object_or_404, redirect
@@ -11,6 +11,7 @@ from django.shortcuts import redirect
 from order.models import Order
 from users.models import Customer, User
 # from .forms import SizeForm
+from django.contrib.auth.decorators import login_required
 
 def adminLogin(request):
     msg = None
@@ -37,20 +38,20 @@ def adminHome(request):
 
 def admin_dashboard(request):
     categorycount = Category.objects.all().count()
-    customercount = Customer.objects.all().count()
     productcount = Product.objects.all().count()
     ordercount = Order.objects.all().count()
 
-    products = Product.objects.all()  # Or fetch the necessary products based on your logic
+    # Get the count of all users (including those without accounts)
+    all_users_count = User.objects.all().count()
 
     mydict = {
         'categorycount': categorycount,
-        'customercount': customercount,
+        'customercount': all_users_count,
         'productcount': productcount,
         'ordercount': ordercount,
-        'products' : products,
     }
     return render(request, 'admin_dashboard.html', {'mydict': mydict})
+
 
 # --------------------------------------------------------------------------------------------------------
 
@@ -266,52 +267,6 @@ def view_orders(request):
 
 # --------------------------------------------------------------------------------------------------------
 
-# --------------------------------------------------------------------------------------------------------
-
-# --------------------------------------------------------------------------------------------------------
-
-# --------------------------------------------------------------------------------------------------------
-# --------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-# def edit_order(request, transaction_id):
-#     order = get_object_or_404(Order, transaction_id=transaction_id)
-
-#     if request.method == 'POST':
-#         form = OrderEditForm(request.POST, instance=order)
-#         if form.is_valid():
-#             form.save()
-#             # Redirect to a success page or view
-#             return redirect('success_page')
-#     else:
-#         form = OrderEditForm(instance=order)
-
-#     context = {'order': order, 'form': form}
-#     return render(request, 'edit_order.html', context)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 def edit_order(request, transaction_id):
     order = get_object_or_404(Order, transaction_id=transaction_id)
@@ -352,3 +307,76 @@ def view_shipping_address(request, transaction_id):
     shipping_address = order.shipping
 
     return render(request, 'view_shipping_address.html', {'shipping_address': shipping_address})
+
+
+
+
+
+
+
+@login_required(login_url="users:login")
+def view_user(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    return render(request, "view_user.html", {"user": user})
+
+
+
+def user_list(request):
+    users = User.objects.all()
+    return render(request, "user_list.html", {"users": users})
+
+
+# @login_required(login_url="users:login")
+# def edit_user(request, user_id):
+#     user = get_object_or_404(User, id=user_id)
+
+#     if request.method == 'POST':
+#         form = UserEditForm(request.POST, instance=user)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('view_user', user_id=user_id)
+#     else:
+#         form = UserEditForm(instance=user)
+
+#     return render(request, "edit_user.html", {"form": form, "user": user})
+
+
+
+
+
+
+
+
+
+
+@login_required(login_url="users:login")
+def edit_user(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+
+    if request.method == 'POST':
+        form = UserEditForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'User details updated successfully.')
+            return redirect('users:user_list')
+    else:
+        form = UserEditForm(instance=user)
+
+    return render(request, "edit_user.html", {"form": form, "user": user})
+
+
+
+
+
+
+
+
+
+
+
+@login_required(login_url="users:login")
+def delete_user(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    user.delete()
+    messages.success(request, 'User deleted successfully.')
+    return redirect('users:user_list')

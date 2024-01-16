@@ -1,6 +1,8 @@
 from django import forms
 from store.models import ProductVariant, Product, Size
 from order.models import Order
+from users.models import User
+# from .models import User
 
 class ProductForm(forms.ModelForm):
     class Meta:
@@ -28,3 +30,12 @@ class OrderEditForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ['status', 'paid']
+
+
+
+
+
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email']
