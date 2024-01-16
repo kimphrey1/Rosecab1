@@ -101,9 +101,9 @@
     <div
       class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 mx-3"
     >
-    {% if no_products_for_category %}
+    {% comment %} {% if no_products_for_category %}
     <p>No Products for this Category</p>
-    {% endif %}
+    {% endif %} {% endcomment %}
       {% for product in products %}
       <div
         class="flex flex-col m-2 bg-white rounded-xl shadow-md individual-container"
