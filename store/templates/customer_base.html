@@ -109,7 +109,7 @@
 	<script src="{% static 'customer/vendor/isotope/isotope.pkgd.min.js' %}"></script>
 <!--===============================================================================================-->
 	<script src="{% static 'customer/vendor/sweetalert/sweetalert.min.js' %}"></script>
-	<script>
+	{% comment %}<script>
 		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
 			e.preventDefault();
 		});
@@ -124,7 +124,7 @@
 			});
 		});
 
-		$('.js-addwish-detail').each(function(){
+		 $('.js-addwish-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
 			$(this).on('click', function(){
@@ -133,7 +133,7 @@
 				$(this).addClass('js-addedwish-detail');
 				$(this).off('click');
 			});
-		});
+		}); 
 
 		/*---------------------------------------------*/
 
@@ -144,7 +144,7 @@
 			});
 		});
 	
-	</script>
+	</script>{% endcomment %}
 <!--===============================================================================================-->
 	<script src="{% static 'customer/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
 	<script>
