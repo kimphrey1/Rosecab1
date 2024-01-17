@@ -1,11 +1,11 @@
-{% extends 'homepage/homebase.html' %}
+{% extends 'home/homebase.html' %}
 {% load static %}
 {% block content %}
 
 {% comment %} {%if request.user.is_authenticated%}
 {% include "customer_navbar.html" %}
 {%else%} {% endcomment %}
-{% include "homepage/navbar.html" %}
+{% include "home/navbar.html" %}
 {% comment %} {%endif%} {% endcomment %}
 
  <!-- Carousel Start -->

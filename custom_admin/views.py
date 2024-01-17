@@ -29,7 +29,7 @@ from django.contrib.auth.decorators import login_required
 #         except:
 #             msg = "Invalid Credentials"
 #     dic = {'msg': msg}
-#     return render(request, 'admin_login.html', dic)
+#     return render(request, 'admin/admin_login.html', dic)
 
 
 # Adding driver to admin login
@@ -54,39 +54,14 @@ def adminLogin(request):
         except:
             msg = "Invalid Credentials"
     dic = {'msg': msg}
-    return render(request, 'admin_login.html', dic)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return render(request, 'admin/admin_login.html', dic)
 
 
 
 
 # --------------------------------------------------------------------------------------------------------
 def adminHome(request):
-    return render(request, 'admin_base.html')
+    return render(request, 'admin/admin_base.html')
 
 # --------------------------------------------------------------------------------------------------------
 
@@ -104,7 +79,7 @@ def admin_dashboard(request):
         'productcount': productcount,
         'ordercount': ordercount,
     }
-    return render(request, 'admin_dashboard.html', {'mydict': mydict})
+    return render(request, 'admin/admin_dashboard.html', {'mydict': mydict})
 
 
 # --------------------------------------------------------------------------------------------------------
@@ -115,13 +90,13 @@ def add_category(request):
         Category.objects.create(name=name)
         messages.success(request, "Category added")
         return redirect('view_category')
-    return render(request, 'add_category.html', locals())
+    return render(request, 'admin/add_category.html', locals())
 # --------------------------------------------------------------------------------------------------------
 
 
 def view_category(request):
     category = Category.objects.all()
-    return render(request, 'view_category.html', locals())
+    return render(request, 'admin/view_category.html', locals())
 
 # --------------------------------------------------------------------------------------------------------
 
@@ -133,7 +108,7 @@ def edit_category(request, pid):
         category.name = name
         category.save()
         msg = "Category Updated"
-    return render(request, 'edit_category.html', locals())
+    return render(request, 'admin/edit_category.html', locals())
 
 # --------------------------------------------------------------------------------------------------------
 
@@ -163,14 +138,14 @@ def add_product(request):
         product_form = ProductForm()
         variant_formset = ProductVariantFormSet(prefix='variants')
 
-    return render(request, 'add_product.html', {'product_form': product_form, 'variant_formset': variant_formset})
+    return render(request, 'admin/add_product.html', {'product_form': product_form, 'variant_formset': variant_formset})
 
 # --------------------------------------------------------------------------------------------------------
 
 
 def view_product(request):
     product = Product.objects.all()
-    return render(request, 'view_product.html', locals())
+    return render(request, 'admin/view_product.html', locals())
 
 # --------------------------------------------------------------------------------------------------------
 
@@ -194,7 +169,7 @@ def edit_product(request, pid):
         product_form = ProductForm(instance=product)
         variant_formset = ProductVariantFormSet(instance=product, prefix='variants')
 
-    return render(request, 'edit_product.html', {'product_form': product_form, 'variant_formset': variant_formset})
+    return render(request, 'admin/edit_product.html', {'product_form': product_form, 'variant_formset': variant_formset})
 
 # --------------------------------------------------------------------------------------------------------
 
@@ -212,14 +187,14 @@ def add_size(request):
         name = request.POST['name']
         Size.objects.create(name=name)
         msg = "Size added"
-    return render(request, 'add_size.html', locals())
+    return render(request, 'admin/add_size.html', locals())
 
 # --------------------------------------------------------------------------------------------------------
 
 
 def view_size(request):
     size = Size.objects.all()
-    return render(request, 'view_size.html', locals())
+    return render(request, 'admin/view_size.html', locals())
 
 # --------------------------------------------------------------------------------------------------------
 
@@ -230,7 +205,7 @@ def edit_size(request, pid):
         size.name = name
         size.save()
         msg = "Size Updated"
-    return render(request, 'edit_size.html', locals())
+    return render(request, 'admin/edit_size.html', locals())
 
 # --------------------------------------------------------------------------------------------------------
 
@@ -267,14 +242,14 @@ def add_productvariant(request, product_id):
     else:
         form = ProductVariantForm()
 
-    return render(request, 'add_productvariant.html', {'product': product, 'sizes': sizes, 'form': form})
+    return render(request, 'admin/add_productvariant.html', {'product': product, 'sizes': sizes, 'form': form})
 
 # --------------------------------------------------------------------------------------------------------
 
 
 def view_product_variants(request):
     variants = ProductVariant.objects.all()
-    return render(request, 'view_product_variants.html', {'variants': variants})
+    return render(request, 'admin/view_product_variants.html', {'variants': variants})
 
 # --------------------------------------------------------------------------------------------------------
 
@@ -291,7 +266,7 @@ def edit_productvariant(request, variant_id):
     else:
         form = ProductVariantForm(instance=variant)
 
-    return render(request, 'edit_productvariant.html', {'form': form, 'variant': variant})
+    return render(request, 'admin/edit_productvariant.html', {'form': form, 'variant': variant})
 
 # --------------------------------------------------------------------------------------------------------
 
@@ -315,7 +290,7 @@ def delete_productvariant(request, variant_id):
 def view_orders(request):
     orders = Order.objects.all()
     context = {'orders': orders}
-    return render(request, 'view_order.html', context)
+    return render(request, 'admin/view_order.html', context)
 
 # --------------------------------------------------------------------------------------------------------
 
@@ -337,9 +312,7 @@ def edit_order(request, transaction_id):
         form = OrderEditForm(instance=order)
 
     context = {'order': order, 'form': form}
-    return render(request, 'edit_order.html', context)
-
-
+    return render(request, 'admin/edit_order.html', context)
 
 
 
@@ -353,31 +326,24 @@ def delete_order(request):
         return redirect('view_orders')  # Handle non-GET requests as needed
     
 
-
-
-
 def view_shipping_address(request, transaction_id):
     order = get_object_or_404(Order, transaction_id=transaction_id)
     shipping_address = order.shipping
 
-    return render(request, 'view_shipping_address.html', {'shipping_address': shipping_address})
-
-
-
-
+    return render(request, 'admin/view_shipping_address.html', {'shipping_address': shipping_address})
 
 
 
 @login_required(login_url="users:login")
 def view_user(request, user_id):
     user = get_object_or_404(User, id=user_id)
-    return render(request, "view_user.html", {"user": user})
+    return render(request, "admin/view_user.html", {"user": user})
 
 
 
 def user_list(request):
     users = User.objects.all()
-    return render(request, "user_list.html", {"users": users})
+    return render(request, "admin/user_list.html", {"users": users})
 
 
 # @login_required(login_url="users:login")
@@ -392,14 +358,7 @@ def user_list(request):
 #     else:
 #         form = UserEditForm(instance=user)
 
-#     return render(request, "edit_user.html", {"form": form, "user": user})
-
-
-
-
-
-
-
+#     return render(request, "admin/edit_user.html", {"form": form, "user": user})
 
 
 
@@ -416,14 +375,7 @@ def edit_user(request, user_id):
     else:
         form = UserEditForm(instance=user)
 
-    return render(request, "edit_user.html", {"form": form, "user": user})
-
-
-
-
-
-
-
+    return render(request, "admin/edit_user.html", {"form": form, "user": user})
 
 
 
@@ -437,30 +389,12 @@ def delete_user(request, user_id):
 
 
 
-
-
-
-
-
-
-
 def directions(request):
     if request.user.is_authenticated:
-        return render(request, "directions.html")
+        return render(request, "admin/directions.html")
     else:
         return redirect("store/templates:homebase")
     
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -472,7 +406,7 @@ def directions(request):
 def driver_view_orders(request):
     orders = Order.objects.all()
     context = {'orders': orders}
-    return render(request, 'driver_view_order.html', context)
+    return render(request, 'admin/driver_view_order.html', context)
 
 # --------------------------------------------------------------------------------------------------------
 
@@ -489,12 +423,12 @@ def driver_edit_order(request, transaction_id):
             # Add a success message
             messages.success(request, 'successful.')
             # Redirect back to the driver_view_orders page
-            return redirect('driver_view_orders')
+            return redirect('admin/driver_view_orders')
     else:
         form = OrderEditForm(instance=order)
 
     context = {'order': order, 'form': form}
-    return render(request, 'driver_edit_order.html', context)
+    return render(request, 'admin/driver_edit_order.html', context)
 
 
 
@@ -503,4 +437,4 @@ def driver_view_shipping_address(request, transaction_id):
     order = get_object_or_404(Order, transaction_id=transaction_id)
     shipping_address = order.shipping
 
-    return render(request, 'driver_view_shipping_address.html', {'shipping_address': shipping_address})
+    return render(request, 'admin/driver_view_shipping_address.html', {'shipping_address': shipping_address})

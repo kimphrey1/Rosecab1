@@ -1,4 +1,4 @@
-{% extends 'admin_base.html' %}
+{% extends 'admin/driver_base.html' %}
 
 {% block content %}
     <div class="card shadow">
@@ -45,7 +45,10 @@
                 </table>
 
                 <!-- Link to go back to the view_orders page -->
-                <a href="{% url 'view_orders' %}" class="btn btn-secondary">Go Back to Orders</a>
+            
+                <a href="{% url 'driver_view_orders' %}" class="btn btn-secondary mb-4">
+                    <span aria-hidden="true">&larr;</span>Back
+                </a>
             </div>
         </div>
     </div>
