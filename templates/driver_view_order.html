@@ -1,10 +1,15 @@
-{% extends 'admin_base.html' %}
-
+{% extends 'driver_base.html' %}
 {% block content %}
 <div class="card shadow">
     <div class="card-body">
         <h1 class="p-2 text-center" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">
             View Orders</h1>
+
+        <!-- Logout button -->
+        <div class="text-right mb-3">
+            {% comment %} <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a> {% endcomment %}
+        </div>
+
         <div class="container-fluid">
             <table class="table table-bordered table-striped" style="border: 2px solid black;" id="example">
                 <thead style="background-color: black; color: white;">
@@ -30,10 +35,9 @@
                             <td>{{ order.date_ordered }}</td>
                             <td>{{ order.display_items }}</td>
                             <td>${{ order.get_cart_total }}</td>
-                            <td><a href="{% url 'view_shipping_address' order.transaction_id %}">View Address</a></td>
+                            <td><a href="{% url 'driver_view_shipping_address' order.transaction_id %}">View Address</a></td>
                             <td class="text-center">
-                                <a href="{% url 'edit_order' order.transaction_id %}" class="text-success">Edit</a>
-                                <a href="#" class="text-danger ml-2" onclick="confirmDelete('{{ order.transaction_id }}')">Delete</a>
+                                <a href="{% url 'driver_edit_order' order.transaction_id %}" class="text-success">Edit</a>
                             </td>
                         </tr>
                     {% endfor %}

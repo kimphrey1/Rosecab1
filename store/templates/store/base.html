@@ -43,6 +43,14 @@
         class="text-xl mx-4 hover:text-teal-900 duration-500 {% if url_name == 'products' %} text-teal-700 {% endif %}">
         <a href="{% url 'store:products' %}">Home</a>
       </li>
+
+      <li
+        class="text-xl mx-4 hover:text-teal-900 duration-500 {% if url_name == 'products' %} text-teal-700 {% endif %}">
+        <a href="{% url 'directions' %}">directions</a>
+      </li>
+
+
+
       <li class="nav-item"><a href="{% url 'admin_login' %}" class="nav-link">Admin
       </li>
       <li id="menu" class="text-xl">

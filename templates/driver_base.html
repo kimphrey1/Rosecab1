@@ -1,0 +1,52 @@
+<!-- driver_base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Driver Dashboard{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container mt-4">
+        {% if messages %}
+            <div class="row justify-content-md-center mt-3">
+                <div class="col-md-8">
+                    {% for message in messages %}
+                        <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %} {% if message.tags == 'success' %}alert-success{% endif %}" role="alert" id="alert{{ forloop.counter }}">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <script>
+                            setTimeout(function() {
+                                $("#alert{{ forloop.counter }}").alert('close');
+                            }, 1500);
+                        </script>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Bootstrap JavaScript and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.alert').alert();
+        });
+    </script>
+
+</body>
+
+</html>

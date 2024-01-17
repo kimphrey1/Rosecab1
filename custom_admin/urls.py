@@ -72,6 +72,25 @@ urlpatterns = [
 
 
 
+    path('directions/', directions, name="directions"),
+
+
+
+
+        # Driver Views
+    path('driver_view_order/', driver_view_orders, name='driver_view_orders'),
+    path('driver_edit_order/<uuid:transaction_id>/', driver_edit_order, name='driver_edit_order'),
+
+
+
+    path('driver-view-shipping-address/<uuid:transaction_id>/', driver_view_shipping_address, name='driver_view_shipping_address'),
+
+
+
+    
+
+
+
 
 
     

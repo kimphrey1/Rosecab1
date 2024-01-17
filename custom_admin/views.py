@@ -13,6 +13,27 @@ from users.models import Customer, User
 # from .forms import SizeForm
 from django.contrib.auth.decorators import login_required
 
+# def adminLogin(request):
+#     msg = None
+#     if request.method == "POST":
+#         username = request.POST['username']
+#         password = request.POST['password']
+#         user = authenticate(username=username, password=password)
+#         try:
+#             if user.is_staff:
+#                 login(request, user)
+#                 msg = "User login successfully"
+#                 return redirect('admindashboard')
+#             else:
+#                 msg = "Invalid Credentials"
+#         except:
+#             msg = "Invalid Credentials"
+#     dic = {'msg': msg}
+#     return render(request, 'admin_login.html', dic)
+
+
+# Adding driver to admin login
+
 def adminLogin(request):
     msg = None
     if request.method == "POST":
@@ -23,13 +44,46 @@ def adminLogin(request):
             if user.is_staff:
                 login(request, user)
                 msg = "User login successfully"
-                return redirect('admindashboard')
+                # Check if the user belongs to the Driver group
+                if user.groups.filter(name='Driver').exists():
+                    return redirect('driver_view_orders')  # Redirect to driver_view_orders
+                else:
+                    return redirect('admindashboard')  # Default admin dashboard URL
             else:
                 msg = "Invalid Credentials"
         except:
             msg = "Invalid Credentials"
     dic = {'msg': msg}
     return render(request, 'admin_login.html', dic)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # --------------------------------------------------------------------------------------------------------
 def adminHome(request):
     return render(request, 'admin_base.html')
@@ -380,3 +434,73 @@ def delete_user(request, user_id):
     user.delete()
     messages.success(request, 'User deleted successfully.')
     return redirect('users:user_list')
+
+
+
+
+
+
+
+
+
+
+def directions(request):
+    if request.user.is_authenticated:
+        return render(request, "directions.html")
+    else:
+        return redirect("store/templates:homebase")
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Driver view and edit views
+
+
+def driver_view_orders(request):
+    orders = Order.objects.all()
+    context = {'orders': orders}
+    return render(request, 'driver_view_order.html', context)
+
+# --------------------------------------------------------------------------------------------------------
+
+# --------------------------------------------------------------------------------------------------------
+
+
+def driver_edit_order(request, transaction_id):
+    order = get_object_or_404(Order, transaction_id=transaction_id)
+
+    if request.method == 'POST':
+        form = OrderEditForm(request.POST, instance=order)
+        if form.is_valid():
+            form.save()
+            # Add a success message
+            messages.success(request, 'successful.')
+            # Redirect back to the driver_view_orders page
+            return redirect('driver_view_orders')
+    else:
+        form = OrderEditForm(instance=order)
+
+    context = {'order': order, 'form': form}
+    return render(request, 'driver_edit_order.html', context)
+
+
+
+
+def driver_view_shipping_address(request, transaction_id):
+    order = get_object_or_404(Order, transaction_id=transaction_id)
+    shipping_address = order.shipping
+
+    return render(request, 'driver_view_shipping_address.html', {'shipping_address': shipping_address})

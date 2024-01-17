@@ -31,6 +31,10 @@ class OrderEditForm(forms.ModelForm):
         model = Order
         fields = ['status', 'paid']
 
+    def __init__(self, *args, **kwargs):
+        super(OrderEditForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'form-control'})
 
 
 

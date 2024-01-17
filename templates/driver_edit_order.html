@@ -1,0 +1,42 @@
+{% extends 'driver_base.html' %}
+{% block content %}
+
+<div class="card shadow">
+    <div class="card-body">
+        <h1 class="p-2 text-center mb-4" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">Edit Order</h1>
+        
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        
+        <a href="{% url 'driver_view_orders' %}" class="btn btn-secondary mb-4">
+            <span aria-hidden="true">&larr;</span>Back
+        </a>
+
+        <form method="post" action="{% url 'driver_edit_order' transaction_id=order.transaction_id %}" class="needs-validation">
+            {% csrf_token %}
+
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="id_status" class="text-primary" style="font-size: 1.2em;">Order Status:</label>
+                    {{ form.status }}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="id_paid" class="text-success" style="font-size: 1.2em;">Paid:</label>
+                    {{ form.paid }}
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="m-2 px-4 btn btn-primary" style="font-size: 1.2em;">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
