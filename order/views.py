@@ -13,7 +13,6 @@ from django.conf import settings
 from django.urls import reverse
 from django.views.generic import TemplateView
 from django.http.response import HttpResponseNotFound, JsonResponse
-from django.contrib.auth.decorators import login_required
 import json
 import datetime
 
@@ -32,7 +31,6 @@ def get_customer_or_guest(request):
     return customer
 
 
-@login_required(login_url="users:login")
 def cart(request):
     """
     Cart page. It contains information about only one order,
@@ -62,7 +60,6 @@ def cart(request):
     return render(request, "order/cart.html", context)
 
 
-@login_required(login_url="users:login")
 @require_POST
 def add_to_cart(request, pk):
     """
@@ -85,7 +82,7 @@ def add_to_cart(request, pk):
     try:
         customer = get_customer_or_guest(request)
     except:
-        return redirect("store:afterlogin")
+        return redirect("store:products")
 
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
     order_item, created = OrderItem.objects.get_or_create(
@@ -99,7 +96,6 @@ def add_to_cart(request, pk):
     return JsonResponse({"cart_total": order.get_cart_items})
 
 
-@login_required(login_url="users:login")
 @require_POST
 def remove_from_cart(request, pk):
     """

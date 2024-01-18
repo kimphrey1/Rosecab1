@@ -27,13 +27,13 @@
       <div class="p-2 mt-3">
         <h2 class="font-bold mb-3 text-2xl">Payment Method</h2>
         <div class="flex gap-3 mb-3">
-          {% comment %} <div>
+          <div>
             <input type="radio" name="payment" id="online-delivery" class="peer hidden" checked />
             <label for="online-delivery"
               class="cursor-pointer select-none rounded-xl py-2 px-5 text-sm text-center peer-checked:bg-teal-300 peer-checked:font-bold">
               Online
             </label>
-          </div> {% endcomment %}
+          </div>
           <div>
             <input type="radio" name="payment" id="cash-delivery" class="peer hidden" />
             <label for="cash-delivery"
@@ -77,33 +77,33 @@
             <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text" name="address_1"
               required />
           </div>
-          {% comment %} <div class="flex flex-col w-full mb-2">
+          <div class="flex flex-col w-full mb-2">
             <label class="mb-2 font-bold text-slate-500" for="address_2">Apartment, suite, etc.</label>
             <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text" name="address_2" />
-          </div> {% endcomment %}
+          </div>
           <div class="flex justify-between mb-2">
             <div class="flex flex-col w-1/2 mb-2">
               <label class="mb-2 font-bold text-slate-500" for="city">City</label>
               <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text" name="city"
                 required />
             </div>
-            {% comment %} <div class="flex flex-col w-1/2 ml-2">
+            <div class="flex flex-col w-1/2 ml-2">
               <label class="mb-2 font-bold text-slate-500" for="country">Country</label>
               <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text" name="country"
                 required />
-            </div> 
+            </div>
           </div>
           <div class="flex justify-between mb-2">
             <div class="flex flex-col w-1/2 mb-2">
               <label class="mb-2 font-bold text-slate-500" for="state">State / Provice</label>
               <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text" name="state"
                 required />
-            </div> 
+            </div>
             <div class="flex flex-col w-1/2 ml-2">
               <label class="mb-2 font-bold text-slate-500" for="postal_code">Postal Code</label>
               <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text"
                 name="postal_code" />
-            </div>{% endcomment %}
+            </div>
           </div>
         </div>
         <div id="error-messages-delivery" class="text-red-500"></div>
@@ -192,26 +192,26 @@
             {% if item.product.has_variants %}
             <p>
               Size: <strong>{{item.variation.size.name}}</strong> Price:
-              <strong>UGX{{item.variation.price}}/=</strong> Qty:
+              <strong>${{item.variation.price}}</strong> Qty:
               <strong>{{item.quantity}}</strong>
             </p>
             {% else %}
             <p>
-              Price: <strong>UGX{{item.product.price}}/=</strong> Qty:
+              Price: <strong>${{item.product.price}}</strong> Qty:
               <strong>{{item.quantity}}</strong>
             </p>
             {% endif %}
           </div>
-          <p class="ml-auto font-bold text-xl">UGX{{item.get_total}}/=</p>
+          <p class="ml-auto font-bold text-xl">${{item.get_total}}</p>
         </div>
         {% endfor %}
       </div>
     </div>
     <!-- Start Promo Code -->
-    {% comment %} {% include "order/checkout_promo.html" %} {% endcomment %}
+    {% include "order/checkout_promo.html" %}
     <!-- End Promo Code -->
     <!-- Start Promo Code Message  -->
-    {% comment %}  {% for message in messages %}
+    {% for message in messages %}
     <div class="flex mt-2">
       {% if message.tags == "success"%}
       <p class="mx-auto text-green-500 italic">{{ message }}</p>
@@ -224,18 +224,18 @@
     <div class="mt-5 py-5 shadow-xl rounded-xl bg-white">
       <div class="flex justify-between m-3 p-3">
         <p>Subtotal</p>
-        <p>UGX{{order.get_cart_subtotal}}/=</p>
-      </div>{% endcomment %}
+        <p>${{order.get_cart_subtotal}}</p>
+      </div>
       {% if order.coupon %}
       <div class="flex m-3 p-3 text-green-500">
-        <p>COUPON ({{order.coupon.code|upper}})</p> 
+        <p>COUPON ({{order.coupon.code|upper}})</p>
         <form action="{% url 'order:remove-coupon' %}" method="post">
           {% csrf_token %}
           <button class="ml-2 text-red-600 text-xs" type="submit">
             remove
           </button>
         </form>
-        <p class="ml-auto">-UGX{{order.get_coupon_value}}/=</p>
+        <p class="ml-auto">-${{order.get_coupon_value}}</p>
       </div>
       {% endif %}
       <div class="flex justify-between m-3 p-3">
@@ -245,7 +245,7 @@
       <hr />
       <div class="flex justify-between m-3 p-3 font-bold text-xl">
         <p>Total</p>
-        <p>UGX{{order.get_cart_total}}/=</p>
+        <p>${{order.get_cart_total}}</p>
       </div>
       <!-- Start Payment Button -->
       <div class="flex mt-5">

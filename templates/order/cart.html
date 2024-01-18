@@ -1,10 +1,10 @@
-{% extends 'customer_base.html' %} {% block content %} {% if not items %}
+{% extends 'store/base.html' %} {% block content %} {% if not items %}
 <div class="container mx-auto mt-10">
   <div class="w-full bg-white p-10 text-center">
     <h2 class="font-bold">Your cart is empty</h2>
     <div>
       <a
-        href="{% url 'store:afterlogin' %}"
+        href="{% url 'store:products' %}"
         class="flex font-semibold text-indigo-600 text-sm my-5 w-1/4"
       >
         <svg
@@ -25,7 +25,7 @@
   <div class="flex flex-col shadow-md my-10">
     <div class="w-full bg-white p-3 md:p-10">
       <a
-        href="{% url 'store:afterlogin' %}"
+        href="{% url 'store:products' %}"
         class="flex font-semibold text-indigo-600 text-sm my-5 w-1/4"
       >
         <svg
