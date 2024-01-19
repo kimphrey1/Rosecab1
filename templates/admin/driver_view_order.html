@@ -5,9 +5,10 @@
         <h1 class="p-2 text-center" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">
             View Orders</h1>
 
-        <!-- Logout button -->
+        <!-- Logout button with icon -->
         <div class="text-right mb-3">
-            {% comment %} <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a> {% endcomment %}
+            <a href="{% url 'users:logout' %}" class="fa fa-power-off" style="font-size:48px;color:red"></i></i> Logout
+            </a>
         </div>
 
         <div class="container-fluid">
@@ -47,6 +48,9 @@
     </div>
 </div>
 
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iKFl1eM1pebGqBwljHgQEeS8SWZ8mOSSmA9vYDA2w+gBhC5DI5P2eL+eW" crossorigin="anonymous">
+
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -68,8 +72,10 @@
 
 <!-- JavaScript for user table -->
 <script>
-    $(document).ready(function() {
-        $('#example').DataTable();
+    var $j = jQuery.noConflict();
+
+    $j(document).ready(function() {
+        $j('#example').DataTable();
     });
 
     function confirmDelete(transactionId) {

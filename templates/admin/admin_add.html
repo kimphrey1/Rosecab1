@@ -1,0 +1,63 @@
+<!-- admin_add.html -->
+
+{% extends 'admin/admin_base.html' %}
+
+{% block content %}
+  <div class="card shadow">
+    <div class="card-body">
+      <h1 class="p-2 text-center" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">
+          Manage User Privileges</h1>
+      <div class="container-fluid">
+        <form method="post" action="{% url 'admin_add' %}">
+          {% csrf_token %}
+
+          <table class="table table-bordered">
+            <thead style="background-color: black; color: white;">
+              <tr>
+                <th>User Selection</th>
+                <th>Staff Status<span class="text-muted"> (Check this only if the user is a driver.)</span></th>
+                <th>Admin Status<span class="text-muted"> (Check this and 'Staff' to assign superuser privileges).</span></th>
+                <th>Assign to Groups</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <label for="username">Select User:</label>
+                  <select name="username" id="username" class="form-control" required>
+                    {% for user in users %}
+                      <option value="{{ user.username }}">{{ user.username }}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+                <td>
+                  <label for="is_staff">Staff Status:</label>
+                  <input type="checkbox" id="is_staff" name="is_staff" checked>
+                </td>
+                <td>
+                  <label for="is_superuser">Superuser Status:</label>
+                  <input type="checkbox" id="is_superuser" name="is_superuser">
+                </td>
+                <td>
+                  <label for="groups">Assign to Groups:</label>
+                  <select name="groups" id="groups" class="form-control" multiple>
+                    {% for group in groups %}
+                      <option value="{{ group.id }}">{{ group.name }}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary">Update Privileges</button>
+        </form>
+
+        {% if error_message %}
+          <p style="color: red;">{{ error_message }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

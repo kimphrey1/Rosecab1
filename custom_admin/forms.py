@@ -9,10 +9,25 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = ['name', 'price', 'desc', 'image', 'product_category']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs['placeholder'] = 'Enter product name'
+        self.fields['price'].widget.attrs['placeholder'] = 'Those with 1 price only'
+        self.fields['desc'].widget.attrs['placeholder'] = 'Briefly talk about the product'
+
 class ProductVariantForm(forms.ModelForm):
     class Meta:
         model = ProductVariant
         fields = ['title', 'size', 'price']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['title'].widget.attrs['placeholder'] = 'e.g. Product name - Size'
+        self.fields['size'].widget.attrs['placeholder'] = 'Enter product size'
+        self.fields['price'].widget.attrs['placeholder'] = 'Enter product size price'
+
+
+
 
 ProductVariantFormSet = forms.inlineformset_factory(
     parent_model=Product,

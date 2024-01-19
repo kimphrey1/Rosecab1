@@ -1,10 +1,11 @@
-{% extends 'admin_base.html' %}
+{% extends 'admin/admin_base.html' %}
 {% block content %}
 
 <div class="card shadow">
     <div class="card-body">
         <h1 class="p-2 text-center mb-4" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">
-            Add Size</h1>
+            Add Size
+        </h1>
         <div class="container-fluid">
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -16,8 +17,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-center">
+                <div class="d-flex justify-content-between">
+                    <!-- Submit button aligned at the far right -->
                     <input type="submit" value="Submit" class="m-2 px-3 btn btn-primary">
+
+                    <!-- Back button aligned at the far left -->
+                    <a href="{% url 'view_size' %}" class="btn btn-secondary m-2">
+                        <span aria-hidden="true">&larr;</span> Back
+                    </a>
                 </div>
             </form>
         </div>
@@ -28,4 +35,6 @@
             alert('{{msg}}')
         </script>
     {% endif %}
+</div>
+
 {% endblock %}

@@ -3,7 +3,15 @@
 {% block content %}
 <div class="card shadow">
     <div class="card-body">
-        <h1 class="p-2 text-center" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">All Products</h1>
+        <h1 class="p-2 text-center" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">
+            All Products
+        </h1>
+
+        <!-- Floating plus icon button with link (red, font-size: 24px) -->
+        <a href="{% url 'add_product' %}" style="position: fixed; bottom: 30px; right: 30px;">
+            <i class="fa fa-plus" style="font-size: 32px; color: green;"></i>
+        </a>
+
         <div class="container-fluid">
             <table class="table table-bordered table-striped" style="border: 2px solid black;" id="example">
                 <thead style="background-color: black; color: white;">
@@ -48,8 +56,8 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- DataTables CSS -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">

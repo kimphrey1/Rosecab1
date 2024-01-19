@@ -15,8 +15,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-center">
+                <div class="d-flex justify-content-between">
+                    <!-- Submit button aligned at the far left -->
                     <input type="submit" value="Submit" class="m-2 px-3 btn btn-primary">
+
+                    <!-- Back button aligned at the far right -->
+                    <a href="{% url 'view_size' %}" class="btn btn-secondary m-2">
+                        <span aria-hidden="true">&larr;</span> Back
+                    </a>
                 </div>
             </form>
         </div>
@@ -27,4 +33,6 @@
             alert('{{msg}}')
         </script>
     {% endif %}
+</div>
+
 {% endblock %}

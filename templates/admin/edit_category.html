@@ -2,11 +2,11 @@
 {% block content %}
 
 <div class="container mt-5" style="font-family: 'Roboto', sans-serif;">
-    <h1 class="text-center" style="font-family: 'Georgia', sans-serif; font-size: 3em; text-transform: uppercase; color: #333;">Update Category</h1>
-    <hr class="rounded">
-
     <div class="card shadow">
         <div class="card-body">
+            <h1 class="p-2 text-center mb-4" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">Update Category</h1>
+            <hr class="rounded">
+
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-row">
@@ -17,15 +17,23 @@
                         </div>
                     </div>
                 </div>
-                <input type="submit" value="Submit" class="m-2 px-3 btn btn-primary">
+
+                <!-- Submit and Back buttons aligned on the same line -->
+                <div class="d-flex justify-content-between">
+                    <input type="submit" value="Submit" class="m-2 px-3 btn btn-primary">
+                    <a href="{% url 'view_category' %}" class="btn btn-secondary m-2">
+                        <span aria-hidden="true">&larr;</span> Back
+                    </a>
+                </div>
             </form>
+
         </div>
     </div>
 
     {% if msg %}
-    <script>
-        alert('{{msg}}')
-    </script>
+        <script>
+            alert('{{msg}}')
+        </script>
     {% endif %}
 </div>
 

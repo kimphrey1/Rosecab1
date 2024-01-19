@@ -12,6 +12,8 @@ from order.models import Order
 from users.models import Customer, User
 # from .forms import SizeForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import user_passes_test
 
 # def adminLogin(request):
 #     msg = None
@@ -69,15 +71,28 @@ def admin_dashboard(request):
     categorycount = Category.objects.all().count()
     productcount = Product.objects.all().count()
     ordercount = Order.objects.all().count()
+    sizecount = Size.objects.all().count()
+    productvariantcount = ProductVariant.objects.all().count()
 
     # Get the count of all users (including those without accounts)
     all_users_count = User.objects.all().count()
+
+    # groupcount = Group.objects.all().count()
+    driver_group = Group.objects.get(name='Driver')
+    driver_group_count = driver_group.user_set.count()
+
 
     mydict = {
         'categorycount': categorycount,
         'customercount': all_users_count,
         'productcount': productcount,
         'ordercount': ordercount,
+        'sizecount': sizecount,
+        'productvariantcount': productvariantcount,
+        # 'groupcount': groupcount,
+        'driver_group_count': driver_group_count,
+
+
     }
     return render(request, 'admin/admin_dashboard.html', {'mydict': mydict})
 
@@ -132,6 +147,7 @@ def add_product(request):
                 instance.product = product
                 instance.save()
 
+            messages.success(request, "Product Added")
             return redirect('view_product')
 
     else:
@@ -273,13 +289,12 @@ def edit_productvariant(request, variant_id):
 
 def delete_productvariant(request, variant_id):
     variant = get_object_or_404(ProductVariant, id=variant_id)
+    variant.delete()
+    messages.success(request, 'Variant deleted successfully.')
+    return redirect('view_product_variants')
 
-    if request.method == 'POST':
-        variant.delete()
-        # Add a success message if needed
-        return redirect('view_productvariants')  # Redirect to the product variants list view
 
-    return render(request, 'delete_productvariant.html', {'variant': variant})
+
 
 
 
@@ -423,7 +438,7 @@ def driver_edit_order(request, transaction_id):
             # Add a success message
             messages.success(request, 'successful.')
             # Redirect back to the driver_view_orders page
-            return redirect('admin/driver_view_orders')
+            return redirect('driver_view_orders')
     else:
         form = OrderEditForm(instance=order)
 
@@ -438,3 +453,76 @@ def driver_view_shipping_address(request, transaction_id):
     shipping_address = order.shipping
 
     return render(request, 'admin/driver_view_shipping_address.html', {'shipping_address': shipping_address})
+
+
+
+
+
+
+
+
+
+
+
+
+# def admin_add(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+#         group_ids = request.POST.getlist('groups')
+
+#         # Create the admin user
+#         admin_user = User.objects.create_user(username=username, password=password)
+
+#         # Assign the user to selected groups
+#         groups = Group.objects.filter(id__in=group_ids)
+#         admin_user.groups.set(groups)
+
+#         return redirect('admindashboard')  # Redirect to your admin dashboard
+
+#     # Retrieve all groups for the template
+#     groups = Group.objects.all()
+
+#     return render(request, 'admin/admin_add.html', {'groups': groups})
+
+
+
+
+
+
+# views.py
+
+
+
+# 
+@user_passes_test(lambda u: u.is_superuser)
+def admin_add(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        is_staff = request.POST.get('is_staff') == 'on'
+        is_superuser = request.POST.get('is_superuser') == 'on'
+        group_ids = request.POST.getlist('groups')
+
+        # Check if the user exists
+        try:
+            admin_user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return render(request, 'admin/admin_add.html', {'error_message': 'User does not exist.'})
+
+        # Update the user attributes
+        admin_user.is_staff = is_staff
+        admin_user.is_superuser = is_superuser
+
+        # Assign the user to selected groups
+        groups = Group.objects.filter(id__in=group_ids)
+        admin_user.groups.set(groups)
+
+        admin_user.save()
+
+        return redirect('admindashboard')  # Redirect to your admin dashboard
+
+    # Retrieve all users and groups for the template
+    users = User.objects.all()
+    groups = Group.objects.all()
+
+    return render(request, 'admin/admin_add.html', {'users': users, 'groups': groups})

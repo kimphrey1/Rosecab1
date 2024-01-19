@@ -1,28 +1,70 @@
 {% extends 'admin/admin_base.html' %}
 {% block content %}
 
-<div class="container mt-5" style="font-family: 'Roboto', sans-serif;">
-    <h1 class="text-center" style="font-family: 'Georgia', sans-serif; font-size: 3em; text-transform: uppercase; color: #333;">Edit Product</h1>
-    <hr class="rounded">
+<style>
+    /* Custom CSS for black lines before and after variant entries */
+    .variant-entry {
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+</style>
 
-    <div class="card shadow">
-        <div class="card-body">
-            <h5 class="p-2" style="border-bottom: 2px solid orange;">If the product has a single price, enter the price in the 'Price field below' and save.</h5>
-            <div class="container-fluid">
-                <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
+<div class="card shadow">
+    <div class="card-body">
+        <h1 class="p-2 text-center mb-4" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">
+            Add Product
+        </h1>
+        <div class="container-fluid">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <h5 class="p-2" style="border-bottom: 2px solid orange;">If the product has a single price, enter the price in the 'Price' field below and save.</h5>
+                
+                <div class="container-fluid">
                     {{ product_form.as_p }}
-                    
-                    <h5 class="mt-4">If the product has many prices, enter the common details in the upper section excluding the price.</h5>
+                    <h1 class="p-2 text-center mb-4" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;"></h1>
+                    <h5 class="mt-4">If the product has many prices, enter the common details in the upper section.</h5>
                     <h5 class="mt-4">You can then add each size with its price using the fields below (To delete, check the delete box).</h5>
-                    <table id="variant-table" class="table">
-                        {{ variant_formset.management_form }}
-                        {{ variant_formset.as_table }}
-                    </table>
+                    <h1 class="p-2 text-center mb-4" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;"></h1>
 
-                    <input type="submit" value="Save changes" class="m-2 px-3 btn btn-primary">
-                </form>
-            </div>
+                    <!-- Variant entries with black lines -->
+                    <div id="variant-table">
+                        {{ variant_formset.management_form }}
+                        {% for form in variant_formset %}
+                            <div class="variant-entry">
+                                {{ form.as_table }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <h1 class="p-2 text-center mb-4" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;"></h1>
+
+                <!-- JavaScript for placeholder-like text next to delete checkbox -->
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script>
+                    $(document).ready(function() {
+                        // Add a placeholder-like text next to each delete checkbox
+                        $('input[type="checkbox"][name$="-DELETE"]').each(function() {
+                            $(this).after('<span style="color: #888;">Check this to delete size</span>');
+                        });
+                    });
+                </script>
+
+                <!-- Submit and Back buttons aligned on the same line -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="submit" value="Submit" class="m-2 px-3 btn btn-primary">
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="{% url 'view_product' %}" class="btn btn-secondary mb-4">
+                            <span aria-hidden="true">&larr;</span> Back
+                        </a>
+                    </div>
+                </div>
+                
+            </form>
         </div>
     </div>
 </div>
