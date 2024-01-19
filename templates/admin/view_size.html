@@ -4,7 +4,8 @@
 <div class="card shadow">
     <div class="card-body">
         <h1 class="p-2 text-center" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">
-            All Sizes</h1>
+            All Sizes
+        </h1>
         <div class="container-fluid">
             <table class="table table-bordered table-striped" style="border: 2px solid black;" id="example">
                 <thead style="background-color: black; color: white;">
@@ -16,20 +17,25 @@
                 </thead>
                 <tbody>
                     {% for i in size %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ i.name }}</td>
-                        <td class="text-center">
-                            <a href="/edit-size/{{ i.id }}/" class="text-success">Edit</a>
-                            <a href="/delete-size/{{ i.id }}/" class="text-danger ml-2" onclick="return confirm('Are You Sure?')">Delete</a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ i.name }}</td>
+                            <td class="text-center">
+                                <a href="/edit-size/{{ i.id }}/" class="text-success">Edit</a>
+                                <a href="/delete-size/{{ i.id }}/" class="text-danger ml-2" onclick="return confirm('Are You Sure?')">Delete</a>
+                            </td>
+                        </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+<!-- Floating plus icon button with link (green, font-size: 32px) -->
+<a href="{% url 'add_size' %}" style="position: fixed; bottom: 30px; right: 30px;">
+    <i class="fa fa-plus" style="font-size: 32px; color: green;"></i>
+</a>
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">

@@ -8,8 +8,14 @@
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <div class="text-center mt-4">
+                <div class="d-flex justify-content-between mt-4">
+                    <!-- Save Changes button on the left -->
                     <button type="submit" class="btn btn-primary">Save Changes</button>
+                    
+                    <!-- Back button on the right with the specified link and left arrow icon -->
+                    <a href="{% url 'view_product_variants' %}" class="btn btn-secondary">
+                        <span aria-hidden="true">&larr;</span> Back
+                    </a>
                 </div>
             </form>
         </div>

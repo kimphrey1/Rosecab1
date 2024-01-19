@@ -49,7 +49,10 @@ urlpatterns = [
     path('view-product-variants/', view_product_variants, name='view_product_variants'),
     path('add-product-variant/', add_productvariant, name='add_productvariant'),
     path('edit-productvariant/<int:variant_id>/', edit_productvariant, name='edit_productvariant'),
-    path('delete-productvariant/<uuid:pid>/', delete_productvariant, name='delete_productvariant'),
+    # path('delete-productvariant/<uuid:pid>/', delete_productvariant, name='delete_productvariant'),
+
+
+    path('delete_productvariant/<int:variant_id>/', delete_productvariant, name='delete_productvariant'),
 
     # Orders
     path('view_order/', view_orders, name='view_orders'),
@@ -84,6 +87,10 @@ urlpatterns = [
 
 
     path('driver-view-shipping-address/<uuid:transaction_id>/', driver_view_shipping_address, name='driver_view_shipping_address'),
+
+
+
+    path('admin_add/', admin_add, name='admin_add'),
 
 
 
