@@ -5,40 +5,42 @@
     <div class="card-body">
         <h1 class="p-2 text-center" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">
             View Orders</h1>
-        <div class="container-fluid">
-            <table class="table table-bordered table-striped" style="border: 2px solid black;" id="example">
-                <thead style="background-color: black; color: white;">
-                    <tr>
-                        <th>Customer Name</th>
-                        <th>Status</th>
-                        <th>Paid</th>
-                        <th>Delivery Method</th>
-                        <th>Date Ordered</th>
-                        <th>Items Ordered</th>
-                        <th>Total</th>
-                        <th>Shipping Address</th>
-                        <th class="text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for order in orders %}
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" style="border: 2px solid black;" id="example">
+                    <thead style="background-color: black; color: white;">
                         <tr>
-                            <td>{{ order.customer }}</td>
-                            <td>{{ order.status|default:"Pending" }}</td>
-                            <td>{{ order.paid }}</td>
-                            <td>{{ order.delivery_method }}</td>
-                            <td>{{ order.date_ordered }}</td>
-                            <td>{{ order.display_items }}</td>
-                            <td>${{ order.get_cart_total }}</td>
-                            <td><a href="{% url 'view_shipping_address' order.transaction_id %}">View Address</a></td>
-                            <td class="text-center">
-                                <a href="{% url 'edit_order' order.transaction_id %}" class="text-success">Edit</a>
-                                <a href="#" class="text-danger ml-2" onclick="confirmDelete('{{ order.transaction_id }}')">Delete</a>
-                            </td>
+                            <th>Customer Name</th>
+                            <th>Status</th>
+                            <th>Paid</th>
+                            <th>Delivery Method</th>
+                            <th>Date Ordered</th>
+                            <th>Items Ordered</th>
+                            <th>Total</th>
+                            <th>Shipping Address</th>
+                            <th class="text-center">Action</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                            <tr>
+                                <td style="border: 1px solid black;">{{ order.customer }}</td>
+                                <td style="border: 1px solid black;">{{ order.status|default:"Pending" }}</td>
+                                <td style="border: 1px solid black;">{{ order.paid }}</td>
+                                <td style="border: 1px solid black;">{{ order.delivery_method }}</td>
+                                <td style="border: 1px solid black;">{{ order.date_ordered }}</td>
+                                <td style="border: 1px solid black;">{{ order.display_items }}</td>
+                                <td style="border: 1px solid black;">${{ order.get_cart_total }}</td>
+                                <td style="border: 1px solid black;"><a href="{% url 'view_shipping_address' order.transaction_id %}">View Address</a></td>
+                                <td style="border: 1px solid black;" class="text-center">
+                                    <a href="{% url 'edit_order' order.transaction_id %}" class="text-success">Edit</a>
+                                    <a href="#" class="text-danger ml-2" onclick="confirmDelete('{{ order.transaction_id }}')">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

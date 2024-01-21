@@ -5,30 +5,32 @@
     <div class="card-body">
         <h1 class="p-2 text-center" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">
             User List</h1>
-        <div class="container-fluid">
-           <table class="table table-bordered table-striped" style="border: 2px solid black;" id="userTable">
-                <thead style="background-color: black; color: white;">
-                    <tr>
-                        <th>No</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th class="text-center">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for user in users %}
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-auto" style="border: 2px solid black;" id="userTable">
+                    <thead style="background-color: black; color: white;">
                         <tr>
-                            <td>{{ forloop.counter }}</td>
-                            <td>{{ user.username }}</td>
-                            <td>{{ user.email }}</td>
-                            <td class="text-center">
-                                <a href="{% url 'edit_user' user_id=user.id %}" class="text-success">Edit</a>
-                                <a href="#" class="text-danger ml-2" onclick="confirmDelete('{{ user.id }}')">Delete</a>
-                            </td>
+                            <th style="color: white; border: 1px solid black;">No</th>
+                            <th style="color: white; border: 1px solid black;">Username</th>
+                            <th style="color: white; border: 1px solid black;">Email</th>
+                            <th style="color: white; text-align: center; border: 1px solid black;">Actions</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td style="border: 1px solid black;">{{ forloop.counter }}</td>
+                                <td style="border: 1px solid black;">{{ user.username }}</td>
+                                <td style="border: 1px solid black;">{{ user.email }}</td>
+                                <td class="text-center" style="border: 1px solid black;">
+                                    <a href="{% url 'edit_user' user_id=user.id %}" class="text-success">Edit</a>
+                                    <a href="#" class="text-danger ml-2" onclick="confirmDelete('{{ user.id }}')">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -36,21 +38,32 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
-
 <!-- DataTables CSS -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- DataTables JavaScript -->
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
 <!-- Bootstrap JavaScript -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- Custom styles for user table -->
+<style>
+    #userTable th,
+    #userTable td {
+        text-align: left;
+        padding: 8px; /* Adjust the padding as needed */
+    }
+
+    #userTable th span,
+    #userTable th a,
+    #userTable th div {
+        margin-right: 4px; /* Adjust the margin as needed */
+    }
+</style>
 
 <!-- JavaScript for user table -->
 <script>
