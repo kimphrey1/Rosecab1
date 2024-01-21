@@ -11,39 +11,41 @@
             </a>
         </div>
 
-        <div class="container-fluid">
-            <table class="table table-bordered table-striped" style="border: 2px solid black;" id="example">
-                <thead style="background-color: black; color: white;">
-                    <tr>
-                        <th>Customer Name</th>
-                        <th>Status</th>
-                        <th>Paid</th>
-                        <th>Delivery Method</th>
-                        <th>Date Ordered</th>
-                        <th>Items Ordered</th>
-                        <th>Total</th>
-                        <th>Shipping Address</th>
-                        <th class="text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for order in orders %}
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" style="border: 2px solid black;" id="example">
+                    <thead style="background-color: black; color: white;">
                         <tr>
-                            <td>{{ order.customer }}</td>
-                            <td>{{ order.status|default:"Pending" }}</td>
-                            <td>{{ order.paid }}</td>
-                            <td>{{ order.delivery_method }}</td>
-                            <td>{{ order.date_ordered }}</td>
-                            <td>{{ order.display_items }}</td>
-                            <td>${{ order.get_cart_total }}</td>
-                            <td><a href="{% url 'driver_view_shipping_address' order.transaction_id %}">View Address</a></td>
-                            <td class="text-center">
-                                <a href="{% url 'driver_edit_order' order.transaction_id %}" class="text-success">Edit</a>
-                            </td>
+                            <th>Customer Name</th>
+                            <th>Status</th>
+                            <th>Paid</th>
+                            <th>Delivery Method</th>
+                            <th>Date Ordered</th>
+                            <th>Items Ordered</th>
+                            <th>Total</th>
+                            <th>Shipping Address</th>
+                            <th class="text-center">Action</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                            <tr>
+                                <td>{{ order.customer }}</td>
+                                <td>{{ order.status|default:"Pending" }}</td>
+                                <td>{{ order.paid }}</td>
+                                <td>{{ order.delivery_method }}</td>
+                                <td>{{ order.date_ordered }}</td>
+                                <td>{{ order.display_items }}</td>
+                                <td>${{ order.get_cart_total }}</td>
+                                <td><a href="{% url 'driver_view_shipping_address' order.transaction_id %}">View Address</a></td>
+                                <td class="text-center">
+                                    <a href="{% url 'driver_edit_order' order.transaction_id %}" class="text-success">Edit</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

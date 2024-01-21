@@ -4,50 +4,51 @@
     <div class="card shadow">
         <div class="card-body">
             <h1 class="p-2 text-center mb-4" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">Shipping Address</h1>
-            <div class="container-fluid">
+            <div class="container">
                 {% comment %} <h2 class="mb-3">Shipping Address</h2> {% endcomment %}
                 
-                <table class="table table-bordered">
-                    <tbody>
-                        <tr>
-                            <th scope="row">First Name</th>
-                            <td>{{ shipping_address.first_name }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Last Name</th>
-                            <td>{{ shipping_address.last_name }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Address Line 1</th>
-                            <td>{{ shipping_address.address_1 }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Address Line 2</th>
-                            <td>{{ shipping_address.address_2 }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">City</th>
-                            <td>{{ shipping_address.city }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">State</th>
-                            <td>{{ shipping_address.state }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Country</th>
-                            <td>{{ shipping_address.country }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Postal Code</th>
-                            <td>{{ shipping_address.postal_code }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th scope="row">First Name</th>
+                                <td>{{ shipping_address.first_name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Last Name</th>
+                                <td>{{ shipping_address.last_name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Address Line 1</th>
+                                <td>{{ shipping_address.address_1 }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Address Line 2</th>
+                                <td>{{ shipping_address.address_2 }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">City</th>
+                                <td>{{ shipping_address.city }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">State</th>
+                                <td>{{ shipping_address.state }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Country</th>
+                                <td>{{ shipping_address.country }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Postal Code</th>
+                                <td>{{ shipping_address.postal_code }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <!-- Link to go back to the view_orders page -->
-            
                 <a href="{% url 'driver_view_orders' %}" class="btn btn-secondary mb-4">
-                    <span aria-hidden="true">&larr;</span>Back
+                    <span aria-hidden="true">&larr;</span> Back
                 </a>
             </div>
         </div>
