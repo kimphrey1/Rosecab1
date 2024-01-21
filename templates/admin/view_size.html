@@ -6,28 +6,30 @@
         <h1 class="p-2 text-center" style="border-bottom: 2px solid orange; font-family: 'Georgia', sans-serif; font-size: 2.5em; text-transform: uppercase;">
             All Sizes
         </h1>
-        <div class="container-fluid">
-            <table class="table table-bordered table-striped" style="border: 2px solid black;" id="example">
-                <thead style="background-color: black; color: white;">
-                    <tr>
-                        <th>S. No.</th>
-                        <th>Size Name</th>
-                        <th class="text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for i in size %}
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped" style="border: 2px solid black;" id="example">
+                    <thead style="background-color: black; color: white;">
                         <tr>
-                            <td>{{ forloop.counter }}</td>
-                            <td>{{ i.name }}</td>
-                            <td class="text-center">
-                                <a href="/edit-size/{{ i.id }}/" class="text-success">Edit</a>
-                                <a href="/delete-size/{{ i.id }}/" class="text-danger ml-2" onclick="return confirm('Are You Sure?')">Delete</a>
-                            </td>
+                            <th style="border: 1px solid black;">S. No.</th>
+                            <th style="border: 1px solid black;">Size Name</th>
+                            <th style="border: 1px solid black;" class="text-center">Action</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for i in size %}
+                            <tr>
+                                <td style="border: 1px solid black;">{{ forloop.counter }}</td>
+                                <td style="border: 1px solid black;">{{ i.name }}</td>
+                                <td style="border: 1px solid black;" class="text-center">
+                                    <a href="/edit-size/{{ i.id }}/" class="text-success">Edit</a>
+                                    <a href="/delete-size/{{ i.id }}/" class="text-danger ml-2" onclick="return confirm('Are You Sure You Want To Delete This Size?')">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

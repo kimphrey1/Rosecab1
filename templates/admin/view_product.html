@@ -12,43 +12,45 @@
             <i class="fa fa-plus" style="font-size: 32px; color: green;"></i>
         </a>
 
-        <div class="container-fluid">
-            <table class="table table-bordered table-striped" style="border: 2px solid black;" id="example">
-                <thead style="background-color: black; color: white;">
-                    <tr>
-                        <th>S.No.</th>
-                        <th>Image</th>
-                        <th>Product Name</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th class="text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for i in product %}
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-auto" style="border: 2px solid black;" id="productTable">
+                    <thead style="background-color: black; color: white;">
                         <tr>
-                            <td>{{ forloop.counter }}</td>
-                            <td><img src="{{ i.image.url }}" style="width: 100px" /></td>
-                            <td>{{ i.name }}</td>
-                            <td>{{ i.product_category.name }}</td>
-                            <td>
-                                {% if i.price %}
-                                    ${{ i.price }}
-                                {% endif %}
-                                {% for variant in i.get_product_variants %}
-                                    {% if variant.title %}
-                                        <br>{{ variant.get_size }}- ${{ variant.price }}
-                                    {% endif %}
-                                {% endfor %}
-                            </td>
-                            <td class="text-center">
-                                <a href="/edit-product/{{ i.id }}/" class="text-success">Edit</a>
-                                <a href="/delete-product/{{ i.id }}/" class="text-danger" onclick="return confirm('Are You Sure?')">Delete</a>
-                            </td>
+                            <th style="color: white; border: 1px solid black;">S.No.</th>
+                            <th style="color: white; border: 1px solid black;">Image</th>
+                            <th style="color: white; border: 1px solid black;">Product Name</th>
+                            <th style="color: white; border: 1px solid black;">Category</th>
+                            <th style="color: white; border: 1px solid black;">Price</th>
+                            <th style="color: white; text-align: center; border: 1px solid black;">Action</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for i in product %}
+                            <tr>
+                                <td style="border: 1px solid black;">{{ forloop.counter }}</td>
+                                <td style="border: 1px solid black;"><img src="{{ i.image.url }}" style="width: 100%; max-width: 100px;" /></td>
+                                <td style="border: 1px solid black;">{{ i.name }}</td>
+                                <td style="border: 1px solid black;">{{ i.product_category.name }}</td>
+                                <td style="border: 1px solid black;">
+                                    {% if i.price %}
+                                        ${{ i.price }}
+                                    {% endif %}
+                                    {% for variant in i.get_product_variants %}
+                                        {% if variant.title %}
+                                            <br>{{ variant.get_size }}- ${{ variant.price }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td class="text-center" style="border: 1px solid black;">
+                                    <a href="/edit-product/{{ i.id }}/" class="text-success">Edit</a>
+                                    <a href="/delete-product/{{ i.id }}/" class="text-danger" onclick="return confirm('Are You Sure You Want To Delete This Product?')">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -72,10 +74,31 @@
 <!-- Bootstrap JavaScript -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<!-- JavaScript for user table -->
+<!-- Custom styles for product table -->
+<style>
+    #productTable th,
+    #productTable td {
+        text-align: left;
+        padding: 8px; /* Adjust the padding as needed */
+        cursor: pointer;
+        user-select: none;
+    }
+
+    #productTable th span,
+    #productTable th a,
+    #productTable th div {
+        margin-right: 4px; /* Adjust the margin as needed */
+    }
+
+    #productTable th:hover {
+        background-color: #343a40 !important;
+    }
+</style>
+
+<!-- JavaScript for product table -->
 <script>
     $(document).ready(function() {
-        $('#example').DataTable();
+        $('#productTable').DataTable();
     });
 </script>
 

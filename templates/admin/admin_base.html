@@ -14,15 +14,15 @@
     <script src="{% static 'js/myjs.js' %}"></script>
     <style>
         body {
-            {% comment %} background: linear-gradient(135.9deg, #999, #777); {% endcomment %}
-           
             background-image: linear-gradient(135.9deg, rgba(251, 232, 126, 1) 16.4%, rgba(128, 0, 32, 1) 56.1%);
             min-height: 100vh;
+            margin: 0; /* Added to remove default margin */
+            overflow-x: hidden; /* Added to hide horizontal scrollbar */
         }
 
         .vertical-nav {
             min-width: 17rem;
-            width: 17rem; /* 16px 1rem */
+            width: 17rem;
             height: 100vh;
             position: fixed;
             top: 0;
@@ -31,8 +31,8 @@
         }
 
         .page-content {
-            width: calc(100% - 17rem);
-            margin-left: 17rem;
+            width: 100%; /* Updated to 100% to fill the entire screen */
+            margin-left: 0;
             transition: all 0.4s;
         }
 
@@ -59,17 +59,8 @@
 {%include 'admin/admin_navbar.html'%}
 <!--page content holder-->
 <div class="page-content p-4" id="content">
-    <a href="/logout/" title="logout" class="float-right text-white"><i class="fas fa-sign-out-alt fa-2x"></i></a>
+    <a href="/admindashboard/" title="Dashboard" class="float-right text-white"><i class="fas fa-sign-out-alt fa-2x"></i></a>
 
- 
-    <!--toggle btn-->
-    <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
-        <i class="fas fa-bars mr-2"></i>
-        <small class="text-uppercase font-weight-bold">Toggle</small>
-    </button>
-    <!--end toggle btn-->
-
- 
     {% block content %}
     {% endblock content %}
 </div>
