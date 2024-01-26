@@ -192,17 +192,17 @@
             {% if item.product.has_variants %}
             <p>
               Size: <strong>{{item.variation.size.name}}</strong> Price:
-              <strong>${{item.variation.price}}</strong> Qty:
+              <strong>UGX{{item.variation.price|floatformat:0}}</strong> Qty:
               <strong>{{item.quantity}}</strong>
             </p>
             {% else %}
             <p>
-              Price: <strong>${{item.product.price}}</strong> Qty:
+              Price: <strong>UGX{{item.product.price|floatformat:0}}</strong> Qty:
               <strong>{{item.quantity}}</strong>
             </p>
             {% endif %}
           </div>
-          <p class="ml-auto font-bold text-xl">${{item.get_total}}</p>
+          <p class="ml-auto font-bold text-xl">UGX{{item.get_total|floatformat:0}}</p>
         </div>
         {% endfor %}
       </div>
@@ -224,7 +224,7 @@
     <div class="mt-5 py-5 shadow-xl rounded-xl bg-white">
       <div class="flex justify-between m-3 p-3">
         <p>Subtotal</p>
-        <p>${{order.get_cart_subtotal}}</p>
+        <p>UGX{{order.get_cart_subtotal|floatformat:0}}</p>
       </div>
       {% if order.coupon %}
       <div class="flex m-3 p-3 text-green-500">
@@ -235,28 +235,28 @@
             remove
           </button>
         </form>
-        <p class="ml-auto">-${{order.get_coupon_value}}</p>
+        <p class="ml-auto">-UGX{{order.get_coupon_value}}</p>
       </div>
       {% endif %}
       <div class="flex justify-between m-3 p-3">
         <p>Delivery</p>
-        <p>Free</p>
+        <p>Free around Kampala</p>
       </div>
       <hr />
       <div class="flex justify-between m-3 p-3 font-bold text-xl">
         <p>Total</p>
-        <p>${{order.get_cart_total}}</p>
+        <p>UGX{{order.get_cart_total|floatformat:0}}</p>
       </div>
       <!-- Start Payment Button -->
-      <div class="flex mt-5">
+      <div class="flex mt-5" id="add-cart-btn">
         <!-- submits address form -->
         <input id="delivery-submit"
-          class="w-2/3 text-center mx-auto rounded-lg bg-indigo-500 font-semibold hover:bg-indigo-600 cursor-pointer p-3 text-sm text-white uppercase"
+          class="w-2/3 text-center mx-auto font-semibold cursor-pointer p-3 text-sm uppercase"
           value="Place Order" type="submit" form="address-form">
         </input>
         <!-- submits carry-out form -->
         <input id="carryout-submit"
-          class="w-2/3 text-center mx-auto rounded-lg bg-indigo-500 font-semibold hover:bg-indigo-600 cursor-pointer p-3 text-sm text-white uppercase hidden"
+          class="w-2/3 text-center mx-auto font-semibold cursor-pointer p-3 text-sm uppercase hidden"
           value="Place Order" type="submit" form="carryout-form">
         </input>
       </div>

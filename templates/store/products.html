@@ -1,7 +1,13 @@
 {% extends "store/base.html" %} {% block content %} {% load static %}
 <html>
 <head> 
+  
+  <link rel="stylesheet" type="text/css" href="{% static 'customer/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'customer/css/main.css' %}">
   <style> 
+    body{
+      font-family: "Poppins", sans-serif;
+    }
     #add-cart-btn{
       background-color: rgb(204, 22, 67);
       color: white;

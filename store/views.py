@@ -27,7 +27,7 @@ def products(request):
         no_products_for_category = False
 
     # pagination
-    paginator = Paginator(products, 12)
+    paginator = Paginator(products, 10)
     page_number = request.GET.get("page")
     products = paginator.get_page(page_number)
 
