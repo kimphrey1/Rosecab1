@@ -7,6 +7,6 @@ urlpatterns = [
     path("pizza/", views.pizzas, name="pizzas"),
     path("drinks/", views.drinks, name="drinks"),
     path("sides/", views.sides, name="sides"),
-    path("afterlogin/", views.afterlogin, name="afterlogin"), #customer dashboard
-    path("products/", views.products, name="products"),
+    path("afterlogin/", views.products, name="afterlogin"), #customer dashboard
+    path("products/", views.products, name="products"),  #customer dashboard
 ]
