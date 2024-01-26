@@ -1,7 +1,8 @@
 {% load static %}
 
 <html>
-    <head> 
+
+<head>
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,105 +18,124 @@
     <link href="{% static 'home/css/style.css' %}" rel="stylesheet">
     <link href="{% static 'home/css/main.css' %}" rel="stylesheet">
 
-    </head>
-    <body>
+    <style>
+        .nav-style {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 123;
+            width: 100%;
+            padding-bottom: 120px;
+        }
+    </style>
+</head>
 
-    <!-- Topbar Start -->
-    <div id="topbar" class="container-fluid bg-primary py-3 d-none d-md-block">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
-                <div class="d-inline-flex align-items-center">
-                    <a class="text-white px-3" href="{% url 'users:login' %}">Login</a>
-                    <span class="text-white">|</span>
-                    <a class="text-white pl-3" href="{% url 'users:register' %}">Register</a>
-                </div>
-            </div>
-            <div class="col-md-6 text-center text-lg-right">
-                <div class="d-inline-flex align-items-center">
-                    <a class="text-white px-3" href="https://www.facebook.com" target="_blank">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="text-white px-3" href="https://www.twitter.com" target="_blank">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="text-white px-3" href="https://www.instagram.com" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    {% comment %} <a class="text-white px-3" href="/cart">
-                        <i class="fa fa-shopping-cart" aria-hidden="false">{{ product_count_in_cart }}</i>
-                    </a> {% endcomment %}
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <!-- Topbar End -->
-
-    <!-- Navbar Start -->
-    <div id="navbar">
-        <div class="container-fluid position-relative nav-bar p-0">
-            <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-                <nav class="navbar navbar-expand-sm bg-white navbar-light shadow p-lg-0">
-                    <a href="#" class="navbar-brand d-block d-lg-none">
-                        <h1 class="m-0 display-4 text-primary"><span class="text-secondary"><img
-                                    src="{% static 'home/img/rosecab.png' %}" alt="logo" style="height: 80px;"></span></h1>
-                    </a>
-                    <button type="button" class="navbar-toggler d-lg-none" data-toggle="collapse" data-target="#collapsibleNavId" 
-                    aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="collapsibleNavId">
-                        <div class="navbar-nav ml-auto">    
-                            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                                <li class="nav-item">
-                                    <a href="/" class="nav-link active">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/#brand" class="nav-link">Our Brand</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/#product" class="nav-item nav-link">Product</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <a href="" class="navbar-brand mx-5 d-none d-lg-block">
-                            <h1 class="m-0 display-4 text-primary"><span class="text-secondary"><img
-                                        src="{% static 'home/img/rosecab.png' %}" alt="logo" style="height: 80px;"></span></h1>
-                        </a>
-                        <div class="navbar-nav mr-auto">
-                            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                                <li class="nav-item">
-                                    <a href="/#services" class="nav-item nav-link">Our Services</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/#gallery" class="nav-item nav-link">Gallery</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/#footer" class="nav-item nav-link">Contact Us</a>
-                                </li>
-                            </ul>
+<body>
+    <div class="nav-style">
+        <!-- Topbar Start -->
+        <div id="topbar" class="container-fluid bg-primary py-3 d-none d-md-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+                        <div class="d-inline-flex align-items-center">
+                            <a class="text-white px-3" href="{% url 'users:login' %}">Login</a>
+                            <span class="text-white">|</span>
+                            <a class="text-white pl-3" href="{% url 'users:register' %}">Register</a>
                         </div>
                     </div>
-                </nav>
+                    <div class="col-md-6 text-center text-lg-right">
+                        <div class="d-inline-flex align-items-center">
+                            <a class="text-white px-3" href="https://www.facebook.com" target="_blank">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a class="text-white px-3" href="https://www.twitter.com" target="_blank">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a class="text-white px-3" href="https://www.instagram.com" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            {% comment %} <a class="text-white px-3" href="/cart">
+                        <i class="fa fa-shopping-cart" aria-hidden="false">{{ product_count_in_cart }}</i>
+                    </a> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <!-- Topbar End -->
+
+        <!-- Navbar Start -->
+        <div id="navbar">
+            <div class="container-fluid position-relative nav-bar p-0">
+                <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+                    <nav class="navbar navbar-expand-sm bg-white navbar-light shadow p-lg-0">
+                        <a href="#" class="navbar-brand d-block d-lg-none">
+                            <h1 class="m-0 display-4 text-primary"><span class="text-secondary"><img
+                                        src="{% static 'home/img/rosecab.png' %}" alt="logo"
+                                        style="height: 80px;"></span></h1>
+                        </a>
+                        <button type="button" class="navbar-toggler d-lg-none" data-toggle="collapse"
+                            data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="collapsibleNavId">
+                            <div class="navbar-nav ml-auto">
+                                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                                    <li class="nav-item">
+                                        <a href="/" class="nav-link active">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/#brand" class="nav-link">Our Brand</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/#product" class="nav-item nav-link">Product</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="/" class="navbar-brand mx-5 d-none d-lg-block">
+                                <h1 class="m-0 display-4 text-primary"><span class="text-secondary"><img
+                                            src="{% static 'home/img/rosecab.png' %}" alt="logo"
+                                            style="height: 80px;"></span></h1>
+                            </a>
+                            <div class="navbar-nav mr-auto">
+                                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                                    <li class="nav-item">
+                                        <a href="/#services" class="nav-item nav-link">Our Services</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/#gallery" class="nav-item nav-link">Gallery</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/#footer" class="nav-item nav-link">Contact Us</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar End -->
     </div>
-    <!-- Navbar End -->
-     <!-- JavaScript Libraries -->
-     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-     <script src="{% static 'home/lib/easing/easing.min.js' %}"></script>
-     <script src="{% static 'home/lib/waypoints/waypoints.min.js' %}"></script>
-     <script src="{% static 'home/lib/owlcarousel/owl.carousel.min.js' %}"></script>
-     <script src="{% static 'home/lib/isotope/isotope.pkgd.min.js' %}"></script>
-     <script src="{% static 'home/lib/lightbox/js/lightbox.min.js' %}"></script>
- 
-     <!-- Contact Javascript File -->
-     <script src="{% static 'home/mail/jqBootstrapValidation.min.js' %}"></script>
-     <script src="{% static 'home/mail/contact.js' %}"></script>
- 
-     <!-- Template Javascript -->
-     <script src="{% static 'home/js/main.js' %}"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    {% comment %} <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script> {% endcomment %}
+    <script src="{% static 'home/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'home/lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'home/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'home/lib/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'home/lib/lightbox/js/lightbox.min.js' %}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{% static 'home/mail/jqBootstrapValidation.min.js' %}"></script>
+    <script src="{% static 'home/mail/contact.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'home/js/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 </body>
+
 </html>
