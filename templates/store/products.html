@@ -1,8 +1,38 @@
 {% extends "store/base.html" %} {% block content %} {% load static %}
+<html>
+<head> 
+  <style> 
+    #add-cart-btn{
+      background-color: rgb(204, 22, 67);
+      color: white;
+      border: none;
+      font-size: 16px;
+      position: relative;
+      transition: transform 0.6s;
+    }
+    #add-cart-btn:hover{
+      background-color: #f78da7;
+      color: black;
+      animation: bubble 0.8s ease-out;
+    }
+    @keyframes bubble {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body >
 <!-- Search Button Start -->
 <div class="flex">
   <div class="ml-auto mr-2 my-2">
-    <form method="GET" class="flex bg-green-200 rounded-lg" id="search-box">
+    <form method="GET" class="flex bg-red-200 rounded-lg" id="search-box">
       <input
         class="border-none outline-none bg-transparent focus:ring-0"
         type="text"
@@ -24,7 +54,7 @@
 <!-- Search Button End -->
 
 <!-- Start Products List -->
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center" style="background-color: rgb(243, 246, 255);">
   <h1
     class="text-2xl text-center uppercase rounded-lg ml-5 mr-auto py-2 w-48 bg-red-200"
   >
@@ -114,18 +144,18 @@
           <!-- End Choosing Quantity -->
           <!-- Start Display Variant Prices -->
           {% if product.has_variants %}
-          <div class="flex items-center font-bold text-xl text-green-500">
+          <div class="flex items-center font-bold text-xl" style="color:rgb(227, 62, 103)">
             {% for variant in product.get_product_variants %}
             <p
               class="prices-{{forloop.parentloop.counter}} {{variant.size}}-{{forloop.parentloop.counter}} {% if not forloop.first %} hidden {% endif %}"
             >
-              ${{variant.price|floatformat:1}}
+              UGX{{variant.price|floatformat:0}}/-
             </p>
             {% endfor %}
           </div>
           {% else %}
-          <div class="flex items-center font-bold text-xl text-green-500">
-            <p>${{product.price|floatformat:1}}</p>
+          <div class="flex items-center font-bold text-xl"style="color:rgb(227, 62, 103)">
+            <p>UGX{{product.price|floatformat:0}}/=</p>
           </div>
           {% endif %}
           <!-- End Display Variant Prices -->
@@ -153,8 +183,8 @@
         {% endif %}
         <!-- End Choosing Size -->
         <div class="flex">
-          <button
-            class="bg-green-300 hover:bg-green-500 rounded-xl w-full py-2 mt-2 js-add"
+          <button id="add-cart-btn"
+            class="bg-red-200 rounded-xl w-full py-2 mt-2 js-add"
             type="button"
           >
             Add to cart
@@ -213,25 +243,6 @@
 </div>
 <!-- End Pagination-->
 
-{% comment %} <script>
-  // JavaScript to handle button clicks
-  document.addEventListener("DOMContentLoaded", function () {
-      // Get the filter buttons
-      var filterButtons = document.querySelectorAll('.filter-tope-group button');
-
-      // Add click event listeners to each button
-      filterButtons.forEach(function (button) {
-          button.addEventListener('click', function () {
-              // Get the category from the button's id
-              var category = button.id;
-
-              // Redirect to the same page with the selected category as a query parameter
-              window.location.href = "?category=" + category;
-          });
-      });
-  });
-</script> {% endcomment %}
-
 <!-- JavaScript to update the selected category -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -260,3 +271,5 @@
 <script src="{% static 'store/js/productHelper.js' %}"></script>
 
 {% endblock %}
+</body>
+</html>

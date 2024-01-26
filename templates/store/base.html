@@ -11,6 +11,12 @@
   
   <!--Favicon-->
   <link href="{% static 'home/img/roselogo.png' %}" rel="icon">
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="{% static 'store/src/styles.css' %}" />
   <link rel="stylesheet" href="{% static 'store/src/customStyles.css' %}" />
@@ -19,16 +25,19 @@
 
   <link rel="stylesheet" type="text/css" href="{% static 'customer/css/util.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'customer/css/main.css' %}">
-
+<style>
+  body{
+    font-family: "Poppins", sans-serif;
+  }
+</style>
 </head>
 
-<body class="m-0 p-0 bg-sky-100/50">
-  <nav class="p-5 flex bg-cyan-200">
+<body class="m-0 p-0" style="background-color: rgb(243, 246, 255);">
+  <nav class="p-5 flex" style="background-color:rgb(254 215 170);">
     <div class="flex justify-between items-center">
       <a href="{% url 'store:products' %}" class="flex">
-        <img class="h-10 inline" src="{% static 'store/images/pizza.png' %}" />
-        <span class="invisible md:visible ml-2 text-xl text-gray-600 cursor-pointer font-[Poppins] font-semibold">
-          Crispy Pizza</span>
+        <h1 class="m-0 display-4 text-primary"><span class="text-secondary"><img
+          src="{% static 'home/img/rosecab.png' %}" alt="logo" style="height: 60px; width:150px;"></span></h1>
       </a>
     </div>
     {% with request.resolver_match.url_name as url_name %}

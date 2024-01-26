@@ -1,15 +1,36 @@
-/* colors[
+/* COLORS
+[ bg-cyan-200
   orange #FDB515
   burgundy  #800020   rgb(128, 0, 32)
-  lighter burgundy rgb(204, 22, 67)
+  lighter burgundy rgb(204, 22, 67), #cc1643
   darker orange #FCB00C
   bluey-white: rgb(243, 246, 255)
+  style="background-color:rgb(204, 22, 67); color:white;"
+
+
+##RED
+bg-red-200	background-color: rgb(254 202 202);
+bg-red-300	background-color: rgb(252 165 165);
+bg-red-400	background-color: rgb(248 113 113);
+bg-red-500	background-color: rgb(239 68 68);
+
+##ORANGE
+bg-orange-200	background-color: rgb(254 215 170);
+bg-orange-300	background-color: rgb(253 186 116);
+bg-orange-400	background-color: rgb(251 146 60);
+bg-orange-500	background-color: rgb(249 115 22);
+bg-orange-600	background-color: rgb(234 88 12);\
+
+##AQUA
+.bg-teal-100	background-color: #e6fffa;	
+.bg-teal-200	background-color: #b2f5ea;
 ] */
 
 #card{
   /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   margin-bottom: 10px;
+  color:rgb(227, 62, 103)
 }
 #service-card{
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;

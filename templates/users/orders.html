@@ -40,12 +40,12 @@
       <div class="w-1/5">{{order.delivery_method}}</div>
       <div class="w-1/5">{{order.payment_method}}</div>
       <div class="w-1/5">{{order.get_cart_items}}</div>
-      <div class="w-1/5">${{order.get_cart_subtotal}}</div>
+      <div class="w-1/5">UGX{{order.get_cart_subtotal|floatformat:0}}</div>
       <div class="w-1/5">{{order.status}}</div>
       {% comment %} {% else %}
       <div class="w-1/5">-</div>
       {% endif %} {% endcomment %}
-      <div class="w-1/5 font-semibold">${{order.get_cart_total}}</div>
+      <div class="w-1/5 font-semibold">UGX{{order.get_cart_total|floatformat:0}}</div>
       <button class="w-1/12 text-blue-600" onclick="toggleModal('{{forloop.counter}}')">view</button>
       <div>
       </div>
@@ -57,10 +57,10 @@
         <div
           class="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
           role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-          <div class="flex flex-col p-5 bg-dimly-blue max-h-screen overflow-y-auto">
+          <div class="flex flex-col p-5 bg-red-200 max-h-screen overflow-y-auto">
             <div class="flex">
               <h2 class="font-semibold">Order Details</h2>
-              <p class="ml-auto">#{{order.transaction_id|stringformat:"s"|slice:"6"}}</p>
+              {% comment %} <p class="ml-auto">#{{order.transaction_id|stringformat:"s"|slice:"6"}}</p> {% endcomment %}
               <p class="ml-auto">{{order.date_modified}}</p>
 
             </div>
@@ -84,9 +84,9 @@
                 <p>{{item.variation.size}}</p>
                 {% endif %}
               </div>
-              <p class="w-1/5 text-center">${{item.get_item_price}}</p>
+              <p class="w-1/5 text-center">UGX{{item.get_item_price|floatformat:0}}</p>
               <p class="w-1/5 text-center">{{item.quantity}}</p>
-              <p class="w-1/5 text-center">${{item.get_total}}</p>
+              <p class="w-1/5 text-center">UGX{{item.get_total|floatformat:0}}</p>
             </div>
             {% endfor %}
             <!-- Brief summary -->
@@ -107,7 +107,7 @@
                 <div class="border-b border-black/50 border-3 mb-3"></div>
                 <div class="flex">
                   <p class="w-48">Subtotal:</p>
-                  <p>${{order.get_cart_subtotal}}</p>
+                  <p>UGX{{order.get_cart_subtotal|floatformat:0}}</p>
                 </div>
                 <div class="flex">
                   <p class="w-48">Status: </p>
@@ -120,7 +120,7 @@
                 </div>
                 <div class="flex">
                   <p class="w-48">Total:</p>
-                  <p>${{order.get_cart_total}}</p>
+                  <p>UGX{{order.get_cart_total|floatformat:0}}</p>
                 </div>
               </div>
             </div>
