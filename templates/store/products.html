@@ -30,6 +30,30 @@
   >
     Products
   </h1>
+
+  <div class="flex-w flex-sb-m p-b-52">
+  <div id="selectedCategory" class="flex-w flex-l-m filter-tope-group m-tb-10">
+    <button  id="" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1">
+      All Products
+    </button>
+
+    <button id="Valentines" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" >
+      Valentine's Day
+    </button>
+
+    <button id="Mother" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" >
+      Mother's Day
+    </button>
+
+    <button id="Birthday" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" >
+      Birthday
+    </button>
+
+    <button id="Anniversary" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
+      Anniversary
+    </button>
+  </div>
+</div>
   <div
     class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 mx-3"
   >
@@ -188,6 +212,50 @@
   {% endif %}
 </div>
 <!-- End Pagination-->
+
+{% comment %} <script>
+  // JavaScript to handle button clicks
+  document.addEventListener("DOMContentLoaded", function () {
+      // Get the filter buttons
+      var filterButtons = document.querySelectorAll('.filter-tope-group button');
+
+      // Add click event listeners to each button
+      filterButtons.forEach(function (button) {
+          button.addEventListener('click', function () {
+              // Get the category from the button's id
+              var category = button.id;
+
+              // Redirect to the same page with the selected category as a query parameter
+              window.location.href = "?category=" + category;
+          });
+      });
+  });
+</script> {% endcomment %}
+
+<!-- JavaScript to update the selected category -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Check if the element with class 'filter-tope-group' exists
+    var filterGroup = document.querySelector('.filter-tope-group');
+
+    if (filterGroup) {
+      // Get the filter buttons
+      var filterButtons = filterGroup.querySelectorAll('button');
+
+      // Add click event listeners to each button
+      filterButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          // Get the category from the button's id
+          var category = button.id;
+
+          // Redirect to the same page with the selected category as a query parameter
+          window.location.href = "?category=" + category;
+        });
+      });
+    }
+  });
+</script>
+
 
 <script src="{% static 'store/js/productHelper.js' %}"></script>
 
