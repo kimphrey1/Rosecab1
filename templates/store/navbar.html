@@ -1,0 +1,86 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<style>
+  {% comment %} #nav-style {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 123;
+    width: 100%;
+} {% endcomment %}
+li a{
+   color: white; 
+}
+li a:hover{
+    color: rgb(254 202 202);
+}
+</style>
+</head>
+
+<body>
+  <nav id="nav-style" class="p-5 flex" 
+  style="background-color:#800020; color:white; font-family: 'Poppins', sans-serif;">
+    <div class="flex justify-between items-center">
+      <a href="{% url 'store:products' %}" class="flex">
+        <h1 class="m-0 display-4 text-primary"><span class="text-secondary"><img
+          src="{% static 'home/img/rosecab.png' %}" alt="logo" style="height: 60px; width:150px;"></span></h1>
+      </a>
+    </div>
+    {% with request.resolver_match.url_name as url_name %}
+    <ul class="flex ml-auto items-center">
+      <!-- Display orders tab if user is authenticated -->
+      {% if user.is_authenticated %}
+      <li
+        class="text-xl mx-4 hover:text-teal-900 duration-500 {% if url_name == 'my_orders' %} text-teal-700 {% endif %}">
+        <a href="{% url 'users:my_orders' %}">Orders</a>
+      </li>
+      {% endif %}
+
+      <li
+        class="text-xl mx-4 hover:text-teal-900 duration-500 {% if url_name == 'products' %} text-teal-700 {% endif %}">
+        <a href="{% url 'store:products' %}">Home</a>
+      </li>
+
+      <li
+        class="text-xl mx-4 hover:text-teal-900 duration-500">
+        <a href="{% url 'directions' %}">Directions</a>
+      </li>
+
+      <li class="nav-item"><a href="{% url 'admin_login' %}" class="nav-link">Admin
+      </li>
+
+      {% if user.is_authenticated %}
+      <li class="text-xl mx-4 hover:text-teal-900 duration-500">
+        <a href="{% url 'users:logout' %}">Log Out</a>
+      </li>
+      {% else %}
+      <li class="text-xl mx-4 hover:text-teal-900 duration-500 {% if url_name == 'login' %} text-teal-700 {% endif %}">
+        <a href="{% url 'users:login' %}">Log In</a>
+      </li>
+      <li
+        class="text-xl mx-4 hover:text-text-teal-900 duration-500 {% if url_name == 'register' %} text-teal-700 {% endif %}">
+        <a href="{% url 'users:register' %}">Register</a>
+      </li>
+      {% endif %}
+      <li class="shrink-0">
+        <a href="{% url 'order:cart' %}">
+          <img class="h-6" src="{% static 'store/images/cart1.png' %}" alt="cart" id="cart-image" />
+        </a>
+      </li>
+      <li class="p-2">
+        <div class="rounded-lg border border-gray-400 px-2">
+          <p class="cart-count text-lg text-gray-600 font-semibold">
+            {{cart_quantity}}
+          </p>
+        </div>
+      </li>
+    </ul>
+    {% endwith %}
+  </nav>
+</body>
+
+</html>

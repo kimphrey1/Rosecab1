@@ -180,7 +180,7 @@
       <h2 class="font-bold mb-5 text-2xl text-center">Order Summary</h2>
       <div class="flex justify-between mx-6 my-3">
         <p>Cart (<strong>{{order.get_cart_items}}</strong>)</p>
-        <p class="text-blue-700"><a href="{% url 'order:cart' %}">Edit</a></p>
+        <p class="text-blue-700"><a id="links" href="{% url 'order:cart' %}">Edit</a></p>
       </div>
       <!-- Order Items -->
       <div class="flex flex-col shadow-xl p-2 rounded-xl bg-white">

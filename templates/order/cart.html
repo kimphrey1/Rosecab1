@@ -3,7 +3,7 @@
   <div class="w-full bg-white p-10 text-center">
     <h2 class="font-bold">Your cart is empty</h2>
     <div>
-      <a
+      <a id="links"
         href="{% url 'store:products' %}"
         class="flex font-semibold text-indigo-600 text-sm my-5 w-1/4"
       >
@@ -24,12 +24,12 @@
 <div class="container mx-auto mt-10">
   <div class="flex flex-col shadow-md my-10">
     <div class="w-full bg-white p-3 md:p-10">
-      <a
+      <a id="links"
         href="{% url 'store:products' %}"
-        class="flex font-semibold text-indigo-600 text-sm my-5 w-1/4"
+        class="flex font-semibold text-sm my-5 w-1/4"
       >
         <svg
-          class="fill-current mr-2 text-indigo-600 w-4"
+          class="fill-current mr-2 w-4"
           viewBox="0 0 448 512"
         >
           <path
@@ -42,7 +42,7 @@
         <h1 class="font-semibold text-2xl">Shopping Cart</h1>
         <h2 class="font-semibold text-2xl">{{order.get_cart_items}} Item(s)</h2>
         <h2 class="font-semibold text-2xl">
-          Total: UGX{{order.get_cart_subtotal|floatformat:0}}
+          Total: UGX&nbsp;{{order.get_cart_subtotal|floatformat:0}}
         </h2>
       </div>
 
@@ -51,7 +51,7 @@
       >
         <h3 class="w-2/5">Product Details</h3>
         <h3 class="w-1/5 text-center">Quantity</h3>
-        <h3 class="w-1/5 text-center">Price</h3>
+        <h3 class="w-1/5 text-center">Unit Price</h3>
         <h3 class="w-1/5 text-center">Total</h3>
       </div>
       {% for item in items %}
@@ -123,11 +123,11 @@
           </form>
         </div>
         <h1 class="text-center w-1/5 font-semibold text-sm">
-          UGX{% firstof item.variation.price item.product.price|floatformat:0 %}
+          UGX&nbsp;{% firstof item.variation.price item.product.price|floatformat:0 %}
         </h1>
 
         <span class="text-center w-1/5 font-semibold text-sm"
-          >UGX{{item.get_total|floatformat:0}}</span
+          >UGX&nbsp;{{item.get_total|floatformat:0}}</span
         >
       </div>
       {% endfor %}

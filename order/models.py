@@ -95,10 +95,10 @@ class Order(models.Model):
             if item.variation:
                 product_title = f"""{item.product.name}
                 ({item.variation.get_size},
-                #{item.quantity}, ${item.get_total}){add_comma}"""
+                Qty:{item.quantity}, UGX{item.get_total}){add_comma}"""
             else:
                 product_title = f"""{item.product.name}
-                (#{item.quantity}, ${item.get_total}){add_comma}"""
+                ( Qty:{item.quantity}, UGX{item.get_total}){add_comma}"""
             product_titles += product_title
             ticker += 1
         return product_titles

@@ -38,11 +38,27 @@
     background-color: #f78da7;
     color: black;
   }
+  li a{
+    color: white; 
+ }
+  li a:hover{
+     color: rgb(254 202 202);
+ }
+ #links{
+  color:rgb(204, 22, 67);
+ }
+ #links:hover{
+  color: #e33e67;
+  text-decoration: underline;
+ }
+ #links:focus{
+  text-decoration: none;
+ }
 </style>
 </head>
 
 <body class="m-0 p-0" style="background-color: rgb(243, 246, 255);">
-  <nav class="p-5 flex" style="background-color:rgb(254 215 170); font-family: 'Poppins', sans-serif;">
+  <nav class="p-5 flex" style="background-color:#800020; font-family: 'Poppins', sans-serif;">
     <div class="flex justify-between items-center">
       <a href="{% url 'store:products' %}" class="flex">
         <h1 class="m-0 display-4 text-primary"><span class="text-secondary"><img
@@ -65,13 +81,14 @@
       </li>
 
       <li
-        class="text-xl mx-4 hover:text-teal-900 duration-500 {% if url_name == 'products' %} text-teal-700 {% endif %}">
-        <a href="{% url 'directions' %}">directions</a>
+        class="text-xl mx-4 hover:text-teal-900 duration-500 {% if url_name == 'directions' %} text-teal-700 {% endif %}">
+        <a href="{% url 'directions' %}">Directions</a>
       </li>
 
 
 
-      <li class="nav-item"><a href="{% url 'admin_login' %}" class="nav-link">Admin
+      <li class="text-xl mx-4 hover:text-teal-900 duration-500 {% if url_name == 'admin_login' %} text-teal-700 {% endif %}" >
+        <a href="{% url 'admin_login' %}">Admin</a>
       </li>
       <li id="menu" class="text-xl">
         <div class="dropdown inline-block relative z-10">

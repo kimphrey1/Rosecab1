@@ -19,6 +19,8 @@
     #add-cart-btn:hover{
       background-color: #f78da7;
       color: black;
+    }
+    #add-cart-btn:focus{
       animation: bubble 0.8s ease-out;
     }
     @keyframes bubble {
@@ -150,18 +152,18 @@
           <!-- End Choosing Quantity -->
           <!-- Start Display Variant Prices -->
           {% if product.has_variants %}
-          <div class="flex items-center font-bold text-xl" style="color:rgb(227, 62, 103)">
+          <div class="flex items-center font-bold text-xl text-gray-600 ">
             {% for variant in product.get_product_variants %}
             <p
               class="prices-{{forloop.parentloop.counter}} {{variant.size}}-{{forloop.parentloop.counter}} {% if not forloop.first %} hidden {% endif %}"
             >
-              UGX{{variant.price|floatformat:0}}/-
+              UGX&nbsp;{{variant.price|floatformat:0}}
             </p>
             {% endfor %}
           </div>
           {% else %}
-          <div class="flex items-center font-bold text-xl"style="color:rgb(227, 62, 103)">
-            <p>UGX{{product.price|floatformat:0}}/=</p>
+          <div class="flex items-center font-bold text-xl text-gray-600 ">
+            <p>UGX&nbsp;{{product.price|floatformat:0}}</p>
           </div>
           {% endif %}
           <!-- End Display Variant Prices -->
