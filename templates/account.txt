@@ -1,0 +1,12 @@
+username: DaisyK
+password: D@!5y2024
+
+username: driver
+password: P@ss1234+
+
+ADMIN_USER
+username: user
+password: user
+
+username: Shemei 
+password: Sh3m3!2024
