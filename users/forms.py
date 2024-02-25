@@ -8,7 +8,7 @@ class UserRegisterForm(UserCreationForm):
         required=True,
         widget=forms.EmailInput(
             attrs={
-                "class": "w-64 px-3 py-2 rounded-md border border-slate-400",
+                "class": "form-control",
                 "placeholder": "Your Email",
             }
         ),
@@ -17,7 +17,7 @@ class UserRegisterForm(UserCreationForm):
         required=True,
         widget=forms.TextInput(
             attrs={
-                "class": "w-64 px-3 py-2 rounded-md border border-slate-400",
+                "class": "form-control",
                 "placeholder": "Your Username",
             }
         ),
@@ -26,7 +26,7 @@ class UserRegisterForm(UserCreationForm):
         required=True,
         widget=forms.PasswordInput(
             attrs={
-                "class": "w-64 px-3 py-2 rounded-md border border-slate-400",
+                "class": "form-control",
                 "placeholder": "Your Password",
             }
         ),
@@ -35,7 +35,7 @@ class UserRegisterForm(UserCreationForm):
         required=True,
         widget=forms.PasswordInput(
             attrs={
-                "class": "w-64 px-3 py-2 rounded-md border border-slate-400",
+                "class": "form-control",
                 "placeholder": "Re-type Password",
             }
         ),
@@ -64,13 +64,13 @@ class CustomLoginForm(AuthenticationForm):
         self.fields["username"].widget.attrs.update(
             {
                 "placeholder": "Enter username or email",
-                "class": "w-64 px-3 py-2 rounded-md border border-slate-400",
+                "class": "form-control",
             }
         )
         self.fields["password"].widget.attrs.update(
             {
                 "placeholder": "Enter password",
-                "class": "w-64 px-3 py-2 rounded-md border border-slate-400",
+                "class": "form-control",
             }
         )
 

@@ -84,12 +84,11 @@
         class="text-xl mx-4 hover:text-teal-900 duration-500 {% if url_name == 'directions' %} text-teal-700 {% endif %}">
         <a href="{% url 'directions' %}">Directions</a>
       </li>
-
-
-
+      {% if user.is_staff %}
       <li class="text-xl mx-4 hover:text-teal-900 duration-500 {% if url_name == 'admin_login' %} text-teal-700 {% endif %}" >
         <a href="{% url 'admin_login' %}">Admin</a>
       </li>
+      {% endif %}
       <li id="menu" class="text-xl">
         <div class="dropdown inline-block relative z-10">
           <button
@@ -100,14 +99,6 @@
             <li class="">
               <a class="hover:text-teal-900 py-2 px-4 block whitespace-no-wrap {% if url_name == 'pizzas' %} text-teal-700 {% endif %}"
                 href="/afterlogin/">Dash</a>
-            </li>
-            <li class="">
-              <a class="hover:text-teal-900 py-2 px-4 block whitespace-no-wrap {% if url_name == 'drinks' %} text-teal-700 {% endif %}"
-                href="/home/">Homepg</a>
-            </li>
-            <li class="">
-              <a class="hover:text-teal-900 py-2 px-4 block whitespace-no-wrap {% if url_name == 'sides' %} text-teal-700 {% endif %}"
-                href="{% url 'store:sides' %}">Sides</a>
             </li>
           </ul>
         </div>
