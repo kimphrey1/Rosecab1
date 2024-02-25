@@ -1,50 +1,73 @@
-{% extends 'navbase.html' %} {% block content %}
+{% extends 'users/loginbase.html' %}
+{% load static %}
+<!DOCTYPE html>
 
-<div class="my-10 flex justify-center items-center">
-  <form
-    class="p-10 bg-white rounded-xl drop-shadow-lg space-y-2"
-    action=""
-    method="post"
-  >
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Rosecab Flower Deliveries</title>
+    <!-- Favicon -->
+    <link href="{% static 'img/roselogo.png' %}" rel="icon">
+
+  </head>
+  {% block content %}
+  <body>
+    <div class="container">
+<div class="row m-5 no-gutters shadow-lg">
+
+<div class="col-md-6 d-none d-md-block">
+  <img src="{%static 'home/img/service-3.jpg'%}" class="img-fluid" style="min-height:100%;" />
+  </div>
+<div class="col-md-6 bg-white p-5">
+    
+<h3 class="pb-3">Register</h3>
+<div class="form-style">
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <h1 class="text-center text-3xl">Register</h1>
-    <div class="flex flex-col space-y-2 mx-5">
-      <label class="text-sm font-light" for="email">Email:</label>
-      {{form.email}}
-    </div>
-    <div class="flex flex-col space-y-2 mx-5">
-      <label class="text-sm font-light" for="username">Username:</label>
-      {{form.username}}
-    </div>
-    <div class="flex flex-col space-y-2 mx-5">
-      <label class="text-sm font-light" for="password">Password:</label>
-      {{form.password1}}
-    </div>
-    <div class="flex flex-col space-y-2 mx-5">
-      <label class="text-sm font-light" for="password">Confirm Password:</label>
-      {{form.password2}}
-    </div>
-    <button
-      class="w-4/5 block mx-auto px-10 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-500 hover:drop-shadow-md duration-300 ease-in"
-      type="submit"
-      id="register-button"
-    >
-      Register
-    </button>
-
-    <p class="text-right">
-      <a
-        class="text-blue-600 text-sm font-light hover:underline"
-        href="{% url 'users:login' %}"
-        >Already have an account?</a
-      >
-    </p>
-    {% if form.errors %} {% for key, value in form.errors.items %}
-    <p class="overflow-hidden text-red-500 text-left">
-      {{value.as_text|cut:"*"|linebreaksbr}}
-    </p>
-    {% endfor %} {% endif %}
-  </form>
+  <div class="form-group pb-3">    
+    {{form.email}}
+  </div>
+  <div class="form-group pb-3">   
+    {{form.username}}
+  </div>
+  <div class="form-group pb-3">    
+    {{form.password1}}
+  </div>
+  <div class="form-group pb-3">    
+    {{form.password2}}
+  </div>
+ 
+   <div class="pb-2">
+    {% comment %} <input type="submit" name="" value="Login" > {% endcomment %}
+<button 
+type="submit" 
+id="register-button"
+class="btn btn-primary w-100 font-weight-bold mt-2">
+Create account
+</button>
+   </div>
+</form>
+  <div class="pt-4 text-center"> Already have an account? <a href="{% url 'users:login' %}">Login</a> </div>
+  <div class="pt-4 text-center">
+    Go Back <a href="/">Home</a>
+    </div> 
 </div>
 
-{% endblock %}
+</div>
+</div>
+</div>
+<script src="https://use.fontawesome.com/f59bcd8580.js"></script>
+  </body>
+  {% endblock content %}
+</html>
