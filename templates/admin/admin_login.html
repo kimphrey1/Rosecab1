@@ -1,47 +1,70 @@
-{% comment %} added {% endcomment %}
+{% extends 'home/homebase.html' %}
 {% load static %}
-<html>
-<head>
-</head>
-<body id="login" style = "background-image : url({% static 'images/online3.jpg' %})">
-{% comment %} {% include 'base.html' %} {% endcomment %}
-<hr class="mt-0">
-<div class="row">
-  <div class="col-lg-5 m-auto">
-    <div class="card mt-5 bg-dark">
-      <div class="card-title text-center mt-3">
-          <img src="{% static 'images/useravatar.png' %}" width="150" height="150">
-          <h2 class="text-white">Admin Login</h2>
-      </div>
-      <div class="card-body">
-        <form method="post">
-          {% csrf_token %}
-          <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="fa fa-user fa-2x"></i>
-                </span>
-              </div>
-              <input type="text" name="username" class="form-control py-4" placeholder="UserName">
-          </div>
-          <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="fa fa-lock fa-2x"></i>
-                </span>
-              </div>
-              <input type="password" name="password" class="form-control py-4" placeholder="Password">
-          </div>
-          <input type="submit" value="Login" class="btn btn-success px-5">
-          {% comment %} <a href="{% url 'main' %}" class="float-right mt-2 text-white"><i class="fas fa-angle-double-left"></i> Go Back To HomePage </i></a> {% endcomment %}
-        </form>
-      </div>
-    </div>
+<!DOCTYPE html>
+
+{% comment %} {% load widget_tweaks %} {% endcomment %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Rosecab Flower Deliveries</title>
+    <!-- Favicon -->
+    <link href="{% static 'img/roselogo.png' %}" rel="icon">
+
+  </head>
+  {% block content %}
+  
+
+  <body>
+    <div class="container">
+<div class="row m-5 no-gutters shadow-lg">
+<div class="col-md-6 d-none d-md-block">
+  <img src="{%static 'home/img/service-3.jpg'%}" class="img-fluid" style="min-height:100%;" />
   </div>
+<div class="col-md-6 bg-white p-5">
+    
+<h3 class="pb-3">Admin Login</h3>
+<div class="form-style">
+<form method="post">
+    {% csrf_token %}
+  <div class="form-group pb-3">    
+    {% comment %} {% render_field form.username class="form-control" id="exampleInputEmail1" placeholder="Username" autocomplete="off" aria-describedby="emailHelp" %}   {% endcomment %}
+    <input type="text" name="username" class="form-control" placeholder="Username">
+  </div>
+  <div class="form-group pb-3">   
+    {% comment %} {% render_field form.password class="form-control" placeholder="Password" id="exampleInputPassword1" %} {% endcomment %}
+    <input type="password" name="password" class="form-control" placeholder="Password">
+  </div>
+ 
+   <div class="pb-2">
+    {% comment %} <input type="submit" name="" value="Login" > {% endcomment %}
+ <button type="submit"class="btn btn-primary w-100 font-weight-bold mt-2">Login</button>
+   </div>
+</form>
+<br>
+  <div class="sideline">OR</div>
+  <div>
+    <br>
+    <a href="/"><button type="submit" class="btn btn-primary w-100 font-weight-bold mt-2">
+    Go back to Home </button> </a> 
+  </div>
+
 </div>
-</body>
-{% if msg %}
-<script>
-    alert('{{msg}}');
-</script>
-{% endif %}
+
+</div>
+</div>
+</div>
+<script src="https://use.fontawesome.com/f59bcd8580.js"></script>
+  </body>
+  </html>
+  {% endblock content %}
