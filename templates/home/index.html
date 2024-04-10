@@ -2,20 +2,22 @@
 {% load static %}
 {% block content %}
 <head>
+<style>
 /* Media query for mobile screens slider*/
 @media (max-width: 767px) {
     #mobi-carousel {
         padding-top: 80px;
+        z-index: 10;
     }
 }
 </style>
 </head>
 
 {% include "home/navbar.html" %}
-
+<br><br><br><br>
  <!-- Carousel Start -->
  <div id="mobi-carousel" class="container-fluid p-0 mb-5 pb-5">
-  <div id="header-carousel" class="carousel slide" data-ride="carousel">
+  <div id="header-carousel" class="carousel slide" data-ride="carousel" style="z-index: 10;">
       <div class="carousel-inner">
           <div class="carousel-item active">
               <img class="w-100" src="{% static 'home/img/bg_6.jpg' %}" alt="Image">
@@ -46,7 +48,7 @@
               </div>
           </div>
       </div>
-      <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+      {% comment %} <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
           <div class="btn btn-secondary px-0" style="width: 45px; height: 45px;">
               <span class="carousel-control-prev-icon mb-n1"></span>
           </div>
@@ -55,14 +57,13 @@
           <div class="btn btn-secondary px-0" style="width: 45px; height: 45px;">
               <span class="carousel-control-next-icon mb-n1"></span>
           </div>
-      </a>
+      </a> {% endcomment %}
   </div>
 </div>
 <!-- Carousel End -->
 
-
 <!-- Brand Start -->
-<div class="container-fluid py-5">
+{% comment %} <div class="container-fluid py-5"> {% endcomment %}
   <div class="container py-5">
       <div class="row justify-content-center">
           <div class="col-lg-7">
@@ -103,7 +104,7 @@
           </div>
       </div>
   </div>
-</div>
+{% comment %} </div> {% endcomment %}
 <!-- Brand End -->
 
 <!-- Video Modal Start -->
@@ -217,8 +218,8 @@
 <div class="container-fluid py-5">
   <div class="container py-5">
       <div class="row">
-          <div id="services" class="col-lg-6">
-              <h1 class="section-title position-relative mb-5">Our Services</h1>
+          <div id="services" class="col-lg-6 ">
+              <h1 class="section-title position-relative  mb-5">Our Services</h1>
           </div>
           <div class="col-lg-6 mb-5 mb-lg-0 pb-5 pb-lg-0"></div>
       </div>
