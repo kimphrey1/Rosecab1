@@ -1,29 +1,10 @@
-{% extends 'users/loginbase.html' %}
+{% extends 'users/nav.html' %}
+{% block title%}Rosecab | Register{% endblock %}
+{% block register %}active{% endblock %}
 {% load static %}
-<!DOCTYPE html>
 
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-
-    <!-- Popper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <title>Rosecab Flower Deliveries</title>
-    <!-- Favicon -->
-    <link href="{% static 'img/roselogo.png' %}" rel="icon">
-
-  </head>
-  {% block content %}
-  <body>
-    <div class="container">
+{% block content %}
+<div class="container">
 <div class="row m-5 no-gutters shadow-lg">
 
 <div class="col-md-6 d-none d-md-block">
@@ -61,13 +42,12 @@ Create account
   <div class="pt-4 text-center"> Already have an account? <a href="{% url 'users:login' %}">Login</a> </div>
   <div class="pt-4 text-center">
     Go Back <a href="/">Home</a>
-    </div> 
+  </div> 
 </div>
 
 </div>
 </div>
 </div>
-<script src="https://use.fontawesome.com/f59bcd8580.js"></script>
-  </body>
-  {% endblock content %}
-</html>
+
+{% endblock content %}
+

@@ -1,0 +1,133 @@
+{%load static%}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <!-- Bootstrap Link-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'home/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'home/css/main.css' %}" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link href="{% static 'home/img/roselogo.png' %}" rel="icon">
+    
+  <title>{% block title %}{% endblock %}</title>
+  <style>
+    .navbar {
+      background-color: #FFFFFF;
+      border-bottom: 2px solid #F3102E;
+      border-radius: 0px !important;
+    }
+    .head1 {
+      color: #FBAD30;
+      font-size: 25px;
+      font-weight: bold;
+      height: 50px;
+    }
+
+    .head2 {
+      color: #EF4926;
+      font-size: 25px;
+      font-weight: bold;
+    }
+    #navbar a,
+    #navbar a:focus {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0 10px 30px;
+      font-family: "Poppins", sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #556270;
+      white-space: nowrap;
+      transition: 0.3s;
+    }
+
+    #navbar a i,
+    #navbar a:focus i {
+      font-size: 12px;
+      line-height: 0;
+      margin-left: 5px;
+    }
+
+    #navbar a:hover,
+    #navbar .active,
+    #navbar .active:focus,
+    #navbar li:hover>a {
+      color: #d9232d;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+    <a class="navbar-brand me-auto" href="/">
+      <img
+        src="{% static 'home/img/rosecab.png' %}"
+        alt="logo"
+        width="154px"
+        height="50px"
+      />
+    </a>
+      {% comment %} <div class="container"> {% endcomment %}
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul id="navbar" class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link {% block home %}{% endblock %}" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% block login %}{% endblock %}" href="/login/">Login</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link {% block register %}{% endblock %}" href="/register/">Register</a>
+            </li>
+
+          </ul>
+          
+        </div>
+      
+      </div>
+  </nav>
+
+
+  {% block content %}
+  {% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+    <script src="https://use.fontawesome.com/f59bcd8580.js"></script>
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  
+</body>
+</html>
+
+</html>
