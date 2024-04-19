@@ -38,22 +38,22 @@ def products(request):
     return render(request, "store/products.html", context=context)
 
 
-def pizzas(request):
-    products = Product.objects.filter(product_category__name="Pizza")
-    context = {"products": products}
-    return render(request, "store/pizzas.html", context=context)
+# def pizzas(request):
+#     products = Product.objects.filter(product_category__name="Pizza")
+#     context = {"products": products}
+#     return render(request, "store/pizzas.html", context=context)
 
 
-def drinks(request):
-    products = Product.objects.filter(product_category__name="Drink")
-    context = {"products": products}
-    return render(request, "store/drinks.html", context=context)
+# def drinks(request):
+#     products = Product.objects.filter(product_category__name="Drink")
+#     context = {"products": products}
+#     return render(request, "store/drinks.html", context=context)
 
 
-def sides(request):
-    products = Product.objects.filter(product_category__name="Side")
-    context = {"products": products}
-    return render(request, "store/sides.html", context=context)
+# def sides(request):
+#     products = Product.objects.filter(product_category__name="Side")
+#     context = {"products": products}
+#     return render(request, "store/sides.html", context=context)
 
 def home_view(request):
     products=Product.objects.all()
@@ -66,8 +66,6 @@ def home_view(request):
     # if request.user.is_authenticated:
     #     return HttpResponseRedirect('afterlogin')
     return render(request,'home/index.html',{'products':products,'product_count_in_cart':product_count_in_cart})
-
-
 
 
 
