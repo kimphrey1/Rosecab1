@@ -1,5 +1,9 @@
-{% extends 'store/base.html' %} {% block content %}
+{% extends 'store/navbar.html' %} 
 
+{%block title%}Rosecab | My Orders{%endblock%}
+{% block myorders %}active{% endblock %}
+
+{% block content %}
 <div class="flex flex-col shadow-md my-5 mx-3">
   <div class="w-full bg-white px-10 py-10 rounded-xl">
     <a id="links" href="{% url 'store:afterlogin' %}" class="flex font-semibold text-indigo-600 text-sm my-5 w-1/4">

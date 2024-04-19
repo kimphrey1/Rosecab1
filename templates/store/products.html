@@ -1,7 +1,9 @@
-{% extends "store/base.html" %} {% block content %} {% load static %}
+{% extends "store/navbar.html" %} {% load static %}
 <html>
 <head> 
-  
+  {% block title%}Rosecab | Dashboard{% endblock %}
+  {% block products %}active{% endblock %}
+
   <link rel="stylesheet" type="text/css" href="{% static 'customer/css/util.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'customer/css/main.css' %}">
   <style> 
@@ -37,6 +39,8 @@
   </style>
 </head>
 <body >
+  
+{%block content%}
 <!-- Search Button Start -->
 <div class="flex">
   <div class="ml-auto mr-2 my-2">
@@ -62,7 +66,7 @@
 <!-- Search Button End -->
 
 <!-- Start Products List -->
-<div class="flex flex-col items-center" style="background-color: rgb(243, 246, 255);">
+<div class="flex flex-col items-center" style="background-color: rgb(243, 246, 255); font-family: 'Poppins', sans-serif;">
   <h1
     class="text-2xl text-center uppercase rounded-lg ml-5 mr-auto py-2 w-48 bg-red-200"
   >
@@ -253,6 +257,8 @@
 
 <!-- JavaScript to update the selected category -->
 <script>
+  var csrftoken = '{{ csrf_token }}';
+
   document.addEventListener("DOMContentLoaded", function () {
     // Check if the element with class 'filter-tope-group' exists
     var filterGroup = document.querySelector('.filter-tope-group');
@@ -274,7 +280,6 @@
     }
   });
 </script>
-
 
 <script src="{% static 'store/js/productHelper.js' %}"></script>
 
