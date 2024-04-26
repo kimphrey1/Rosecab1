@@ -1,0 +1,47 @@
+{% load static %}
+<aside class="main-sidebar">
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+      <div class="pull-left image">
+        <img src="{% static 'images/userplaceholder.png' %}" class="img-circle" alt="User Image">
+      </div>
+      <div class="pull-left info">
+        <p>{{ request.user }}</p>
+        <a><i class="fa fa-circle text-success"></i> Online</a>
+      </div>
+    </div>
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu" data-widget="tree">
+      
+  
+      
+      <li class="header">VIEW</li>
+      <li class=""><a href="/admindashboard/"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+      <li class=""><a href="{% url 'view_category' %}"><span class="glyphicon glyphicon-lock"></span> <span>Categories</span></a></li>
+      <li class=""><a href="{% url 'view_product_variants' %}"><span class="glyphicon glyphicon-lock"></span> <span>Inventory</span></a></li>
+      <li class=""><a href="{% url 'view_product' %}"><span class="glyphicon glyphicon-lock"></span> <span>Products</span></a></li>
+      <li class=""><a href="{% url 'view_orders' %}"><span class="glyphicon glyphicon-lock"></span> <span>Orders</span></a></li>
+      <li class=""><a href="{% url 'view_size' %}"><span class="glyphicon glyphicon-lock"></span> <span>Sizes</span></a></li>
+      <li class=""><a href="{% url 'user_list' %}"><span class="fa fa-users"></span> <span>Users</span></a></li>
+      <li class=""><a href=""><span class="fa fa-users"></span> <span>Feedback</span></a></li>
+      
+
+
+
+
+
+
+      <li class="header">ADD</li>
+      <li class=""><a href="{% url 'admin_add' %}"><span class="fa fa-users"></span> <span>Staff</span></a></li>
+      
+      
+        
+      <li class="header">EXIT</li>
+      <li class=""><a href="/logout/"></i> <span>Logout</span></a></li>
+
+    </ul>
+  </section>
+  <!-- /.sidebar -->
+</aside>

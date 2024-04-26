@@ -1,5 +1,5 @@
-{% extends 'admin/admin_base.html' %}
-{%block title%}Rosecab | Admin Dashboard{%endblock%}
+{% extends 'admin/root.html' %}
+{%block title%}Rosecab | Admin Dashboard{%endblock title%}
 {% block content  %}
 <style>
 .glow {
@@ -24,110 +24,196 @@ hr.rounded {
   border-radius: 5px;
 }
 </style>
+
+<!-- Main content -->
+<section class="content">
+    <!-- Small boxes (Stat box) -->
 <div class="row">
-    <div class="col-sm-3 p-2">
-        <div class="card shadow bg-dark">
-            <div class="card-body">
-                <h4 class="text-light">Total Users</h4>
-                <h5 style="color : #F1948A">{{mydict.customercount}}</h5>
-            </div>
-            <div class="card-footer">
-                <a href="{% url 'user_list' %}" class="text-warning">View Details >></a>
-            </div>
-        </div>
+<div class="col-lg-4 col-xs-12">
+  <!-- small box -->
+  <div class="small-box bg-aqua">
+    <div class="inner">
+      <h3>{{ mydict.customercount }}</h3>
+      <p>Users</p>
     </div>
-    <div class="col-sm-3 p-2">
-        <div class="card shadow bg-dark">
-            <div class="card-body">
-                <h4 class="text-light">Total Products</h4>
-                <h5 style="color : #F1948A">{{mydict.productcount}}</h5>
-            </div>
-            <div class="card-footer">
-                <a href="/view-product/" class="text-warning">View Details >></a>
-            </div>
-        </div>
+    <div class="icon">
+      <i class="fa fa-users"></i>
     </div>
-    <div class="col-sm-3 p-2">
-        <div class="card shadow bg-dark">
-            <div class="card-body">
-                <h4 class="text-light">Total Category</h4>
-                <h5 style="color : #F1948A">{{mydict.categorycount}}</h5>
-            </div>
-            <div class="card-footer">
-                <a href="/view-category/" class="text-warning">View Details >></a>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3 p-2">
-        <div class="card shadow bg-dark">
-            <div class="card-body">
-                <h4 class="text-light">Total Order</h4>
-                <h5 style="color : #F1948A"> {{mydict.ordercount}}</h5>
-            </div>
-            <div class="card-footer">
-                <a href="/view_order/" class="text-warning">View Details >></a>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4 p-2">
-        <div class="card shadow bg-dark">
-            <div class="card-body">
-                <h4 class="text-light">Total Sizes</h4>
-                <h5 style="color : #F1948A"> {{mydict.sizecount}}</h5>
-            </div>
-            <div class="card-footer">
-                <a href="/view-size/" class="text-warning">View Details >></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-4 p-2">
-        <div class="card shadow bg-dark">
-            <div class="card-body">
-                <h4 class="text-light">Inventory</h4>
-                <h5 style="color : #F1948A"> {{mydict.productvariantcount}}</h5>
-            </div>
-            <div class="card-footer">
-                <a href="/view-product-variants/" class="text-warning">View Details >></a>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="col-sm-4 p-2">
-        <div class="card shadow bg-dark">
-            <div class="card-body">
-                <h4 class="text-light">Drivers</h4>
-                <h5 style="color : #F1948A"> {{mydict.driver_group_count}}</h5>
-            </div>
-            <div class="card-footer">
-                <a href="" class="text-warning">View Details >></a>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="col-sm-4 p-2">
-        <div class="card shadow bg-dark">
-            <div class="card-body">
-                <h4 class="text-light">Total Feedback</h4>
-                <h5 style="color : #F1948A"> 1223</h5>
-            </div>
-            <div class="card-footer">
-                <a href="" class="text-warning">View Details >></a>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4 p-2">
-        <div class="card shadow bg-dark">
-            <div class="card-body">
-                <h4 class="text-light">Total Reviews</h4>
-                <h5 style="color : #F1948A"> 1134</h5>
-            </div>
-            <div class="card-footer">
-                <a href="" class="text-warning">View Details >></a>
-            </div>
-        </div>
-    </div>
+    <a href="{% url 'user_list' %}" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+  </div>
 </div>
+
+
+
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-12">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+              <div class="inner">
+                <h3>{{ mydict.productcount }}</h3>          
+                <p>Products</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-shopping-cart"></i>
+              </div>
+              <a href="/view-product/" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+
+
+
+
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-12">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+              <div class="inner">
+                <h3>{{ mydict.categorycount }}</h3>          
+                <p>Categories</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-folder"></i>
+              </div>
+              <a href="/view-category/" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-12">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+              <div class="inner">
+                <h3>{{ mydict.sizecount }}</h3>          
+                <p>Sizes</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-expand"></i>
+              </div>
+              <a href="/view-size/" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+
+
+
+
+
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-12">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+              <div class="inner">
+                <h3>{{ mydict.productvariantcount }}</h3>          
+                <p>Inventory</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-cube"></i>
+              </div>
+              <a href="/view-product-variants/" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+
+
+
+
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-12">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+              <div class="inner">
+                <h3>{{ mydict.driver_group_count }}</h3>          
+                <p>Drivers</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-car"></i>
+              </div>
+              <a href=href=""  class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+
+
+
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-12">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+              <div class="inner">
+                <h3 > 2</h3>          
+                <p>Admin</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-black-tie"></i>
+              </div>
+              <a href=href=""  class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+
+
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-12">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+              <div class="inner">
+                <h3>{{ mydict.ordercount }}</h3>          
+                <p>Orders</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-credit-card"></i>
+              </div>
+              <a href="/view_order/" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+
+
+
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-12">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+              <div class="inner">
+                <h3 > 2</h3>          
+                <p>Feedback</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-comment"></i>
+              </div>
+              <a href=href=""  class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+
+
+
+
+
+
+
+
+</div>
+
 {% endblock  %}

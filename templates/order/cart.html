@@ -306,13 +306,13 @@
                   </div>
                 </td>
                 <!-- UNIT PRICE -->
-                <td class="pl-5">
+                <td class="pl-10">
                   <h1 class="text-center w-1/5 font-semibold text-sm">
                     UGX&nbsp;{% firstof item.variation.price item.product.price|floatformat:0 %}
                   </h1>
                 </td>
                 <!-- TOTAL -->
-                <td class="pl-4">
+                <td class="pl-6">
                   <span class="text-center w-1/5 font-semibold text-sm">UGX&nbsp;{{item.get_total|floatformat:0}}</span>
                 </td>
               </tr>
