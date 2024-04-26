@@ -8,7 +8,11 @@
       <img src="{% static 'home/img/roselogo.png' %}" alt="logo" style="width:50px; height:40px;">
     </span>
     <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><b>Rosecab</span>
+    <span class="logo-lg">
+      <img src="{% static 'home/img/roselogo.png' %}" 
+      alt="logo" style="width:50px; height:40px;">
+      <b>Rosecab</b>
+    </span>
   </a>
   <!-- Header Navbar: style can be found in header.less -->
   <nav class="navbar navbar-static-top">
@@ -48,5 +52,5 @@
     </div> {% endcomment %}
   </nav>
 </header>
- 
-{% include "admin/bio.html" %}
+{% comment %}  
+{% include "admin/bio.html" %} {% endcomment %}
