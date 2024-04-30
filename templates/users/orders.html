@@ -1,4 +1,4 @@
-{% extends 'store/navbar.html' %} 
+{% extends 'store/navbar.html' %}
 
 {%block title%}Rosecab | My Orders{%endblock%}
 {% block myorders %}active{% endblock %}
@@ -51,8 +51,8 @@
       {% endif %} {% endcomment %}
       <div class="w-1/5 font-semibold">UGX&nbsp;{{order.get_cart_total|floatformat:0}}</div>
       <button id="links" class="w-1/12" onclick="toggleModal('{{forloop.counter}}')">view</button>
-      <div>
-      </div>
+      {% comment %} <div>
+      </div> {% endcomment %}
     </div>
     <!-- Order details Start -->
     <div class="-mb-5 fixed z-10 overflow-y-auto top-0 w-full left-0 hidden" id="modal-{{forloop.counter}}">
@@ -64,7 +64,7 @@
           <div class="flex flex-col p-5 bg-red-200 max-h-screen overflow-y-auto">
             <div class="flex">
               <h2 class="font-semibold">Order Details</h2>
-              {% comment %} <p class="ml-auto">#{{order.transaction_id|stringformat:"s"|slice:"6"}}</p> {% endcomment %}
+              <!-- {% comment %} <p class="ml-auto">#{{order.transaction_id|stringformat:"s"|slice:"6"}}</p> {% endcomment %} -->
               <p class="ml-auto">{{order.date_modified}}</p>
 
             </div>
@@ -115,7 +115,7 @@
                 </div>
                 <div class="flex">
                   <p class="w-48">Status: </p>
-                  
+
                   <p>{{order.status}}</p>
                   {% comment %} {% if order.coupon %}
                   {% else %}
@@ -128,7 +128,8 @@
                 </div>
               </div>
             </div>
-            <button id="add-cart-btn" type="button" class="w-1/2 mx-auto my-5 py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-700"
+            <button id="add-cart-btn" type="button"
+              class="w-1/2 mx-auto my-5 py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-700"
               onclick="toggleModal('{{forloop.counter}}')">Close</button>
           </div>
         </div>
