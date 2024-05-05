@@ -250,19 +250,8 @@ def checkout(request):
     return render(request, "order/checkout.html", context=context)
 
 
-
-
-
-
-
-
-
-# XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-# FOR CASH
-
 @require_POST
-def cash_checkout(request, pk):                     
+def cash_checkout(request, pk):
     """
     Finalizing order with deferred payment - Cash payment
     """
@@ -346,146 +335,7 @@ def cash_checkout(request, pk):
     order.save()
     return redirect(request.build_absolute_uri(reverse("order:success")) + "?cash=true")
 
-# XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-
-class PaymentSuccessView(TemplateView):
-    template_name = "order/payment_success.html"
-
-    def get(self, request, *args, **kwargs):
-        # to capture the case of getting redirect from cash checkout as sessions are not saved
-        referring_url = request.META.get("HTTP_REFERER", "")
-        if "checkout" in referring_url:  # check if redirected from cash checkout
-            pass
-        elif (
-            "redirected" in request.session
-        ):  # check if redirected from stripe checkout
-            del request.session["redirected"]
-        else:
-            return HttpResponseNotFound()
-
-        if not request.GET.get("cash"):
-            session_id = request.GET.get("session_id")
-            if session_id is None:
-                return HttpResponseNotFound()
-
-            customer = get_customer_or_guest(request)
-            # order query set
-            order_qs = Order.objects.filter(customer=customer, complete=False)
-            # if order exists, get order instance
-            if order_qs.exists():
-                order = order_qs[0]
-
-            # save shipping/carryout models
-            if order.delivery_method == "delivery":
-                # get model's field names
-                shipping_list = [
-                    field.name for field in ShippingAddress()._meta.get_fields()
-                ]
-                # create shipping dictionary for model creation from session keys
-                shipping_dict = {}
-                for key in shipping_list:
-                    shipping_dict[key] = request.session.get(key)
-                # delete None values from dictionary
-                shipping_dict = {k: v for k, v in shipping_dict.items() if v != None}
-                # get create instance of shipping model
-                shipping_address, created = ShippingAddress.objects.get_or_create(
-                    **shipping_dict
-                )
-                order.shipping = shipping_address
-
-            elif order.delivery_method == "carryout":
-                # get model's field names
-                carryout_list = [
-                    field.name for field in PickUpDetail()._meta.get_fields()
-                ]
-                # create carryout dictionary for model creation from session keys
-                carryout_dict = {}
-                for key in carryout_list:
-                    carryout_dict[key] = request.session.get(key)
-                # delete None values from dictionary
-                carryout_dict = {k: v for k, v in carryout_dict.items() if v != None}
-
-                # change data format and make naive datetime object timezone aware
-                if carryout_dict["urgency"] == "custom":
-                    carryout_dict["pickup_date"] = make_aware(
-                        datetime.datetime.strptime(
-                            carryout_dict["pickup_date"], "%Y-%m-%d %I:%M %p"
-                        )
-                    )
-                else:
-                    # for asap pick up date use today's date
-                    carryout_dict["pickup_date"] = timezone.now().replace(
-                        hour=0, minute=0, second=0, microsecond=0
-                    )
-
-                # get or create instance of the pickup model
-                carryout, created = PickUpDetail.objects.get_or_create(**carryout_dict)
-                order.pickup = carryout
-            else:
-                # probably not necessary as order is changed to carryout/delivery only
-                return HttpResponseNotFound()
-
-            order.paid = True
-            order.complete = True
-            order.save()
-        return render(request, self.template_name)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-# XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-# XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-# XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-# XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-# XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-# XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-
-
-
-
-
-
-# IRRELEVANT
-
-class PaymentFailedView(TemplateView):
-    template_name = "order/payment_failed.html"
-
-    def get(self, request, *args, **kwargs):
-        """
-        Check that 'redirected' session variable is set in api_checkout_view
-        to avoid direct url access
-        """
-        if "redirected" in request.session:
-            del request.session["redirected"]
-        else:
-            return HttpResponseNotFound()
-        return render(request, self.template_name)
-    
-
-
-# /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-# /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-# /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-# /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-# /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-# /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-# IRELEVANT
 @require_POST
 def create_checkout_session(request, pk):
     """
@@ -627,3 +477,101 @@ def create_checkout_session(request, pk):
     request.session["redirected"] = True
 
     return JsonResponse({"sessionId": checkout_session.id})
+
+
+class PaymentSuccessView(TemplateView):
+    template_name = "order/payment_success.html"
+
+    def get(self, request, *args, **kwargs):
+        # to capture the case of getting redirect from cash checkout as sessions are not saved
+        referring_url = request.META.get("HTTP_REFERER", "")
+        if "checkout" in referring_url:  # check if redirected from cash checkout
+            pass
+        elif (
+            "redirected" in request.session
+        ):  # check if redirected from stripe checkout
+            del request.session["redirected"]
+        else:
+            return HttpResponseNotFound()
+
+        if not request.GET.get("cash"):
+            session_id = request.GET.get("session_id")
+            if session_id is None:
+                return HttpResponseNotFound()
+
+            customer = get_customer_or_guest(request)
+            # order query set
+            order_qs = Order.objects.filter(customer=customer, complete=False)
+            # if order exists, get order instance
+            if order_qs.exists():
+                order = order_qs[0]
+
+            # save shipping/carryout models
+            if order.delivery_method == "delivery":
+                # get model's field names
+                shipping_list = [
+                    field.name for field in ShippingAddress()._meta.get_fields()
+                ]
+                # create shipping dictionary for model creation from session keys
+                shipping_dict = {}
+                for key in shipping_list:
+                    shipping_dict[key] = request.session.get(key)
+                # delete None values from dictionary
+                shipping_dict = {k: v for k, v in shipping_dict.items() if v != None}
+                # get create instance of shipping model
+                shipping_address, created = ShippingAddress.objects.get_or_create(
+                    **shipping_dict
+                )
+                order.shipping = shipping_address
+
+            elif order.delivery_method == "carryout":
+                # get model's field names
+                carryout_list = [
+                    field.name for field in PickUpDetail()._meta.get_fields()
+                ]
+                # create carryout dictionary for model creation from session keys
+                carryout_dict = {}
+                for key in carryout_list:
+                    carryout_dict[key] = request.session.get(key)
+                # delete None values from dictionary
+                carryout_dict = {k: v for k, v in carryout_dict.items() if v != None}
+
+                # change data format and make naive datetime object timezone aware
+                if carryout_dict["urgency"] == "custom":
+                    carryout_dict["pickup_date"] = make_aware(
+                        datetime.datetime.strptime(
+                            carryout_dict["pickup_date"], "%Y-%m-%d %I:%M %p"
+                        )
+                    )
+                else:
+                    # for asap pick up date use today's date
+                    carryout_dict["pickup_date"] = timezone.now().replace(
+                        hour=0, minute=0, second=0, microsecond=0
+                    )
+
+                # get or create instance of the pickup model
+                carryout, created = PickUpDetail.objects.get_or_create(**carryout_dict)
+                order.pickup = carryout
+            else:
+                # probably not necessary as order is changed to carryout/delivery only
+                return HttpResponseNotFound()
+
+            order.paid = True
+            order.complete = True
+            order.save()
+        return render(request, self.template_name)
+
+
+class PaymentFailedView(TemplateView):
+    template_name = "order/payment_failed.html"
+
+    def get(self, request, *args, **kwargs):
+        """
+        Check that 'redirected' session variable is set in api_checkout_view
+        to avoid direct url access
+        """
+        if "redirected" in request.session:
+            del request.session["redirected"]
+        else:
+            return HttpResponseNotFound()
+        return render(request, self.template_name)
