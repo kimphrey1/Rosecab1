@@ -10,14 +10,18 @@
                 <table class="table table-bordered table-striped" style="border: 2px solid black;" id="example">
                     <thead style="background-color: black; color: white;">
                         <tr>
-                            <th>Customer Name</th>
+                            <th>Name</th>
                             <th>Status</th>
                             <th>Paid</th>
-                            <th>Delivery Method</th>
-                            <th>Date Ordered</th>
-                            <th>Items Ordered</th>
+                            <th>Method</th>
+                            <th>Cartdate</th>
+
+                            <th>Date</th>
+
+
+                            <th>Items</th>
                             <th>Total</th>
-                            <th>Shipping Address</th>
+                            <th>Location</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -29,8 +33,21 @@
                                 <td style="border: 1px solid black;">{{ order.paid }}</td>
                                 <td style="border: 1px solid black;">{{ order.delivery_method }}</td>
                                 <td style="border: 1px solid black;">{{ order.date_ordered }}</td>
+
+
+                                <td style="border: 1px solid black;">
+                                    {{ order.date_completed }}
+                                </td>
+
+                                
                                 <td style="border: 1px solid black;">{{ order.display_items }}</td>
-                                <td style="border: 1px solid black;">${{ order.get_cart_total }}</td>
+                                {% comment %} <td style="border: 1px solid black;">UGX{{ order.get_cart_total|floatformat:"0"|default:"0" }}</td> {% endcomment %}
+
+                                <td style="border: 1px solid black;">
+                                    UGX<span class="Comma">{{ order.get_cart_total }}</span>
+                                </td>
+                                
+
                                 <td style="border: 1px solid black;"><a href="{% url 'view_shipping_address' order.transaction_id %}">View Address</a></td>
                                 <td style="border: 1px solid black;" class="text-center">
                                     <a href="{% url 'edit_order' order.transaction_id %}" class="text-success">Edit</a>
@@ -76,5 +93,16 @@
         }
     }
 </script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(".Comma").each(function() {
+        var amount = parseFloat($(this).text());
+        var newAmount = amount.toLocaleString('en-US');
+        $(this).text(newAmount);
+    });
+</script>
+
 
 {% endblock %}

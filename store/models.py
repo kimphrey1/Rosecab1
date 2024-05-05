@@ -8,7 +8,8 @@ import uuid
 class Product(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    price = models.DecimalField(max_digits=15, decimal_places=0, blank=True, null=True)
+
     desc = models.TextField(max_length=500, blank=True, null=True)
     image = models.ImageField(blank=True, upload_to="images")
     created_at = models.DateField(auto_now_add=True)
@@ -68,7 +69,7 @@ class ProductVariant(models.Model):
     title = models.CharField(max_length=100, blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     size = models.ForeignKey(Size, on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=15, decimal_places=0)
 
     def __str__(self):
         return f"{self.title} - price: ${self.price}"

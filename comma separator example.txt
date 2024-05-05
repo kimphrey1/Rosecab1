@@ -1,0 +1,18 @@
+html:
+
+
+<td style="border: 1px solid black;">
+    UGX<span class="Comma">{{ order.get_cart_total }}</span>
+</td>
+
+
+js:
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(".Comma").each(function() {
+        var amount = parseFloat($(this).text());
+        var newAmount = amount.toLocaleString('en-US');
+        $(this).text(newAmount);
+    });
+</script>

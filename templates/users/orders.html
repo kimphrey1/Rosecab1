@@ -41,12 +41,12 @@
                         class="border-b border-neutral-200 bg-red-700 font-medium dark:border-white/10 dark:text-neutral-800">
                         <tr class="text-white">
                             <th scope="col" class="px-6 py-4">Date</th>
-                            <th scope="col" class="px-6 py-4">Order Details</th>
-                            <th scope="col" class="px-6 py-4">Delivery</th>
+                            <th scope="col" class="px-6 py-4">Order</th>
+                            <th scope="col" class="px-6 py-4">Method</th>
                             <th scope="col" class="px-6 py-4">Payment</th>
                             <th scope="col" class="px-6 py-4">Items</th>
                             <th scope="col" class="px-6 py-4">Status</th>
-                            <th scope="col" class="px-6 py-4">SubTotal</th>
+                            {% comment %} <th scope="col" class="px-6 py-4">SubTotal</th> {% endcomment %}
                             <th scope="col" class="px-6 py-4">Total</th>
                             <th scope="col" class="px-6 py-4">Details</th>
 
@@ -93,24 +93,29 @@
                             <td class="pl-4">
                                 <div class="w-1/5">{{order.status}}</div>
                             </td>
-                            <!-- SUBTOTAL -->
+                            {% comment %} <!-- SUBTOTAL -->
                             <td class="pl-4">
                                 <div class="w-1/5">
                                     UGX&nbsp;{{order.get_cart_subtotal|floatformat:0}}
                                 </div>
-                            </td>
+                            </td> {% endcomment %}
                             <!-- TOTAL -->
                             <td class="pl-4">
                                 <div class="w-1/5 font-semibold">
-                                    UGX&nbsp;{{order.get_cart_total|floatformat:0}}
+                                    UGX&nbsp;<span class="Comma">{{order.get_cart_total|floatformat:0}}</span>
                                 </div>
                             </td>
+                            
                             <!-- VIEW DETAILS  -->
                             <td class="pl-4">
                                 <button class="btn-more-details py-3 px-5 text-sm focus:outline-none leading-none text-red-700 bg-red-100 rounded focus:ring-2 
                  focus:ring-offset-2 focus:ring-red-300 hover:bg-red-200 " data-order-id="{{ forloop.counter }}">
                                     View
                                 </button>
+
+
+
+
 
                                 <!-- Modal for More Order Details -->
                                 <div id="modal-{{forloop.counter}}"
@@ -281,5 +286,16 @@
     });
 
 </script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(".Comma").each(function() {
+        var amount = parseFloat($(this).text());
+        var newAmount = amount.toLocaleString('en-US');
+        $(this).text(newAmount);
+    });
+</script>
+
 
 {% endblock %}

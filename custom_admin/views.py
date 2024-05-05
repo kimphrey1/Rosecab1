@@ -302,10 +302,20 @@ def delete_productvariant(request, variant_id):
 
 # --------------------------------------------------------------------------------------------------------
 
+# def view_orders(request):
+#     orders = Order.objects.all()
+#     context = {'orders': orders}
+#     return render(request, 'admin/view_order.html', context)
+
+
+
+
 def view_orders(request):
-    orders = Order.objects.all()
+    # Filter orders where complete is True
+    orders = Order.objects.filter(complete=True)
     context = {'orders': orders}
     return render(request, 'admin/view_order.html', context)
+
 
 # --------------------------------------------------------------------------------------------------------
 

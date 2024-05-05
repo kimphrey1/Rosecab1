@@ -35,6 +35,11 @@ class OrderAdmin(admin.ModelAdmin):
         "complete",
         "paid",
         "status",  # Add the new 'status' field to the list display
+
+
+        "date_completed",
+
+
         "delivery_method",
         "date_ordered",
         "date_modified",

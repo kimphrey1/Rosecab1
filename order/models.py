@@ -6,6 +6,8 @@ import datetime
 from django.utils.safestring import mark_safe
 from django.utils import timezone
 
+from django.utils.timezone import now
+
 
 # Create your models here.
 
@@ -35,6 +37,20 @@ class Order(models.Model):
     date_ordered = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
     complete = models.BooleanField(default=False)
+
+
+
+# ADDED FIELD TO TRACK DATE OF COMPLETION OF ORDER
+    date_completed = models.DateTimeField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if self.complete and not self.date_completed:
+            self.date_completed = now()
+        super(Order, self).save(*args, **kwargs)
+
+
+
+
     paid = models.BooleanField(default=False)
     payment_method = models.CharField(max_length=10, choices=PAYMENT_CHOICES)
     delivery_method = models.CharField(max_length=10, choices=DELIVERY_CHOICES)
