@@ -9,7 +9,7 @@ class UserRegisterForm(UserCreationForm):
         widget=forms.EmailInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "Your Email",
+                "placeholder": "Email",
             }
         ),
     )
@@ -18,7 +18,7 @@ class UserRegisterForm(UserCreationForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "Your Username",
+                "placeholder": "Username",
             }
         ),
     )
@@ -27,7 +27,7 @@ class UserRegisterForm(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "Your Password",
+                "placeholder": "Password",
             }
         ),
     )
@@ -63,13 +63,13 @@ class CustomLoginForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
         self.fields["username"].widget.attrs.update(
             {
-                "placeholder": "Enter username or email",
+                "placeholder": "Username or Email",
                 "class": "form-control",
             }
         )
         self.fields["password"].widget.attrs.update(
             {
-                "placeholder": "Enter password",
+                "placeholder": "Password",
                 "class": "form-control",
             }
         )
