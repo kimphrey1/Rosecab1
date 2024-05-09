@@ -1,16 +1,18 @@
 {% extends "store/navbar.html" %} {% load static %}
 <html>
-<head> 
+
+<head>
   {% block title%}Rosecab | Dashboard{% endblock %}
   {% block products %}active{% endblock %}
 
   <link rel="stylesheet" type="text/css" href="{% static 'customer/css/util.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'customer/css/main.css' %}">
-  <style> 
-    body{
+  <link rel="stylesheet" type="text/css" href="{% static 'customer/css/main.css' %}">
+  <style>
+    body {
       font-family: "Poppins", sans-serif;
     }
-    #add-cart-btn{
+
+    #add-cart-btn {
       background-color: rgb(204, 22, 67);
       color: white;
       border: none;
@@ -18,322 +20,277 @@
       position: relative;
       transition: transform 0.6s;
     }
-    #add-cart-btn:hover{
+
+    #add-cart-btn:hover {
       background-color: #f78da7;
       color: black;
     }
-    #add-cart-btn:focus{
+
+    #add-cart-btn:focus {
       animation: bubble 0.8s ease-out;
     }
+
     @keyframes bubble {
       0% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(1.2);
       }
+
       100% {
         transform: scale(1);
       }
     }
   </style>
 </head>
-<body >
-  
-{%block content%}
-<!-- Start Products List -->
-<div class="flex flex-col items-center" style="background-color: rgb(243, 246, 255); font-family: 'Poppins', sans-serif;">
-  {% comment %} <h1
-    class="text-2xl text-center uppercase rounded-lg ml-5 mr-auto py-2 w-48 bg-red-200"
-  >
-    Products
-  </h1>  {% endcomment %}
-  
-<!-- Search Button Start -->
-<div class="flex">
-  <div class="ml-auto mr-2 my-2">
-    <form method="GET" class="flex bg-red-200 rounded-lg" id="search-box">
-      <input
-        class="border-none outline-none w-15 bg-transparent focus:ring-0"
-        type="text"
-        placeholder="Search"
-        name="product"
-        value="{{search_string}}"
-      />
-      <!-- clicking on the button will submit the form -->
-      <a
-        class="mt-2"
-        href="javascript:void(0);"
-        onclick="document.getElementById('search-box').submit();"
-      >
-        <img class="mr-2" src="{% static 'store/images/search.svg' %}" alt="" />
-      </a>
-    </form>
-  </div>
-</div>
-<!-- Search Button End -->
 
-<br>
-  <div class="flex-w flex-sb-m p-b-52">
-  <div id="selectedCategory" class="flex-w flex-l-m filter-tope-group m-tb-10">
-    <button  id="" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1">
-      All Products
-    </button>
+<body>
 
-    <button id="Valentines" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" >
-      Valentine's Day
-    </button>
+  {%block content%}
+  <!-- Start Products List -->
+  <div class="flex flex-col items-center"
+    style="background-color: rgb(243, 246, 255); font-family: 'Poppins', sans-serif;">
+    <!-- Search Button Start -->
+    <div class="flex">
+      <div class="ml-auto mr-2 my-2">
+        <form method="GET" class="flex bg-red-200 rounded-lg" id="search-box">
+          <input class="border-none outline-none w-15 bg-transparent focus:ring-0" type="text" placeholder="Search"
+            name="product" value="{{search_string}}" />
+          <!-- clicking on the button will submit the form -->
+          <a class="mt-2" href="javascript:void(0);" onclick="document.getElementById('search-box').submit();">
+            <img class="mr-2" src="{% static 'store/images/search.svg' %}" alt="" />
+          </a>
+        </form>
+      </div>
+    </div>
+    <!-- Search Button End -->
 
-    <button id="Mother" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" >
-      Mother's Day
-    </button>
+    <div class="flex justify-between items-center pb-12">
+      <div id="selectedCategory" class="flex flex-wrap items-center mt-10 filter-tope-group">
+        <button id="" class="text-gray-600 hover:bg-red-200 hover:border-none 
+    border border-red-300 rounded-2xl px-4 py-2 transition duration-300 ease-in-out 
+    mr-4 mb-4 focus:border-none focus:bg-red-200 focus:shadow-outline">All Products
+        </button>
 
-    <button id="Birthday" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" >
-      Birthday
-    </button>
+        <button id="Valentines" class="text-gray-600 hover:bg-red-200 hover:border-none 
+    border border-red-300 rounded-2xl px-4 py-2 transition duration-300 ease-in-out 
+    mr-4 mb-4 focus:border-none focus:bg-red-200 focus:shadow-outline">Valentine's Day
+        </button>
 
-    <button id="Anniversary" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-      Anniversary
-    </button>
-  </div>
-</div>
+        <button id="Mother" class="text-gray-600 hover:bg-red-200 hover:border-none 
+    border border-red-300 rounded-2xl px-4 py-2 transition duration-300 ease-in-out 
+    mr-4 mb-4 focus:border-none focus:bg-red-200 focus:shadow-outline">Mother's Day
+        </button>
 
-  <div
-    class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 mx-3"
-  >
-    {% for product in products %}
-    <div
-      class="flex flex-col m-2 bg-white rounded-xl shadow-md individual-container"
-    >
-      {% if product.image %}
-      <img
-        class="h-72 w-full rounded-t-xl"
-        src="{{ product.image.url }}"
-        alt=""
-      />
-      {% endif %}
-      <h5
-        class="mb-2 text-center text-2xl font-semibold tracking-tight text-gray-900"
-      >
-        {{product.name}}
-      </h5>
+        <button id="Birthday" class="text-gray-600 hover:bg-red-200 hover:border-none 
+    border border-red-300 rounded-2xl px-4 py-2 transition duration-300 ease-in-out 
+    mr-4 mb-4 focus:border-none focus:bg-red-200 focus:shadow-outline"> Birthday
+        </button>
 
-      <form
-        action="{% url 'order:add_to_cart' product.id %}"
-        method="post"
-        class="text-center items-center mt-auto p-3"
-        id="product-form"
-        onkeydown="return event.key != 'Enter';"
-      >
-        <!-- to prevent form submission on 'ENTER' -->
+        <button id="Anniversary" class="text-gray-600 hover:bg-red-200 hover:border-none 
+    border border-red-300 rounded-2xl px-4 py-2 transition duration-300 ease-in-out 
+    mr-4 mb-4 focus:border-none focus:bg-red-200 focus:shadow-outline">Anniversary
+        </button>
+      </div>
+    </div>
 
-        {% csrf_token %}
-        <div class="flex my-3">
-          <!-- Start Choosing Quantity -->
-          <div class="flex ml-3 w-4/5">
-            <button class="decrement" type="button">
-              <svg class="fill-current text-gray-600 w-4" viewBox="0 0 448 512">
-                <path
-                  d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
-                />
-              </svg>
-            </button>
-            <input
-              class="w-1/3 h-7 mx-2 text-center rounded-md"
-              type="number"
-              value="1"
-              name="quantity"
-              min="1"
-              oninput="validity.valid||(value='1');"
-              required
-            />
-            <button class="increment" type="button">
-              <svg class="fill-current text-gray-600 w-4" viewBox="0 0 448 512">
-                <path
-                  d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
-                />
-              </svg>
-            </button>
-          </div>
-          <!-- End Choosing Quantity -->
+    <div class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 mx-3">
+      {% for product in products %}
+      <div class="flex flex-col m-2 bg-white rounded-xl shadow-md individual-container">
+        {% if product.image %}
+        <img class="h-72 w-full rounded-t-xl" src="{{ product.image.url }}" alt="" />
+        {% endif %}
+        <h5 class="mb-2 text-center text-2xl font-semibold tracking-tight text-gray-900">
+          {{product.name}}
+        </h5>
+
+        <form action="{% url 'order:add_to_cart' product.id %}" method="post"
+          class="text-center items-center mt-auto p-3" id="product-form" onkeydown="return event.key != 'Enter';">
+          <!-- to prevent form submission on 'ENTER' -->
+
+          {% csrf_token %}
+          <div class="flex my-3">
+            <!-- Start Choosing Quantity -->
+            <div class="flex ml-3 w-4/5">
+              <button class="decrement" type="button">
+                <svg class="fill-current text-gray-600 w-4" viewBox="0 0 448 512">
+                  <path
+                    d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                </svg>
+              </button>
+              <input class="w-1/3 h-7 mx-2 text-center rounded-md" type="number" value="1" name="quantity" min="1"
+                oninput="validity.valid||(value='1');" required />
+              <button class="increment" type="button">
+                <svg class="fill-current text-gray-600 w-4" viewBox="0 0 448 512">
+                  <path
+                    d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                </svg>
+              </button>
+            </div>
+            <!-- End Choosing Quantity -->
 
 
-          <!-- Start Display Variant Prices -->
-          {% if product.has_variants %}
-          <div class="flex items-center font-bold text-xl text-gray-600 ">
-            {% for variant in product.get_product_variants %}
-            <p
-              class="prices-{{forloop.parentloop.counter}} {{variant.size}}-{{forloop.parentloop.counter}} {% if not forloop.first %} hidden {% endif %}"
-            >
-              UGX&nbsp;{{variant.price|floatformat:0}}
-            </p>
-            {% endfor %}
-          </div>
-          {% else %}
-          <div class="flex items-center font-bold text-xl text-gray-600 ">
-            <p>UGX&nbsp;{{product.price|floatformat:0}}</p>
-          </div>
-          {% endif %} 
-
-
-
-
-{% comment %} WITH COMMAS {% endcomment %}
-
-
-          {% comment %} {% if product.has_variants %}
-          <div class="flex items-center font-bold text-xl text-gray-600">
+            <!-- Start Display Variant Prices -->
+            {% if product.has_variants %}
+            <div class="flex items-center font-bold text-xl text-gray-600 ">
               {% for variant in product.get_product_variants %}
-              <span class="Comma prices-{{forloop.parentloop.counter}} {{variant.size}}-{{forloop.parentloop.counter}} {% if not forloop.first %} hidden {% endif %}">
-                  UGX&nbsp;{{variant.price}}
+              <p
+                class="prices-{{forloop.parentloop.counter}} {{variant.size}}-{{forloop.parentloop.counter}} {% if not forloop.first %} hidden {% endif %}">
+                UGX&nbsp;{{variant.price|floatformat:0}}
+              </p>
+              {% endfor %}
+            </div>
+            {% else %}
+            <div class="flex items-center font-bold text-xl text-gray-600 ">
+              <p>UGX&nbsp;{{product.price|floatformat:0}}</p>
+            </div>
+            {% endif %}
+
+
+
+
+            {% comment %} WITH COMMAS {% endcomment %}
+
+
+            {% comment %} {% if product.has_variants %}
+            <div class="flex items-center font-bold text-xl text-gray-600">
+              {% for variant in product.get_product_variants %}
+              <span
+                class="Comma prices-{{forloop.parentloop.counter}} {{variant.size}}-{{forloop.parentloop.counter}} {% if not forloop.first %} hidden {% endif %}">
+                UGX&nbsp;{{variant.price}}
               </span>
               {% endfor %}
-          </div>
-          {% else %}
-          <div class="flex items-center font-bold text-xl text-gray-600">
+            </div>
+            {% else %}
+            <div class="flex items-center font-bold text-xl text-gray-600">
               <span class="Comma">
-                  UGX&nbsp;{{product.price}}
+                UGX&nbsp;{{product.price}}
               </span>
+            </div>
+            {% endif %} {% endcomment %}
+
+
+
+
+            <!-- End Display Variant Prices -->
+
+
+
           </div>
-          {% endif %}  {% endcomment %}
-
-
-
-
-          <!-- End Display Variant Prices -->
-
-
-          
-        </div>
-        <!-- Start Choosing Size -->
-        {% if product.has_variants %}
-        <div class="flex m-2 w-1/2">
-          {% for variant in product.get_product_variants%}
-          <div class="flex">
-            <!-- prettier-ignore -->
-            <input type="radio" name="size" id="{{variant.size}}-{{forloop.parentloop.counter}}" class="peer hidden"
-              value="{{variant.size}}" {% if forloop.first %} checked {% endif %} />
-            <!-- prettier-ignore -->
-            <label for="{{variant.size}}-{{forloop.parentloop.counter}}" class="cursor-pointer select-none rounded-xl p-2 text-sm text-center peer-checked:font-bold
+          <!-- Start Choosing Size -->
+          {% if product.has_variants %}
+          <div class="flex m-2 w-1/2">
+            {% for variant in product.get_product_variants%}
+            <div class="flex">
+              <!-- prettier-ignore -->
+              <input type="radio" name="size" id="{{variant.size}}-{{forloop.parentloop.counter}}" class="peer hidden"
+                value="{{variant.size}}" {% if forloop.first %} checked {% endif %} />
+              <!-- prettier-ignore -->
+              <label for="{{variant.size}}-{{forloop.parentloop.counter}}" class="cursor-pointer select-none rounded-xl p-2 text-sm text-center peer-checked:font-bold
               {% if forloop.counter == 1 %} peer-checked:bg-orange-100
               {% elif forloop.counter == 2 %} peer-checked:bg-orange-200
               {% elif forloop.counter == 3 %} peer-checked:bg-orange-300
               {% else %} peer-checked:bg-orange-400 {% endif %}">{{variant.size}}
-            </label>
+              </label>
+            </div>
+            {% endfor %}
           </div>
-          {% endfor %}
-        </div>
-        {% else %}
-        <div class="p-5"></div>
-        {% endif %}
-        <!-- End Choosing Size -->
-        <div class="flex">
-          <button id="add-cart-btn"
-            class="bg-red-200 rounded-xl w-full py-2 mt-2 js-add"
-            type="button"
-          >
-            Add to cart
-          </button>
-        </div>
-      </form>
+          {% else %}
+          <div class="p-5"></div>
+          {% endif %}
+          <!-- End Choosing Size -->
+          <div class="flex">
+            <button id="add-cart-btn" class="bg-red-200 rounded-xl w-full py-2 mt-2 js-add" type="button">
+              Add to cart
+            </button>
+          </div>
+        </form>
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
-</div>
-<!-- End Products List -->
+  <!-- End Products List -->
 
-<!-- Start Pagination -->
-<div class="flex items-center justify-center my-5">
-  {% if products.has_previous %}
-  <a class="text-sm font-bold items-center inline-flex relative" href="?page=1">
-    <<
-  </a>
-  <a
-    class="text-sm font-bold px-2 items-center inline-flex relative"
-    href="?page={{products.previous_page_number}}"
-  >
-    <
-  </a>
-  {% else %}
-  <span class="text-sm items-center inline-flex relative"> << </span>
-  <span class="text-sm px-2 items-center inline-flex relative"> < </span>
+  <!-- Start Pagination -->
+  <div class="flex items-center justify-center my-5">
+    {% if products.has_previous %}
+    <a class="text-sm font-bold items-center inline-flex relative" href="?page=1">
+      << </a>
+        <a class="text-sm font-bold px-2 items-center inline-flex relative"
+          href="?page={{products.previous_page_number}}">
+          < </a>
+            {% else %}
+            <span class="text-sm items-center inline-flex relative">
+              << </span>
+                <span class="text-sm px-2 items-center inline-flex relative">
+                  < </span>
 
-  {% endif %}
-  <span class="pagination"
-    >{{products.number}} of {{products.paginator.num_pages}}</span
-  >
-  {% if products.has_next %}
-  <a
-    class="text-sm font-bold px-2 items-center inline-flex relative"
-    href="?page={{products.next_page_number}}"
-    >></a
-  >
-  <a
-    class="text-sm font-bold items-center inline-flex relative"
-    href="?page={{products.paginator.num_pages}}"
-    >>></a
-  >
-  {% else %}
-  <a
-    class="text-sm px-2 items-center inline-flex relative pointer-events-none cursor-default"
-    href="#"
-    >></a
-  >
-  <a
-    class="text-sm items-center inline-flex relative pointer-events-none cursor-default"
-    href="#"
-    >>></a
-  >
-  {% endif %}
-</div>
-<!-- End Pagination-->
+                    {% endif %}
+                    <span class="pagination">{{products.number}} of {{products.paginator.num_pages}}</span>
+                    {% if products.has_next %}
+                    <a class="text-sm font-bold px-2 items-center inline-flex relative"
+                      href="?page={{products.next_page_number}}">></a>
+                    <a class="text-sm font-bold items-center inline-flex relative"
+                      href="?page={{products.paginator.num_pages}}">>></a>
+                    {% else %}
+                    <a class="text-sm px-2 items-center inline-flex relative pointer-events-none cursor-default"
+                      href="#">></a>
+                    <a class="text-sm items-center inline-flex relative pointer-events-none cursor-default"
+                      href="#">>></a>
+                    {% endif %}
+  </div>
+  <!-- End Pagination-->
 
-<!-- JavaScript to update the selected category -->
-<script>
-  var csrftoken = '{{ csrf_token }}';
+  <!-- JavaScript to update the selected category -->
+  <script>
+    var csrftoken = '{{ csrf_token }}';
 
-  document.addEventListener("DOMContentLoaded", function () {
-    // Check if the element with class 'filter-tope-group' exists
-    var filterGroup = document.querySelector('.filter-tope-group');
+    document.addEventListener("DOMContentLoaded", function () {
+      // Check if the element with class 'filter-tope-group' exists
+      var filterGroup = document.querySelector('.filter-tope-group');
 
-    if (filterGroup) {
-      // Get the filter buttons
-      var filterButtons = filterGroup.querySelectorAll('button');
+      if (filterGroup) {
+        // Get the filter buttons
+        var filterButtons = filterGroup.querySelectorAll('button');
 
-      // Add click event listeners to each button
-      filterButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-          // Get the category from the button's id
-          var category = button.id;
+        // Add click event listeners to each button
+        filterButtons.forEach(function (button) {
+          button.addEventListener('click', function () {
+            // Get the category from the button's id
+            var category = button.id;
 
-          // Redirect to the same page with the selected category as a query parameter
-          window.location.href = "?category=" + category;
+            // Redirect to the same page with the selected category as a query parameter
+            window.location.href = "?category=" + category;
+          });
         });
-      });
-    }
-  });
-</script>
-
-<script src="{% static 'store/js/productHelper.js' %}"></script>
-
-
-
-
-{% comment %} FOR COMMAS IN PRICE {% endcomment %}
-
-
-{% comment %} <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(".Comma").each(function() {
-        var amount = parseFloat($(this).text().replace(/[^\d.-]/g, '')); // Remove non-numeric characters
-        if (!isNaN(amount)) { // Check if the value is a valid number
-            var newAmount = amount.toLocaleString('en-US');
-            $(this).text("UGX " + newAmount); 
-        }
+      }
     });
-</script>
-{% endcomment %}
+  </script>
 
-{% endblock %}
+  <script src="{% static 'store/js/productHelper.js' %}"></script>
+
+
+
+
+  {% comment %} FOR COMMAS IN PRICE {% endcomment %}
+
+
+  {% comment %}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(".Comma").each(function () {
+      var amount = parseFloat($(this).text().replace(/[^\d.-]/g, '')); // Remove non-numeric characters
+      if (!isNaN(amount)) { // Check if the value is a valid number
+        var newAmount = amount.toLocaleString('en-US');
+        $(this).text("UGX " + newAmount);
+      }
+    });
+  </script>
+  {% endcomment %}
+
+  {% endblock %}
 </body>
+
 </html>
