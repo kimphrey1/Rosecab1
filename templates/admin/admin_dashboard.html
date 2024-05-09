@@ -1,197 +1,179 @@
 {% extends 'admin/root.html' %}
 {%block title%}Rosecab | Admin Dashboard{%endblock title%}
-{% block content  %}
+{% block content %}
 <style>
-.glow {
-  font-size: 80px;
-  color: #fff;
-  text-align: center;
-  -webkit-animation: glow 1s ease-in-out infinite alternate;
-  -moz-animation: glow 1s ease-in-out infinite alternate;
-  animation: glow 1s ease-in-out infinite alternate;
-}
-@-webkit-keyframes glow {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  .glow {
+    font-size: 80px;
+    color: #fff;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
   }
-  to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+
+  @-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
   }
-}
-/* Rounded border */
-hr.rounded {
-  border-top: 8px solid lightblue;
-  border-radius: 5px;
-}
+
+  /* Rounded border */
+  hr.rounded {
+    border-top: 8px solid lightblue;
+    border-radius: 5px;
+  }
 </style>
 
 <!-- Main content -->
 <section class="content">
-    <!-- Small boxes (Stat box) -->
-<div class="row">
-<div class="col-lg-4 col-xs-12">
-  <!-- small box -->
-  <div class="small-box bg-aqua">
-    <div class="inner">
-      <h3>{{ mydict.customercount }}</h3>
-      <p>Users</p>
+  <!-- Small boxes (Stat box) -->
+  <div class="row">
+    <div class="col-lg-4 col-xs-12">
+      <!-- small box -->
+      <div class="small-box" style="background-color:#8260fc;">
+        <div class="inner">
+          <h3>{{ mydict.customercount }}</h3>
+          <p>Users</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-users"></i>
+        </div>
+        <a href="{% url 'user_list' %}" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
     </div>
-    <div class="icon">
-      <i class="fa fa-users"></i>
+
+    <!-- ./col -->
+    <div class="col-lg-4 col-xs-12">
+      <!-- small box -->
+      <div class="small-box" style="background-color:#0eed46;">
+        <div class="inner">
+          <h3>{{ mydict.productcount }}</h3>
+          <p>Products</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-cube"></i>
+        </div>
+        <a href="/view-product/" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
     </div>
-    <a href="{% url 'user_list' %}" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+    <!-- ./col -->
+
+    <!-- ./col -->
+    <div class="col-lg-4 col-xs-12">
+      <!-- small box -->
+      <div class="small-box" style="background-color:#00b7ff;">
+        <div class="inner">
+          <h3>{{ mydict.categorycount }}</h3>
+          <p>Categories</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-folder-open"></i>
+        </div>
+        <a href="/view-category/" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+
+    <!-- ./col -->
+    <div class="col-lg-4 col-xs-12">
+      <!-- small box -->
+      <div class="small-box" style="background-color:#d863eb;">
+        <div class="inner">
+          <h3>{{ mydict.sizecount }}</h3>
+          <p>Sizes</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-tags"></i>
+        </div>
+        <a href="/view-size/" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+
+    <!-- ./col -->
+    <div class="col-lg-4 col-xs-12">
+      <!-- small box -->
+      <div class="small-box" style="background-color:#fa7f7f;">
+        <div class="inner">
+          <h3>{{ mydict.productvariantcount }}</h3>
+          <p>Inventory</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-folder"></i>
+        </div>
+        <a href="/view-product-variants/" class="small-box-footer">More Info <i
+            class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+
+    <!-- ./col -->
+    {% comment %} <div class="col-lg-4 col-xs-12">
+      <!-- small box -->
+      <div class="small-box bg-aqua">
+        <div class="inner">
+          <h3>{{ mydict.driver_group_count }}</h3>
+          <p>Drivers</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-car"></i>
+        </div>
+        <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div> {% endcomment %}
+    <!-- ./col -->
+
+    <!-- ./col -->
+    {% comment %} <div class="col-lg-4 col-xs-12">
+      <!-- small box -->
+      <div class="small-box bg-aqua">
+        <div class="inner">
+          <h3> 2</h3>
+          <p>Admin</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-black-tie"></i>
+        </div>
+        <a href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div> {% endcomment %}
+    <!-- ./col -->
+
+    <!-- ./col -->
+    <div class="col-lg-4 col-xs-12">
+      <!-- small box -->
+      <div class="small-box" style="background-color:#fcac21;">
+        <div class="inner">
+          <h3>{{ mydict.ordercount }}</h3>
+          <p>Orders</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-shopping-cart"></i>
+        </div>
+        <a href="/view_order/" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+
+    <!-- ./col -->
+    {% comment %} <div class="col-lg-4 col-xs-12">
+      <!-- small box -->
+      <div class="small-box bg-aqua">
+        <div class="inner">
+          <h3> 2</h3>
+          <p>Feedback</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-comment"></i>
+        </div>
+        <a href=href="" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div> {% endcomment %}
+
   </div>
-</div>
 
-
-
-        <!-- ./col -->
-        <div class="col-lg-4 col-xs-12">
-            <!-- small box -->
-            <div class="small-box bg-aqua">
-              <div class="inner">
-                <h3>{{ mydict.productcount }}</h3>          
-                <p>Products</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-cube"></i>
-              </div>
-              <a href="/view-product/" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-
-
-
-
-
-        <!-- ./col -->
-        <div class="col-lg-4 col-xs-12">
-            <!-- small box -->
-            <div class="small-box bg-aqua">
-              <div class="inner">
-                <h3>{{ mydict.categorycount }}</h3>          
-                <p>Categories</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-folder-open"></i>
-              </div>
-              <a href="/view-category/" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-
-
-        <!-- ./col -->
-        <div class="col-lg-4 col-xs-12">
-            <!-- small box -->
-            <div class="small-box bg-aqua">
-              <div class="inner">
-                <h3>{{ mydict.sizecount }}</h3>          
-                <p>Sizes</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-tags"></i>
-              </div>
-              <a href="/view-size/" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-
-
-
-
-
-
-        <!-- ./col -->
-        <div class="col-lg-4 col-xs-12">
-            <!-- small box -->
-            <div class="small-box bg-aqua">
-              <div class="inner">
-                <h3>{{ mydict.productvariantcount }}</h3>          
-                <p>Inventory</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-folder"></i>
-              </div>
-              <a href="/view-product-variants/" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-
-
-
-
-
-        <!-- ./col -->
-        {% comment %} <div class="col-lg-4 col-xs-12">
-            <!-- small box -->
-            <div class="small-box bg-aqua">
-              <div class="inner">
-                <h3>{{ mydict.driver_group_count }}</h3>          
-                <p>Drivers</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-car"></i>
-              </div>
-              <a href=""  class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div> {% endcomment %}
-          <!-- ./col -->
-
-
-
-
-        <!-- ./col -->
-        {% comment %} <div class="col-lg-4 col-xs-12">
-            <!-- small box -->
-            <div class="small-box bg-aqua">
-              <div class="inner">
-                <h3 > 2</h3>          
-                <p>Admin</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-black-tie"></i>
-              </div>
-              <a href=""  class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div> {% endcomment %}
-          <!-- ./col -->
-
-
-
-        <!-- ./col -->
-        <div class="col-lg-4 col-xs-12">
-            <!-- small box -->
-            <div class="small-box bg-aqua">
-              <div class="inner">
-                <h3>{{ mydict.ordercount }}</h3>          
-                <p>Orders</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-shopping-cart"></i>
-              </div>
-              <a href="/view_order/" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-
-
-        <!-- ./col -->
-        {% comment %} <div class="col-lg-4 col-xs-12">
-            <!-- small box -->
-            <div class="small-box bg-aqua">
-              <div class="inner">
-                <h3 > 2</h3>          
-                <p>Feedback</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-comment"></i>
-              </div>
-              <a href=href=""  class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-        </div> {% endcomment %}
-
-</div>
-
-{% endblock  %}
+  {% endblock %}
