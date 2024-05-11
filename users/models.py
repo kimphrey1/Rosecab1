@@ -13,7 +13,9 @@ class Customer(models.Model):
 
 class User(AbstractUser):
     email = models.EmailField(unique=True)
+    phone = models.IntegerField(null=True, blank=True)
 
     REQUIRED_FIELDS = [
         "email",
+        "phone"
     ]

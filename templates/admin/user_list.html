@@ -14,6 +14,7 @@
                             <th style="color: white; border: 1px solid black;">No</th>
                             <th style="color: white; border: 1px solid black;">Username</th>
                             <th style="color: white; border: 1px solid black;">Email</th>
+                            <th style="color: white; border: 1px solid black;">Phone</th>
                             <th style="color: white; text-align: center; border: 1px solid black;">Actions</th>
                         </tr>
                     </thead>
@@ -23,6 +24,7 @@
                                 <td style="border: 1px solid black;">{{ forloop.counter }}</td>
                                 <td style="border: 1px solid black;">{{ user.username }}</td>
                                 <td style="border: 1px solid black;">{{ user.email }}</td>
+                                <td style="border: 1px solid black;">{{ user.phone }}</td>
                                 <td class="text-center" style="border: 1px solid black;">
                                     <a href="{% url 'edit_user' user_id=user.id %}" class="text-success">Edit</a>
                                     <a href="#" class="text-danger ml-2" onclick="confirmDelete('{{ user.id }}')">Delete</a>

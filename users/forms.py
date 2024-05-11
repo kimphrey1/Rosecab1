@@ -22,6 +22,15 @@ class UserRegisterForm(UserCreationForm):
             }
         ),
     )
+    phone = forms.IntegerField(
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Phone",
+            }
+        ),
+    )
     password1 = forms.CharField(
         required=True,
         widget=forms.PasswordInput(
@@ -43,7 +52,7 @@ class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("username", "email", "password1", "password2")
+        fields = ("username", "email", "phone", "password1", "password2")
 
     def save(self, commit=True):  # pragma: no cover
         user = super(UserRegisterForm, self).save(commit=False)
