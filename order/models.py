@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import Customer
+from users.models import Customer, User
 import uuid
 from store.models import Product, ProductVariant
 import datetime
@@ -19,6 +19,7 @@ class Order(models.Model):
         primary_key=True, default=uuid.uuid4, editable=True
     )
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
 # ---------------------------------------------------------------------------------------------------
         # added

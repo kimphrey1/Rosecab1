@@ -250,13 +250,6 @@ def checkout(request):
     return render(request, "order/checkout.html", context=context)
 
 
-
-
-
-
-
-
-
 # XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 # FOR CASH
@@ -430,18 +423,6 @@ class PaymentSuccessView(TemplateView):
             order.complete = True
             order.save()
         return render(request, self.template_name)
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
