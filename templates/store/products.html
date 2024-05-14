@@ -133,7 +133,7 @@
 
 
             <!-- Start Display Variant Prices -->
-            {% if product.has_variants %}
+            {% comment %} {% if product.has_variants %}
             <div class="flex items-center font-bold text-xl text-gray-600 ">
               {% for variant in product.get_product_variants %}
               <p
@@ -146,7 +146,7 @@
             <div class="flex items-center font-bold text-xl text-gray-600 ">
               <p>UGX&nbsp;{{product.price|floatformat:0}}</p>
             </div>
-            {% endif %}
+            {% endif %} {% endcomment %}
 
 
 
@@ -154,7 +154,7 @@
             {% comment %} WITH COMMAS {% endcomment %}
 
 
-            {% comment %} {% if product.has_variants %}
+            {% if product.has_variants %}
             <div class="flex items-center font-bold text-xl text-gray-600">
               {% for variant in product.get_product_variants %}
               <span
@@ -169,7 +169,7 @@
                 UGX&nbsp;{{product.price}}
               </span>
             </div>
-            {% endif %} {% endcomment %}
+            {% endif %} 
 
 
 
@@ -274,21 +274,21 @@
 
 
 
-  {% comment %} FOR COMMAS IN PRICE {% endcomment %}
+  FOR COMMAS IN PRICE
 
 
-  {% comment %}
+  
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     $(".Comma").each(function () {
       var amount = parseFloat($(this).text().replace(/[^\d.-]/g, '')); // Remove non-numeric characters
       if (!isNaN(amount)) { // Check if the value is a valid number
         var newAmount = amount.toLocaleString('en-US');
-        $(this).text("UGX " + newAmount);
+        $(this).text("UGX" + newAmount);
       }
     });
   </script>
-  {% endcomment %}
+  
 
   {% endblock %}
 </body>
