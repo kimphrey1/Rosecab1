@@ -4,53 +4,62 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-<div class="row m-5 no-gutters shadow-lg">
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="wrap d-md-flex">
+                    <div class="img" style="background-image: url('{%static 'home/img/service-3.jpg'%}');">
+                    </div>
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <h3 class="mb-4">Register</h3>
+                            </div>
+                        </div>
+                        <form method="POST" class="signin-form">
+                            {%csrf_token%}
+                            <div class="form-group mb-3">
+                                <label for="email">Email address</label>
+                                 {{form.email}}
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="username">Username</label>
+                                {{form.username}}
 
-<div class="col-md-6 d-none d-md-block">
-  <img src="{%static 'home/img/service-3.jpg'%}" class="img-fluid" style="min-height:100%;" />
-  </div>
-<div class="col-md-6 bg-white p-5">
-    
-<h3 class="pb-3">Register</h3>
-<div class="form-style">
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-  <div class="form-group pb-3">    
-    {{form.email}}
-  </div>
-  <div class="form-group pb-3">   
-    {{form.username}}
-  </div>
-  <div class="form-group pb-3">   
-    {{form.phone}}
-  </div>
-  <div class="form-group pb-3">    
-    {{form.password1}}
-  </div>
-  <div class="form-group pb-3">    
-    {{form.password2}}
-  </div>
- 
-   <div class="pb-2">
-    {% comment %} <input type="submit" name="" value="Login" > {% endcomment %}
-<button 
-type="submit" 
-id="register-button"
-class="btn btn-primary w-100 font-weight-bold mt-2">
-Submit
-</button>
-   </div>
-</form>
-  <div class="pt-4 text-center"> Already have an account? <a href="{% url 'users:login' %}">Login</a> </div>
-  <div class="pt-4 text-center">
-    Go Back <a href="/">Home</a>
-  </div> 
-</div>
-
-</div>
-</div>
-</div>
-
-{% endblock content %}
-
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="phone">Phone</label>
+                                {{form.phone}}
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="password1">Password</label>
+                                {{form.password1}}
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="password2">Re-type Password</label>
+                                {{form.password2}}
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" id="register-button" class="form-control btn btn-primary rounded font-weight-bold submit px-3">
+                                    Create account</button>
+                            </div>
+                        </form>
+                        <p class="text-center">Already have an account? <a href="{% url 'users:login' %}">Login</a>
+                        </p>
+                        <p class="text-center">Go Back to <a href="/">Home</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="{% static 'login/js/jquery.min.js' %}"></script>
+<script src=" {% static 'login/js/popper.js' %}"></script>
+<script src="{% static 'login/js/bootstrap.min.js' %}"></script>
+<script src=" {% static 'login/js/main.js' %}"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vedd3670a3b1c4e178fdfb0cc912d969e1713874337387"
+    integrity="sha512-EzCudv2gYygrCcVhu65FkAxclf3mYM6BCwiGUm6BEuLzSb5ulVhgokzCZED7yMIkzYVg65mxfIBNdNra5ZFNyQ=="
+    data-cf-beacon='{"rayId":"88573eed1ad177b2","b":1,"version":"2024.4.1","token":"cd0b4b3a733644fc843ef0b185f98241"}'
+    crossorigin="anonymous"></script>
+{%endblock%}

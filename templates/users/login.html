@@ -1,51 +1,58 @@
-
 {% extends 'users/nav.html' %}
 {% block title%}Rosecab | User Login{% endblock %}
 {% block login %}active{% endblock %}
 {% load static %}
-  
+
 {% block content %}
-<div class="container">
-<div class="row m-5 no-gutters shadow-lg">
-<div class="col-md-6 d-none d-md-block">
-  <img src="{%static 'home/img/service-3.jpg'%}" class="img-fluid" style="min-height:100%;" />
-  </div>
-<div class="col-md-6 bg-white p-5">
-    
-<h3 class="pb-3">Login</h3>
-<div class="form-style">
-<form method="post">
-    {% csrf_token %}
-  <div class="form-group pb-3">    
-    {{form.username}}
-  </div>
-
-  <div class="form-group pb-3">   
-       {{form.password}}
-   </div>
- 
-   <div class="pb-2">
-    <button 
-    type="submit"
-    class="btn btn-primary w-100 font-weight-bold mt-2" 
-    id="login-button">
-    Submit
-    </button>
-   </div>
-</form>
-<br>
-  <div class="sideline">OR</div>
-  <div>
-    <br>
-    <a href="{% url 'users:register' %}"><button type="submit" class="btn btn-primary w-100 font-weight-bold mt-2">
-    Register </button> </a> 
-  </div>
-  <div class="pt-4 text-center">
-  Go Back to <a href="/">Home</a>
-  </div> 
-</div>
-
-</div>
-</div>
-</div>
-{% endblock content %}
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="wrap d-md-flex">
+                    <div class="img" style="background-image: url('{%static 'home/img/service-3.jpg'%}');">
+                    </div>
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <h3 class="mb-4">Login</h3>
+                            </div>
+                        </div>
+                        <form method="POST" class="signin-form">
+                            {%csrf_token%}
+                            <div class="form-group mb-3">
+                                <label for="name">Username</label>
+                                {{form.username}}
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="password">Password</label>
+                                {{form.password}}
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary rounded submit font-weight-bold px-3" id="login-button">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                        <div class="sideline">OR</div>
+                            
+                                <a href="{% url 'users:register' %}">
+                                    <button class="form-control btn btn-primary rounded submit font-weight-bold px-3">
+                                        Register
+                                    </button>
+                                </a>
+                        <p class="text-center">Go Back to <a href="/">Home</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="{% static 'login/js/jquery.min.js' %}"></script>
+<script src=" {% static 'login/js/popper.js' %}"></script>
+<script src="{% static 'login/js/bootstrap.min.js' %}"></script>
+<script src=" {% static 'login/js/main.js' %}"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vedd3670a3b1c4e178fdfb0cc912d969e1713874337387"
+    integrity="sha512-EzCudv2gYygrCcVhu65FkAxclf3mYM6BCwiGUm6BEuLzSb5ulVhgokzCZED7yMIkzYVg65mxfIBNdNra5ZFNyQ=="
+    data-cf-beacon='{"rayId":"88573eed1ad177b2","b":1,"version":"2024.4.1","token":"cd0b4b3a733644fc843ef0b185f98241"}'
+    crossorigin="anonymous"></script>
+{%endblock%}
