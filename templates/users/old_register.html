@@ -1,0 +1,56 @@
+{% extends 'users/nav.html' %}
+{% block title%}Rosecab | Register{% endblock %}
+{% block register %}active{% endblock %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+<div class="row m-5 no-gutters shadow-lg">
+
+<div class="col-md-6 d-none d-md-block">
+  <img src="{%static 'home/img/service-3.jpg'%}" class="img-fluid" style="min-height:100%;" />
+  </div>
+<div class="col-md-6 bg-white p-5">
+    
+<h3 class="pb-3">Register</h3>
+<div class="form-style">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+  <div class="form-group pb-3">    
+    {{form.email}}
+  </div>
+  <div class="form-group pb-3">   
+    {{form.username}}
+  </div>
+  <div class="form-group pb-3">   
+    {{form.phone}}
+  </div>
+  <div class="form-group pb-3">    
+    {{form.password1}}
+  </div>
+  <div class="form-group pb-3">    
+    {{form.password2}}
+  </div>
+ 
+   <div class="pb-2">
+    {% comment %} <input type="submit" name="" value="Login" > {% endcomment %}
+<button 
+type="submit" 
+id="register-button"
+class="btn btn-primary w-100 font-weight-bold mt-2">
+Submit
+</button>
+   </div>
+</form>
+  <div class="pt-4 text-center"> Already have an account? <a href="{% url 'users:login' %}">Login</a> </div>
+  <div class="pt-4 text-center">
+    Go Back <a href="/">Home</a>
+  </div> 
+</div>
+
+</div>
+</div>
+</div>
+
+{% endblock content %}
+
