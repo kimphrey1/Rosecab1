@@ -160,7 +160,13 @@
                         <div id='card' class="position-relative text-center bg-light rounded px-4 py-5"
                             style="margin-top: -100px;">
                             <h3 class="font-weight-semi-bold mt-5 mb-3 pt-5">{{ product.name }}</h3>
+
+                            {% if product.has_variants %}
+                            <h6 class="text-uppercase text-muted mb-4">UGX {{ product.get_product_variants.first.price|floatformat:0 }}</h6>
+                            {%else%}
                             <h6 class="text-uppercase text-muted mb-4">UGX {{ product.price|floatformat:0 }}</h6>
+                            {%endif%}
+
                             <div class="d-flex justify-content-center pt-1">
                                 {%if request.user.is_authenticated%}
                                 <a href="{% url 'store:products' %}" class="btn btn-primary mt-2">Shop now</a>
