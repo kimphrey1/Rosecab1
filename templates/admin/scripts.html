@@ -1,4 +1,10 @@
 {% load static %}
+<style>
+  .toast-green {
+      background-color: green !important;
+      color: white !important;
+  }
+</style>
     <!-- jQuery 3 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
@@ -55,7 +61,7 @@
       
       });
       </script>
-     {% if messages %}
+     {% comment %} {% if messages %}
         {% for message in messages  %}
     
         <!-- <script>
@@ -64,6 +70,33 @@
     
         <script>
             toastr.{{ message.tags }}('{{ message }}', '{{ message.tags|title }}');
-        </script>
-        {% endfor %}
-        {% endif %} 
+        </script> {% endcomment %}
+        <script>
+          $(document).ready(function() {
+              // Check if there are any messages
+              {% if messages %}
+                  {% for message in messages %}
+                      var toastClass = '';
+                      // Add custom class for specific tags
+                      if ("{{ message.tags }}" === "success") {
+                          toastClass = 'toast-green';
+                      }
+                      toastr.options = {
+                          "closeButton": true,
+                          "progressBar": true,
+                          "positionClass": "toast-top-right",
+                          "timeOut": "5000",
+                          "extendedTimeOut": "1000",
+                          "showEasing": "swing",
+                          "hideEasing": "linear",
+                          "showMethod": "fadeIn",
+                          "hideMethod": "fadeOut"
+                      };
+                      toastr["{{ message.tags }}"]('{{ message }}', '{{ message.tags|title }}', { "toastClass": toastClass });
+                  {% endfor %}
+              {% endif %}
+          });
+      </script>
+      
+        {% comment %} {% endfor %}
+        {% endif %}  {% endcomment %}
