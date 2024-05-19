@@ -109,13 +109,14 @@ class Order(models.Model):
         product_titles = str()
         for item in order_items:
             add_comma = ", " if l > 1 and ticker != l else ""
+            total_price = "{:,.0f}".format(item.get_total)  #Added Format the total price with commas
             if item.variation:
                 product_title = f"""{item.product.name}
                 ({item.variation.get_size},
-                Qty:{item.quantity}, UGX{item.get_total}){add_comma}"""
+                Qty:{item.quantity}, UGX{total_price}){add_comma}"""
             else:
                 product_title = f"""{item.product.name}
-                ( Qty:{item.quantity}, UGX{item.get_total}){add_comma}"""
+                ( Qty:{item.quantity}, UGX{total_price}){add_comma}"""
             product_titles += product_title
             ticker += 1
         return product_titles

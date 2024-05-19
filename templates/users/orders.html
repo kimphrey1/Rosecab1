@@ -105,17 +105,13 @@
                                     UGX&nbsp;<span class="Comma">{{order.get_cart_total|floatformat:0}}</span>
                                 </div>
                             </td>
-                            
+
                             <!-- VIEW DETAILS  -->
                             <td class="pl-4">
                                 <button class="btn-more-details py-3 px-5 text-sm focus:outline-none leading-none text-red-700 bg-red-100 rounded focus:ring-2 
                  focus:ring-offset-2 focus:ring-red-300 hover:bg-red-200 " data-order-id="{{ forloop.counter }}">
                                     View
                                 </button>
-
-
-
-
 
                                 <!-- Modal for More Order Details -->
                                 <div id="modal-{{forloop.counter}}"
@@ -185,7 +181,7 @@
                                                         <!-- PRICE -->
                                                         <td class="pl-5">
                                                             <div class="flex items-center">
-                                                                UGX&nbsp;{{item.get_item_price|floatformat:0}}
+                                                                UGX<span class="Comma">{{item.get_item_price|floatformat:0}}</span>
                                                             </div>
                                                         </td>
                                                         <!-- QTY -->
@@ -194,7 +190,7 @@
                                                         </td>
                                                         <!-- TOTAL -->
                                                         <td class="pl-4">
-                                                            UGX&nbsp;{{item.get_total|floatformat:0}}
+                                                            UGX<span class="Comma">{{item.get_total|floatformat:0}}</span>
                                                         </td>
                                                     </tr>
                                                     {%endfor%}
@@ -220,7 +216,7 @@
                                                     <div class="border-b border-black/50 border-3 mb-3"></div>
                                                     <div class="flex">
                                                         <p class="w-48">Subtotal:</p>
-                                                        <p>UGX&nbsp;{{order.get_cart_subtotal|floatformat:0}}</p>
+                                                        <p>UGX<span class="Comma">{{order.get_cart_subtotal|floatformat:0}}</span></p>
                                                     </div>
                                                     <div class="flex">
                                                         <p class="w-48">Status: </p>
@@ -230,7 +226,11 @@
                                                     </div>
                                                     <div class="flex">
                                                         <p class="w-48">Total:</p>
-                                                        <p>UGX&nbsp;{{order.get_cart_total|floatformat:0}}</p>
+                                                        <p>UGX
+                                                            <span class="Comma">
+                                                                {{order.get_cart_total|floatformat:0}}
+                                                            </span>
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -290,7 +290,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(".Comma").each(function() {
+    $(".Comma").each(function () {
         var amount = parseFloat($(this).text());
         var newAmount = amount.toLocaleString('en-US');
         $(this).text(newAmount);

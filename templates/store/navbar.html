@@ -24,6 +24,9 @@
   <link rel="stylesheet" href="{% static 'store/src/customStyles.css' %}" />
   <!-- Datepicker JQuery -->
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css" />
+  <!--JQuery Library      This helps with the commmas-->  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <style>
     body {
       font-family: "Poppins", sans-serif;
@@ -132,7 +135,15 @@
 
 
   {% block content %} {% endblock %}
-
+  <script>
+    $(".Comma").each(function () {
+      var amount = parseFloat($(this).text().replace(/[^\d.-]/g, '')); // Remove non-numeric characters
+      if (!isNaN(amount)) { // Check if the value is a valid number
+        var newAmount = amount.toLocaleString('en-US');
+        $(this).text("UGX"&nbsp; + newAmount);
+      }
+    });
+  </script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       // Select all dropdown toggle buttons
