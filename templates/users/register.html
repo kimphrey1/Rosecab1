@@ -17,6 +17,18 @@
                                 <h3 class="mb-4">Register</h3>
                             </div>
                         </div>
+                        {% if form.errors %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {% for field, errors in form.errors.items %}
+                                {% for error in errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            {% endfor %}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endif %}
                         <form method="POST" class="signin-form">
                             {%csrf_token%}
                             <div class="form-group mb-3">
