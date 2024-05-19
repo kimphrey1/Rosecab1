@@ -199,7 +199,27 @@
         <div class="row">
             <div class="col-12">
                 <div class="owl-carousel service-carousel">
-
+                    <!-- PRICE LIST -->
+                    <div class="service-item">
+                        <div class="service-img mx-auto">
+                            <img class="rounded-circle w-100 h-100 bg-light p-3"
+                                src="{% static 'home/img/SFBX-1.jpg' %}" style="object-fit: cover;">
+                        </div>
+                        <div id='service-card' class="position-relative text-center bg-light rounded p-4 pb-5"
+                            style="margin-top: -75px;">
+                            <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Regular Flower Box</h5>
+                            <p id="serve">We make regular flower boxes made up of 40 stems at UGX&nbsp;80,000/=</p>
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'store:products' %}"
+                                class="border-bottom border-secondary text-decoration-none text-secondary">Shop
+                                now</a>
+                            {%else%}
+                            <a href="{% url 'users:login' %}"
+                                class="border-bottom border-secondary text-decoration-none text-secondary">Shop
+                                now</a>
+                            {%endif%}
+                        </div>
+                    </div>
                     <!-- PRICE LIST -->
                     <div class="service-item">
                         <div class="service-img mx-auto">
@@ -229,7 +249,7 @@
                         </div>
                         <div id='service-card' class="position-relative text-center bg-light rounded p-4 pb-5"
                             style="margin-top: -75px;">
-                            <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Medium Flower Bouquets</h5>
+                            <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Medium&nbsp;Flower&nbsp;Bouquets</h5>
                             <p id="serve">We have medium flower bouquets made up of 60 stems at UGX&nbsp;100,000/=</p>
                             {% if user.is_authenticated %}
                             <a href="{% url 'store:products' %}"
@@ -245,8 +265,8 @@
                     <!-- PRICE LIST -->
                     <div class="service-item">
                         <div class="service-img mx-auto">
-                            <img class="rounded-circle w-100 h-100 bg-light p-3"
-                                src="{% static 'home/img/LFB-2.jpg' %}" style="object-fit: cover;">
+                            <img class="rounded-circle w-100 h-100 bg-light p-3" src="{% static 'home/img/LFB-2.jpg' %}"
+                                style="object-fit: cover;">
                         </div>
                         <div id='service-card' class="position-relative text-center bg-light rounded p-4 pb-5"
                             style="margin-top: -75px;">
@@ -272,7 +292,8 @@
                         <div id='service-card' class="position-relative text-center bg-light rounded p-4 pb-5"
                             style="margin-top: -75px;">
                             <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Extra Large Flower Bouquets</h5>
-                            <p id="serve">We have extra large flower bouquets made up of 200 stems at UGX&nbsp;300,000/=</p>
+                            <p id="serve">We have extra large flower bouquets made up of 200 stems at UGX&nbsp;300,000/=
+                            </p>
                             {% if user.is_authenticated %}
                             <a href="{% url 'store:products' %}"
                                 class="border-bottom border-secondary text-decoration-none text-secondary">Shop
@@ -284,27 +305,7 @@
                             {%endif%}
                         </div>
                     </div>
-                    <!-- PRICE LIST -->
-                    <div class="service-item">
-                        <div class="service-img mx-auto">
-                            <img class="rounded-circle w-100 h-100 bg-light p-3"
-                                src="{% static 'home/img/SFBX-1.jpg' %}" style="object-fit: cover;">
-                        </div>
-                        <div id='service-card' class="position-relative text-center bg-light rounded p-4 pb-5"
-                            style="margin-top: -75px;">
-                            <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Regular Flower Box</h5>
-                            <p id="serve">We make regular flower boxes made up of 40 stems at UGX&nbsp;80,000/=</p>
-                            {% if user.is_authenticated %}
-                            <a href="{% url 'store:products' %}"
-                                class="border-bottom border-secondary text-decoration-none text-secondary">Shop
-                                now</a>
-                            {%else%}
-                            <a href="{% url 'users:login' %}"
-                                class="border-bottom border-secondary text-decoration-none text-secondary">Shop
-                                now</a>
-                            {%endif%}
-                        </div>
-                    </div>
+
                     <!-- PRICE LIST -->
                     <div class="service-item">
                         <div class="service-img mx-auto">
@@ -356,7 +357,8 @@
                         <div id='service-card' class="position-relative text-center bg-light rounded p-4 pb-5"
                             style="margin-top: -75px;">
                             <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Extra Large Flower Boxes</h5>
-                            <p id="serve">We make extra large flower boxes made up of 200 stems at UGX&nbsp;340,000/=</p>
+                            <p id="serve">We make extra large flower boxes made up of 200 stems at UGX&nbsp;340,000/=
+                            </p>
                             {% if user.is_authenticated %}
                             <a href="{% url 'store:products' %}"
                                 class="border-bottom border-secondary text-decoration-none text-secondary">Shop
@@ -377,7 +379,8 @@
                         <div id='service-card' class="position-relative text-center bg-light rounded p-4 pb-5"
                             style="margin-top: -75px;">
                             <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Giagantic Flower Boxes</h5>
-                            <p id="serve">We have giagantic flower bouquets made up of 500 stems at UGX&nbsp;1,000,000/=</p>
+                            <p id="serve">We have giagantic flower boxes made up of 500 stems at UGX&nbsp;1,000,000/=
+                            </p>
                             {% if user.is_authenticated %}
                             <a href="{% url 'store:products' %}"
                                 class="border-bottom border-secondary text-decoration-none text-secondary">Shop
@@ -391,28 +394,6 @@
                     </div>
                     <!-- END PRICE LIST -->
 
-                    <div class="service-item">
-                        <div class="service-img mx-auto">
-                            <img class="rounded-circle w-100 h-100 bg-light p-3"
-                                src="{% static 'home/img/portfolio-8.jpg' %}" style="object-fit: cover;">
-                        </div>
-                        <div id='service-card' class="position-relative text-center bg-light rounded p-4 pb-5"
-                            style="margin-top: -75px;">
-                            <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Available Add-Ons</h5>
-                            <p id="serve">Butterflies, Fairy lights, Mini crowns, Wine, Chocolates & Customized
-                                Ballons
-                            </p>
-                            {% if user.is_authenticated %}
-                            <a href="{% url 'store:products' %}"
-                                class="border-bottom border-secondary text-decoration-none text-secondary">Shop
-                                now</a>
-                            {%else%}
-                            <a href="{% url 'users:login' %}"
-                                class="border-bottom border-secondary text-decoration-none text-secondary">Shop
-                                now</a>
-                            {%endif%}
-                        </div>
-                    </div>
                     <div class="service-item">
                         <div class="service-img mx-auto">
                             <img class="rounded-circle w-100 h-100 bg-light p-3"
@@ -478,6 +459,29 @@
                             {%endif%}
                         </div>
                     </div>
+
+                    <div class="service-item">
+                        <div class="service-img mx-auto">
+                            <img class="rounded-circle w-100 h-100 bg-light p-3"
+                                src="{% static 'home/img/portfolio-8.jpg' %}" style="object-fit: cover;">
+                        </div>
+                        <div id='service-card' class="position-relative text-center bg-light rounded p-4 pb-5"
+                            style="margin-top: -75px;">
+                            <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Available Add-Ons</h5>
+                            <p id="serve">Butterflies, Fairy lights, Mini crowns, Wine, Chocolates & Customized
+                                Ballons
+                            </p>
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'store:products' %}"
+                                class="border-bottom border-secondary text-decoration-none text-secondary">Shop
+                                now</a>
+                            {%else%}
+                            <a href="{% url 'users:login' %}"
+                                class="border-bottom border-secondary text-decoration-none text-secondary">Shop
+                                now</a>
+                            {%endif%}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -492,28 +496,33 @@
             <h1 class="section-title position-relative text-center mb-5">Gallery</h1>
         </div>
     </div>
+    <!-- ADD SPAN HERE TOO IF THINGS STILL DONT -->
     <div class="row m-0 portfolio-container">
-        <div class="col-lg-4 col-md-6 p-0 portfolio-item">
-            <img class="img-fluid w-100" src="{% static 'home/img/portfolio-1.jpg' %}" alt="">
-        </div>
-        <div class="col-lg-4 col-md-6 p-0 portfolio-item">
-            <img class="img-fluid w-100" src="{% static 'home/img/portfolio-9.jpg' %}" alt="">
-        </div>
-        {% comment %} <div class="col-lg-4 col-md-6 p-0 portfolio-item">
-            <img class="img-fluid w-100" src="{% static 'home/img/portfolio-11.jpg' %}" alt="">
-        </div> {% endcomment %}
-        <div class="col-lg-4 col-md-6 p-0 portfolio-item">
-            <img class="img-fluid w-100" src="{% static 'home/img/portfolio-10.jpg' %}" alt="">
-        </div>
-        <div class="col-lg-4 col-md-6 p-0 portfolio-item">
-            <img class="img-fluid w-100" src="{% static 'home/img/portfolio-2.jpg' %}" alt="">
-        </div>
-        <div class="col-lg-4 col-md-6 p-0 portfolio-item">
-            <img class="img-fluid w-100" src="{% static 'home/img/portfolio-8.jpg' %}" alt="">
-        </div>
-        <div class="col-lg-4 col-md-6 p-0 portfolio-item">
-            <img class="img-fluid w-100" src="{% static 'home/img/portfolio-4.jpg' %}" alt="">
-        </div>
+        <span>
+            <div class="col-lg-4 col-md-6 p-0 portfolio-item">
+                <img class="img-fluid w-100" src="{% static 'home/img/portfolio-1.jpg' %}" alt="">
+            </div>
+            <div class="col-lg-4 col-md-6 p-0 portfolio-item">
+                <img class="img-fluid w-100" src="{% static 'home/img/portfolio-9.jpg' %}" alt="">
+            </div>
+            {% comment %} <div class="col-lg-4 col-md-6 p-0 portfolio-item">
+                <img class="img-fluid w-100" src="{% static 'home/img/portfolio-11.jpg' %}" alt="">
+            </div> {% endcomment %}
+            <div class="col-lg-4 col-md-6 p-0 portfolio-item">
+                <img class="img-fluid w-100" src="{% static 'home/img/portfolio-10.jpg' %}" alt="">
+            </div>
+        </span>
+        <span>
+            <div class="col-lg-4 col-md-6 p-0 portfolio-item">
+                <img class="img-fluid w-100" src="{% static 'home/img/portfolio-2.jpg' %}" alt="">
+            </div>
+            <div class="col-lg-4 col-md-6 p-0 portfolio-item">
+                <img class="img-fluid w-100" src="{% static 'home/img/portfolio-8.jpg' %}" alt="">
+            </div>
+            <div class="col-lg-4 col-md-6 p-0 portfolio-item">
+                <img class="img-fluid w-100" src="{% static 'home/img/portfolio-4.jpg' %}" alt="">
+            </div>
+        </span>
 
         {% comment %} <div class="col-lg-4 col-md-6 p-0 portfolio-item">
             <img class="img-fluid w-100" src="{% static 'home/img/portfolio-6.jpg' %}" alt="">
