@@ -13,7 +13,7 @@ class Customer(models.Model):
 
 class User(AbstractUser):
     email = models.EmailField(unique=True)
-    phone = models.IntegerField(null=True, blank=True)
+    phone = models.CharField(max_length=15, null=True, blank=True)
 
     REQUIRED_FIELDS = [
         "email",

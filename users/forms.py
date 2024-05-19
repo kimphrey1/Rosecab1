@@ -22,7 +22,7 @@ class UserRegisterForm(UserCreationForm):
             }
         ),
     )
-    phone = forms.IntegerField(
+    phone = forms.CharField(
         required=True,
         widget=forms.TextInput(
             attrs={

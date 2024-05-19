@@ -24,7 +24,7 @@
                                 <td style="border: 1px solid black;">{{ forloop.counter }}</td>
                                 <td style="border: 1px solid black;">{{ user.username }}</td>
                                 <td style="border: 1px solid black;">{{ user.email }}</td>
-                                <td style="border: 1px solid black;">{{ user.phone }}</td>
+                                <td style="border: 1px solid black;"><a href="tel:{{ user.phone}}" class="text-dark">{{ user.phone}}</a></td>
                                 <td class="text-center" style="border: 1px solid black;">
                                     <a href="{% url 'edit_user' user_id=user.id %}" class="text-success">Edit</a>
                                     <a href="#" class="text-danger ml-2" onclick="confirmDelete('{{ user.id }}')">Delete</a>
