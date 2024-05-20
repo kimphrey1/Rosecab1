@@ -10,3 +10,9 @@ password: user
 
 username: Shemei 
 password: Sh3m3!2024
+
+PLAN
+
+REQUIRED: email, amount, name, phone
+
+FORMS.PY PAYMENT => include in pay online form (hidden fields) => send to FW => CALLBACK AFTER SUCCESS

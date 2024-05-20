@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from store.models import Product, ProductVariant, Size
-from users.models import Customer
+from users.models import Customer, User
 from .models import OrderItem, Order, Coupon, ShippingAddress, PickUpDetail
 from .forms import CouponApplyForm
 from django.http import HttpResponseRedirect
@@ -281,8 +281,8 @@ def cash_checkout(request, pk):
     delivery = data.pop("delivery")
 
     # pop email and phone
-    phone = data.pop("phone")
-    email = data.pop("email")
+    # phone = data.pop("phone")
+    # email = data.pop("email")
 
     if delivery:
         order.delivery_method = "delivery"
@@ -323,8 +323,8 @@ def cash_checkout(request, pk):
             catch_validation_errors(e)
 
     # add email and phone to the order, and validate final form
-    order.email = email
-    order.phone = phone
+    # order.email = email
+    # order.phone = phone
     order.complete = True
     try:
         order.full_clean()
@@ -471,6 +471,149 @@ class PaymentFailedView(TemplateView):
 def create_checkout_session(request, pk):
     """
     Stripe payment gateway for Online payment checkout
+    Sessions are used to store ShippingAddress or PickUpDetails info
+    """
+    errors = []
+
+    def catch_validation_errors(e):
+        """
+        Collect errors and return Unprocessable Entity HTTP response
+        """
+        for key, value in e:
+            validation_error = key.upper() + " " + value[0]
+            errors.append(validation_error)
+
+    # get order by transaction_id
+    order = get_object_or_404(Order, transaction_id=pk)
+    # change order payment method to Online
+    order.payment_method = "online"
+
+    # load data from body/return 404 if no data
+    try:
+        data = json.loads(request.body)
+    except:
+        return HttpResponseNotFound()
+
+    # get delivery status
+    delivery = data.pop("delivery")
+    # pop email and phone
+    phone = data.pop("phone")
+    email = data.pop("email")
+
+    if delivery:
+        order.delivery_method = "delivery"
+        try:
+            # validate data
+            ShippingAddress(**data).full_clean()
+            # save data in session - will be adjusted after payment is complete
+            for key, value in data.items():
+                request.session[key] = value
+        except Exception as e:
+            catch_validation_errors(e)
+    else:
+        order.delivery_method = "carryout"
+        # validate data, but pass unvalidate to avoid error
+        # with storing datetime object in Sessions
+        data_to_validate = data.copy()
+        if data_to_validate["urgency"] == "custom":
+            # change data format and make naive datetime object timezone aware
+            data_to_validate["pickup_date"] = make_aware(
+                datetime.datetime.strptime(
+                    data_to_validate["pickup_date"], "%Y-%m-%d %I:%M %p"
+                )
+            )
+        else:
+            # for asap pick up date use today's date
+            data_to_validate["pickup_date"] = timezone.now().replace(
+                hour=0, minute=0, second=0, microsecond=0
+            )
+        try:
+            # validate PickUp details
+            PickUpDetail(**data_to_validate).full_clean()
+            # save Pick-up data in session
+            for key, value in data.items():
+                request.session[key] = value
+        except Exception as e:
+            catch_validation_errors(e)
+
+        # save in session
+        for key, value in data.items():
+            request.session[key] = value
+
+    # add email and phone to the order, and validate final form
+    order.email = email
+    order.phone = phone
+
+    try:
+        order.full_clean()
+    except Exception as e:
+        catch_validation_errors(e)
+
+    # save order to apply payment and delivery methods
+    order.save()
+
+    # if errors are caught, return Unprocessable Entity Response
+    if len(errors) > 0:
+        return JsonResponse({"errors": errors}, status=422)
+
+    # check if order has coupon and pass it to Stripe Payment Gateway
+    if order.coupon:
+        coupon_id = order.coupon.stripe_coupon_id
+    else:
+        coupon_id = None
+
+    order_items = OrderItem.objects.filter(order=order)
+    if order_items.exists():
+        # array consisting of products that will be displayed in stripe payment page
+        line_items = []
+        for item in order_items:
+            # show item size in the product name conditional on presence of product variants
+            if item.product.has_variants:
+                product_name = f"{item.product.name} ({item.variation.size})"
+            else:
+                product_name = item.product.name
+            line_items.append(
+                {
+                    "price_data": {
+                        "currency": "usd",
+                        "product_data": {
+                            "name": product_name,
+                        },
+                        "unit_amount": int(item.get_item_price * 100),
+                    },
+                    "quantity": item.quantity,
+                }
+            )
+
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    # Create Stripe Checkout Session
+    try:
+        checkout_session = stripe.checkout.Session.create(
+            customer_email=email,
+            payment_method_types=["card"],
+            line_items=line_items,
+            discounts=[
+                {
+                    "coupon": coupon_id,
+                }
+            ],
+            mode="payment",
+            success_url=request.build_absolute_uri(reverse("order:success"))
+            + "?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url=request.build_absolute_uri(reverse("order:failed")),
+        )
+    except:
+        return HttpResponseNotFound()
+    # set session key to be checked when accessing Success Payment View
+    request.session["redirected"] = True
+
+    return JsonResponse({"sessionId": checkout_session.id})
+
+# ===================PAY ONLINE======================================
+@require_POST
+def online_checkout_session(request, pk):
+    """
+    Flutterwave payment gateway for Online payment checkout
     Sessions are used to store ShippingAddress or PickUpDetails info
     """
     errors = []

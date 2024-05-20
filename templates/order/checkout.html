@@ -22,91 +22,7 @@
 
 <div class="flex flex-col md:flex-row">
   <!-- PAY ONLINE INFORMATION -->
-
-  <form id="pay-online-form" method="POST" enctype="multipart/form-data"
-    class="md:w-3/5 bg-white rounded-xl p-3 m-3 hidden">
-    {% csrf_token %}
-
-    <div class="flex flex-col justify-between mx-3 mb-5 bg-transparent rounded-xl">
-      <!-- Payment Method -->
-      <div class="p-2 mt-3">
-        <h2 class="font-bold mb-3 text-2xl">Payment Method</h2>
-        <div class="flex gap-3 mb-3">
-          <div>
-            <input type="radio" name="payment" id="pay-now" class="peer hidden" checked />
-            <label for="pay-now"
-              class="cursor-pointer select-none rounded-xl py-2 px-7 text-sm text-center peer-checked:bg-green-300 peer-checked:font-bold">
-              Online</label>
-          </div>
-        </div>
-      </div>
-      <!-- Contact Info -->
-      <div class="p-2">
-        <h2 class="font-bold mb-3 text-2xl">Contact Information</h2>
-        <div class="flex flex-col w-2/3 mb-5">
-          <label class="mb-2 font-bold text-slate-500" for="email">Email:</label>
-          <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="email" name="email"
-            required />
-        </div>
-        <div class="flex flex-col w-2/3 mb-2">
-          <label class="mb-2 font-bold text-slate-500" for="phone">Phone</label>
-          <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text" name="phone"
-            required />
-        </div>
-      </div>
-      <!-- Shipping Info -->
-      <div class="p-2">
-        <h2 class="font-bold mb-5 text-2xl">Shipping Information</h2>
-        <div class="flex flex-col">
-          <div class="flex justify-between mb-2">
-            <div class="flex flex-col w-1/2 mb-2">
-              <label class="mb-2 font-bold text-slate-500" for="first_name">First Name</label>
-              <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text" name="first_name"
-                required />
-            </div>
-            <div class="flex flex-col w-1/2 ml-2">
-              <label class="mb-2 font-bold text-slate-500" for="last_name">Last Name</label>
-              <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text"
-                name="last_name" />
-            </div>
-          </div>
-          <div class="flex flex-col w-full mb-2">
-            <label class="mb-2 font-bold text-slate-500" for="address_1">Address</label>
-            <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text" name="address_1"
-              required />
-          </div>
-          <div class="flex flex-col w-full mb-2">
-            {% comment %} <label class="mb-2 font-bold text-slate-500" for="address_2">Apartment, suite, etc.</label> {% endcomment %}
-            <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="hidden" name="address_2" value="None"/>
-          </div>
-          <div class="flex justify-between mb-2">
-            <div class="flex flex-col w-1/2 mb-2">
-              {% comment %} <label class="mb-2 font-bold text-slate-500" for="city">City</label> {% endcomment %}
-              <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="hidden" name="city" value="Any"/>
-            </div>
-            <div class="flex flex-col w-1/2 ml-2">
-              {% comment %} <label class="mb-2 font-bold text-slate-500" for="country">Country</label> {% endcomment %}
-              <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="hidden" name="country" value="Uganda"/>
-            </div>
-          </div>
-          <div class="flex justify-between mb-2">
-            <div class="flex flex-col w-1/2 mb-2">
-              {% comment %} <label class="mb-2 font-bold text-slate-500" for="state">State / Provice</label> {% endcomment %}
-              <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="hidden" name="state" value="None"/>
-            </div>
-            <div class="flex flex-col w-1/2 ml-2">
-              {% comment %} <label class="mb-2 font-bold text-slate-500" for="postal_code">Postal Code</label> {% endcomment %}
-              <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="hidden"
-                name="postal_code" value="00000"/>
-            </div>
-          </div>
-        </div>
-        
-        <div id="error-messages-delivery" class="text-red-500"></div>
-      </div>
-    </div>
-  </form>
-
+{%include 'order/pay_online.html'%}
 
   <!-- PAY ON DELIVERY INFORMATION -->
   <form id="address-form" method="POST" enctype="multipart/form-data" class="md:w-3/5 bg-white rounded-xl p-3 m-3">
@@ -126,7 +42,7 @@
         </div>
       </div>
       <!-- Contact Info -->
-      <div class="p-2">
+      {% comment %} <div class="p-2">
         <h2 class="font-bold mb-3 text-2xl">Contact Information</h2>
         <div class="flex flex-col w-2/3 mb-5">
           <label class="mb-2 font-bold text-slate-500" for="email">Email:</label>
@@ -138,7 +54,7 @@
           <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text" name="phone"
             required />
         </div>
-      </div>
+      </div> {% endcomment %}
       <!-- Shipping Info -->
       <div class="p-2">
         <h2 class="font-bold mb-5 text-2xl">Shipping Information</h2>
@@ -155,10 +71,17 @@
                 name="last_name" />
             </div>
           </div>
-          <div class="flex flex-col w-full mb-2">
-            <label class="mb-2 font-bold text-slate-500" for="address_1">Address</label>
-            <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text" name="address_1"
+          <div class="flex justify-between mb-2">
+            <div class="flex flex-col w-1/2 mb-2">
+              <label class="mb-2 font-bold text-slate-500" for="address_1">Address</label>
+              <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text" name="address_1"
               required />
+            </div>
+            <div class="flex flex-col w-1/2 ml-2">
+              <label class="mb-2 font-bold text-slate-500" for="phone">Phone</label>
+              <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text"
+                name="phone" />
+            </div>
           </div>
           <div class="flex flex-col w-full mb-2">
             {% comment %} <label class="mb-2 font-bold text-slate-500" for="address_2">Apartment, suite, etc.</label> {% endcomment %}
@@ -191,49 +114,51 @@
     </div>
   </form>
 
-  <!-- Order Summary -->
-  <div class="md:w-2/5 flex flex-col p-3 m-3 bg-gray-50 rounded-xl">
-    <div>
-      <h2 class="font-bold mb-5 text-2xl text-center">Order Summary</h2>
-      <div class="flex justify-between mx-6 my-3">
-        <p>Cart (<strong>{{order.get_cart_items}}</strong>)</p>
-        <p class="text-blue-700"><a id="links" href="{% url 'order:cart' %}">Edit</a></p>
-      </div>
-      <!-- Order Items -->
-      <div class="flex flex-col shadow-xl p-2 rounded-xl bg-white">
-        {% for item in order_items %}
-        <div class="flex gap-3 items-center mx-3 mb-2">
-          <img class="w-14 rounded-lg" src="{{item.product.image.url}}" alt="" />
-          <div>
-            <h3 class="text-slate-500 text-xl">{{item.product.name}}</h3>
-            {% if item.product.has_variants %}
-            <p>
-              Size: <strong>{{item.variation.size.name}}</strong> Price:
-              <strong class="Comma">UGX{{item.variation.price|floatformat:0}}</strong> Qty:
-              <strong>{{item.quantity}}</strong>
-            </p>
-            {% else %}
-            <p>
-              Price: <strong><span class="Comma">{{item.product.price|floatformat:0}}</span></strong> Qty:
-              <strong>{{item.quantity}}</strong>
-            </p>
-            {% endif %}
-          </div>
-          <p class="Comma ml-auto font-bold text-xl">UGX{{item.get_total|floatformat:0}}</p>
+<!-- Order Summary -->
+<div class="md:w-2/5 flex flex-col p-3 m-3 bg-gray-50 rounded-xl">
+  <div>
+    <h2 class="font-bold mb-5 text-2xl text-center">Order Summary</h2>
+    <div class="flex justify-between mx-6 my-3">
+      <p>Cart (<strong>{{order.get_cart_items}}</strong>)</p>
+      <p class="text-blue-700"><a id="links" href="{% url 'order:cart' %}">Edit</a></p>
+    </div>
+    <!-- Order Items -->
+    <div class="flex flex-col shadow-xl p-2 rounded-xl bg-white">
+      {% for item in order_items %}
+      <div class="flex flex-wrap gap-3 items-center mx-3 mb-2">
+        <img class="w-14 rounded-lg" src="{{item.product.image.url}}" alt="" />
+        <div class="flex-1 min-w-0">
+          <h3 class="text-slate-500 text-xl overflow-x-auto">{{item.product.name}}</h3>
+          {% if item.product.has_variants %}
+          <p class="text-sm">
+            Size: <strong>{{item.variation.size.name}}</strong> Price:
+            <strong class="Comma">UGX{{item.variation.price|floatformat:0}}</strong> Qty:
+            <strong>{{item.quantity}}</strong>
+          </p>
+          {% else %}
+          <p class="text-sm">
+            Price: <strong><span class="Comma">{{item.product.price|floatformat:0}}</span></strong> Qty:
+            <strong>{{item.quantity}}</strong>
+          </p>
+          {% endif %}
         </div>
-        {% endfor %}
+        <p class="Comma ml-auto font-bold text-xl whitespace-nowrap">UGX{{item.get_total|floatformat:0}}</p>
       </div>
+      {% endfor %}
     </div>
+  </div>
 
-    <div class="flex justify-between m-3 p-3">
-      <p>Delivery</p>
-      <p class="text-red-600">Free around Kampala</p>
-    </div>
-    <hr />
-    <div class="flex justify-between m-3 p-3 font-bold text-xl">
-      <p>Total</p>
-      <p><span class="Comma">{{order.get_cart_total|floatformat:0}}</span></p>
-    </div>
+  <div class="flex justify-between m-3 p-3">
+    <p>Delivery</p>
+    <p class="text-red-600">Free around Kampala</p>
+  </div>
+  <hr />
+  <div class="flex justify-between m-3 p-3 font-bold text-xl">
+    <p>Total</p>
+    <p><span class="Comma">{{order.get_cart_total|floatformat:0}}</span></p>
+  </div>
+
+
 
     <!-- Start Payment Button -->
 
@@ -259,7 +184,6 @@
   </div>
 </div>
 </div>
-
 
 {% comment %} ONLY CASH {% endcomment %}
 

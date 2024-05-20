@@ -1,0 +1,77 @@
+{%load static%}
+<form id="pay-online-form" method="POST" enctype="multipart/form-data"
+class="md:w-3/5 bg-white rounded-xl p-3 m-3 hidden">
+{% csrf_token %}
+
+<div class="flex flex-col justify-between mx-3 mb-5 bg-transparent rounded-xl">
+  <!-- Payment Method -->
+  <div class="p-2 mt-3">
+    <h2 class="font-bold mb-3 text-2xl">Payment Method</h2>
+    <div class="flex gap-3 mb-3">
+      <div>
+        <input type="radio" name="payment" id="pay-now" class="peer hidden" checked />
+        <label for="pay-now"
+          class="cursor-pointer select-none rounded-xl py-2 px-7 text-sm text-center peer-checked:bg-green-300 peer-checked:font-bold">
+          Online</label>
+      </div>
+    </div>
+  </div>
+  <!-- Shipping Info -->
+  <div class="p-2">
+    <h2 class="font-bold mb-5 text-2xl">Shipping Information</h2>
+    <div class="flex flex-col">
+      <div class="flex justify-between mb-2">
+            <div class="flex flex-col w-1/2 mb-2">
+            <label class="mb-2 font-bold text-slate-500" for="first_name">First Name</label>
+            <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text" name="first_name"
+                required />
+            </div>
+            <div class="flex flex-col w-1/2 ml-2">
+            <label class="mb-2 font-bold text-slate-500" for="last_name">Last Name</label>
+            <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text"
+                name="last_name" />
+            </div>
+      </div>
+      <div class="flex justify-between mb-2">
+        <div class="flex flex-col w-1/2 mb-2">
+          <label class="mb-2 font-bold text-slate-500" for="address_1">Address</label>
+          <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text" name="address_1"
+            required />
+        </div>
+        <div class="flex flex-col w-1/2 ml-2">
+        <label class="mb-2 font-bold text-slate-500" for="phone">Phone</label>
+        <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="text"
+            name="phone" />
+        </div>
+  </div>
+      <div class="flex flex-col w-full mb-2">
+        {% comment %} <label class="mb-2 font-bold text-slate-500" for="address_2">Apartment, suite, etc.</label> {% endcomment %}
+        <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="hidden" name="address_2" value="None"/>
+      </div>
+      <div class="flex justify-between mb-2">
+        <div class="flex flex-col w-1/2 mb-2">
+          {% comment %} <label class="mb-2 font-bold text-slate-500" for="city">City</label> {% endcomment %}
+          <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="hidden" name="city" value="Any"/>
+        </div>
+        <div class="flex flex-col w-1/2 ml-2">
+          {% comment %} <label class="mb-2 font-bold text-slate-500" for="country">Country</label> {% endcomment %}
+          <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="hidden" name="country" value="Uganda"/>
+        </div>
+      </div>
+      <div class="flex justify-between mb-2">
+        <div class="flex flex-col w-1/2 mb-2">
+          {% comment %} <label class="mb-2 font-bold text-slate-500" for="state">State / Provice</label> {% endcomment %}
+          <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="hidden" name="state" value="None"/>
+        </div>
+        <div class="flex flex-col w-1/2 ml-2">
+          {% comment %} <label class="mb-2 font-bold text-slate-500" for="postal_code">Postal Code</label> {% endcomment %}
+          <input class="rounded border-[#dcdcdc] focus:ring-0 focus:border-[#c0c0c0]" type="hidden"
+            name="postal_code" value="00000"/>
+        </div>
+      </div>
+    </div>
+    
+    <div id="error-messages-delivery" class="text-red-500"></div>
+  </div>
+</div>
+</form>
